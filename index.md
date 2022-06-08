@@ -4,7 +4,7 @@ title: Welcome to Swift.org
 atom: true
 ---
 
-# Welcome to Swift.org
+# Welcome to Swift
 
 Welcome to the Swift community. Together we are working to build a programming language to empower everyone to turn their ideas into apps on any platform.
 
