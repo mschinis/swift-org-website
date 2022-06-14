@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Source Code</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/source-code/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift.org" />
+  <meta name="twitter:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:title" content="Swift.org" />
+  <meta property="og:url" content="https://swift.org" />
+  <meta property="og:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li class="active">
+      
+        <a href="/source-code/">Source Code</a>
+        
+        <ul>
+          
+          <li><a href="/source-code/#compiler-and-standard-library">Compiler and Standard Library</a></li>
+          
+          <li><a href="/source-code/#core-libraries">Core Libraries</a></li>
+          
+          <li><a href="/source-code/#package-manager">Package Manager</a></li>
+          
+          <li><a href="/source-code/#xcode-playground-support">Xcode Playground Support</a></li>
+          
+          <li><a href="/source-code/#source-tooling">Source Tooling</a></li>
+          
+          <li><a href="/source-code/#sourcekit-lsp-service">SourceKit-LSP Service</a></li>
+          
+          <li><a href="/source-code/#swiftorg-website">Swift.org Website</a></li>
+          
+          <li><a href="/source-code/#cloned-repositories">Cloned Repositories</a></li>
+          
+        </ul>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+  <article class="page">
+  <header>
+    <h1>Source Code</h1>
+  </header>
+
+  <p>The code for the Swift project is divided into several open-source repositories, all hosted on <a href="https://github.com/apple/">GitHub</a>.</p>
+
+<h2 id="compiler-and-standard-library">Compiler and Standard Library</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/swift">swift</a></dt>
+  <dd>The main Swift repository, which contains the source code for the Swift compiler, standard library, and SourceKit.</dd>
+  <dt><a href="https://github.com/apple/swift-evolution">swift-evolution</a></dt>
+  <dd>Documents related to the continued evolution of Swift, including goals for upcoming releases proposals for changes to and extensions of Swift.</dd>
+</dl>
+
+<p>Directions for building the Swift compiler and standard library, along
+with its prerequisites, are provided by the <a href="https://github.com/apple/swift/blob/main/README.md">main Swift repository’s
+README
+file</a>.</p>
+
+<h2 id="core-libraries">Core Libraries</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a></dt>
+  <dd>The source code for Foundation, which provides common functionality for all applications.</dd>
+  <dt><a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a></dt>
+  <dd>The source code for libdispatch, which provides concurrency primitives for working on multicore hardware.</dd>
+  <dt><a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a></dt>
+  <dd>The source code for XCTest, which provides fundamental testing infrastructure for Swift apps and libraries.</dd>
+</dl>
+
+<h2 id="package-manager">Package Manager</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/swift-package-manager">swift-package-manager</a></dt>
+  <dd>The source code for the Swift package manager.</dd>
+  <dt><a href="https://github.com/apple/swift-llbuild">swift-llbuild</a></dt>
+  <dd>The source code for llbuild, a low-level build system used by the Swift package manager.</dd>
+  <dt><a href="https://github.com/apple/swift-tools-support-core">swift-tools-support-core</a></dt>
+  <dd>Contains common infrastructural code for both SwiftPM and llbuild.</dd>
+</dl>
+
+<h2 id="xcode-playground-support">Xcode Playground Support</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/swift-xcode-playground-support">swift-xcode-playground-support</a></dt>
+  <dd>The source code to enable playground integration with Xcode.</dd>
+</dl>
+
+<h2 id="source-tooling">Source Tooling</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/swift-syntax">swift-syntax</a></dt>
+  <dd>The source code for SwiftSyntax, which enables Swift tools to parse, inspect, generate, and transform Swift source code.</dd>
+  <dt><a href="https://github.com/apple/swift-format">swift-format</a></dt>
+  <dd>The source code for the formatting technology for Swift source code.</dd>
+</dl>
+
+<h2 id="sourcekit-lsp-service">SourceKit-LSP Service</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/sourcekit-lsp">sourcekit-lsp</a></dt>
+  <dd>The source code for the SourceKit-LSP language service.</dd>
+  <dt><a href="https://github.com/apple/indexstore-db">indexstore-db</a></dt>
+  <dd>The source code for the index database library.</dd>
+</dl>
+
+<h2 id="swiftorg-website">Swift.org Website</h2>
+
+<dl>
+  <dt><a href="https://github.com/apple/swift-org-website">swift-org-website</a></dt>
+  <dd>The source code for the Swift.org website.</dd>
+</dl>
+
+<h2 id="cloned-repositories">Cloned Repositories</h2>
+
+<p>Swift builds upon several other open-source projects, most notably
+<a href="http://llvm.org">the LLVM Compiler Infrastructure</a>. Swift’s clones of
+the repositories of those open-source projects contain Swift-specific
+changes and are merged regularly from their upstream sources. For more information about the clone of LLVM repository, see the section on <a href="/contributing/#llvm-and-swift">LLVM and Swift</a>.</p>
+
+<dl>
+  <dt><a href="https://github.com/apple/llvm-project">llvm-project</a></dt>
+  <dd>The source code for <a href="http://llvm.org">LLVM</a>, with a handful of Swift-specific additions. Merged regularly from the <a href="https://github.com/llvm/llvm-project">LLVM sources at llvm.org</a>.</dd>
+  <dt><a href="https://github.com/apple/swift-cmark">swift-cmark</a></dt>
+  <dd>The source code for <a href="https://github.com/jgm/cmark">CommonMark</a>, which is used in the Swift compiler.</dd>
+</dl>
+
+<p>Directions
+for building LLDB for Swift are present in the <a href="https://github.com/apple/llvm-project/blob/next/lldb/README.md" title="LLDB README">llvm-project/lldb repository’s
+README file</a>.</p>
+
+<hr />
+
+
+</article>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

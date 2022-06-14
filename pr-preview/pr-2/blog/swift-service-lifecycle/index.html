@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing Swift Service Lifecycle</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-service-lifecycle/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing Swift Service Lifecycle" />
+  <meta name="twitter:description" content="It is my pleasure to announce a new open source project for the Swift server ecosystem, Swift Service Lifecycle. Service Lifecycle is a Swift package designed to help server applications, also known as services, manage their startup and shutdown sequences.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing Swift Service Lifecycle" />
+  <meta property="og:url" content="https://swift.org/blog/swift-service-lifecycle/" />
+  <meta property="og:description" content="It is my pleasure to announce a new open source project for the Swift server ecosystem, Swift Service Lifecycle. Service Lifecycle is a Swift package designed to help server applications, also known as services, manage their startup and shutdown sequences.
+" />
+  <meta property="article:published_time" content="2020-07-15T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing Swift Service Lifecycle</h1>
+
+    <time pubdate datetime="2020-07-15T05:00:00-04:00">July 15, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/3cb408ef512103925c4fe709bf3f3b11?s=64" alt="Tom Doron"/>
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/tomerdoron/" rel="nofollow" title="Tom Doron (@tomerdoron) on Twitter">Tom Doron</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Tom Doron is a member of the Swift Core Team and the Swift Server Work Group. He manages a team working on server-side Swift libraries at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>It is my pleasure to announce a new open source project for the Swift server ecosystem, <a href="https://github.com/swift-server/swift-service-lifecycle">Swift Service Lifecycle</a>. Service Lifecycle is a Swift package designed to help server applications, also known as services, manage their startup and shutdown sequences.</p>
+
+<h2 id="what-is-it">What is it?</h2>
+
+<p>Most services have startup and shutdown workflow-logic which is often sensitive to failure and hard to get right. Startup sequences include actions like initializing thread pools, running data migrations, warming up caches, and other forms of state initialization before taking traffic or accepting events. Shutdown sequences include freeing up resources that hold on to file descriptors or other system resources that may leak if not cleared correctly.</p>
+
+<p>Today, server applications and frameworks must find ways to address the need on their own, which could be error prone. To make things safer and easier, Service Lifecycle codifies this common need in a safe, reusable and framework-agnostic way. It is designed to be integrated with any server framework or directly in a server application’s <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>The recommended way of using this library is creating a <code class="language-plaintext highlighter-rouge">ServiceLifecycle</code> instance in your server application’s <code class="language-plaintext highlighter-rouge">main</code>, and register <code class="language-plaintext highlighter-rouge">LifecycleTasks</code> with it. Upon calling the <code class="language-plaintext highlighter-rouge">start</code> function, <code class="language-plaintext highlighter-rouge">ServiceLifecycle</code>  will start these tasks in the order they were registered.</p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">ServiceLifecycle</code> also registers a <code class="language-plaintext highlighter-rouge">Signal</code> handler that traps <code class="language-plaintext highlighter-rouge">INT</code> and <code class="language-plaintext highlighter-rouge">TERM</code> , which are typical <code class="language-plaintext highlighter-rouge">Signal</code>s used in modern deployment platforms to communicate shutdown request. The shutdown sequence begins once the <code class="language-plaintext highlighter-rouge">Signal</code> is captured, and the <code class="language-plaintext highlighter-rouge">LifecycleTasks</code> are shut down in the reverse order they have been registered in.</p>
+
+<h3 id="example">Example</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the package.</span>
+<span class="kd">import</span> <span class="kt">Lifecycle</span>
+
+<span class="c1">// Initialize the `Lifecycle` container.</span>
+<span class="k">var</span> <span class="nv">lifecycle</span> <span class="o">=</span> <span class="kt">ServiceLifecycle</span><span class="p">()</span>
+
+<span class="c1">// Register a resource that should be shut down when the application exits.</span>
+<span class="c1">//</span>
+<span class="c1">// In this case, we are registering a SwiftNIO `EventLoopGroup`</span>
+<span class="c1">// and passing its `syncShutdownGracefully` function to be called on shutdown.</span>
+<span class="k">let</span> <span class="nv">eventLoopGroup</span> <span class="o">=</span> <span class="kt">MultiThreadedEventLoopGroup</span><span class="p">(</span><span class="nv">numberOfThreads</span><span class="p">:</span> <span class="kt">System</span><span class="o">.</span><span class="n">coreCount</span><span class="p">)</span>
+<span class="n">lifecycle</span><span class="o">.</span><span class="nf">registerShutdown</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"eventLoopGroup"</span><span class="p">,</span>
+    <span class="o">.</span><span class="nf">sync</span><span class="p">(</span><span class="n">eventLoopGroup</span><span class="o">.</span><span class="n">syncShutdownGracefully</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// Register another resource that should be started when the application starts</span>
+<span class="c1">// and shut down when the application exits.</span>
+<span class="c1">//</span>
+<span class="c1">// In this case, we are registering a contrived `DatabaseMigrator`</span>
+<span class="c1">// and passing its `migrate` function to be called on startup</span>
+<span class="c1">// and `shutdown` function to be called on shutdown.</span>
+<span class="k">let</span> <span class="nv">migrator</span> <span class="o">=</span> <span class="kt">DatabaseMigrator</span><span class="p">(</span><span class="nv">eventLoopGroup</span><span class="p">:</span> <span class="n">eventLoopGroup</span><span class="p">)</span>
+<span class="n">lifecycle</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"migrator"</span><span class="p">,</span>
+    <span class="nv">start</span><span class="p">:</span> <span class="o">.</span><span class="nf">async</span><span class="p">(</span><span class="n">migrator</span><span class="o">.</span><span class="n">migrate</span><span class="p">),</span>
+    <span class="nv">shutdown</span><span class="p">:</span> <span class="o">.</span><span class="nf">async</span><span class="p">(</span><span class="n">migrator</span><span class="o">.</span><span class="n">shutdown</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// Start the application.</span>
+<span class="c1">//</span>
+<span class="c1">// Start handlers passed using the `register` function</span>
+<span class="c1">// will be called in the order they were registered in.</span>
+<span class="n">lifecycle</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="c1">// start completion handler</span>
+    <span class="c1">// if an startup error occurred you can capture it here</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">error</span> <span class="p">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="nf">error</span><span class="p">(</span><span class="s">"failed starting </span><span class="se">\(</span><span class="k">self</span><span class="se">)</span><span class="s"> ☠️: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="nf">info</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="k">self</span><span class="se">)</span><span class="s"> started successfully 🚀"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Wait for the application to exit</span>
+<span class="c1">//</span>
+<span class="c1">// This is a blocking operation that typically waits for a `Signal`.</span>
+<span class="c1">// The `Signal` can be configured at `lifecycle.init`, and defaults to `INT` and `TERM`.</span>
+<span class="c1">// Shutdown handlers passed using the `register` or `registerShutdown` functions</span>
+<span class="c1">// will be called in the reverse order they were registered in.</span>
+<span class="n">lifecycle</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="getting-involved">Getting Involved</h2>
+
+<p>If you are interested in Service Lifecycle, come and get involved!</p>
+
+<p>The <a href="https://github.com/swift-server/swift-service-lifecycle">source is available</a>, and we encourage contributions from the open source community. If you have feedback, questions or would like to discuss the project, please feel free to chat on the <a href="https://forums.swift.org/c/server">Swift forums</a>. If you would like to report bugs, please use <a href="https://github.com/swift-server/swift-service-launcher/issues">the GitHub issue tracker</a>. We look forward to working with you, and helping move the industry forward to a better, safer programming future.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/AWS-lambda-runtime/" rel="prev" title="Previous: Introducing Swift AWS Lambda Runtime">Introducing Swift AWS Lambda Runtime</a>
+      
+
+      
+      <a href="/blog/swift-cluster-membership/" rel="next" title="Next: Introducing Swift Cluster Membership">Introducing Swift Cluster Membership</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

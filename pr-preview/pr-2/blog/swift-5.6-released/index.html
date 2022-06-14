@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 5.6 Released!</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-5.6-released/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 5.6 Released!" />
+  <meta name="twitter:description" content="Swift 5.6 is now officially released!
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 5.6 Released!" />
+  <meta property="og:url" content="https://swift.org/blog/swift-5.6-released/" />
+  <meta property="og:description" content="Swift 5.6 is now officially released!
+" />
+  <meta property="article:published_time" content="2022-03-14T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 5.6 Released!</h1>
+
+    <time pubdate datetime="2022-03-14T06:00:00-04:00">March 14, 2022</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/b6520643611a05fd040d0abcee3c883c?s=64" alt="Ted Kremenek"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/tkremenek/" rel="nofollow" title="Ted Kremenek (@tkremenek) on GitHub">Ted Kremenek</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Ted Kremenek is a member of the Swift Core Team and manages the Languages and Runtimes group at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>Swift 5.6 is now officially released!</p>
+
+<p>Thank you to everyone in the Swift community for your discussion, proposals, bug reports, pull requests, and more.</p>
+
+<p>Swift 5.6 includes a number of enhancements to the type system, improved interaction with pointers, and adds the ability to run new plugin commands using the package manager.</p>
+
+<p>For a quick dive into some of what’s new in Swift 5.6, check out this <a href="https://github.com/twostraws/whats-new-in-swift-5-6">playground</a> put together by Paul Hudson.</p>
+
+<p>If you’re new to Swift, <a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a> is the definitive guide on the Swift programming language and has been updated for version 5.6. The Swift community also maintains a number of <a href="https://www.swift.org/documentation/">translations</a>.  It is also available for free on the <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">Apple Books store</a>.</p>
+
+<h2 id="language-and-standard-library">Language and Standard Library</h2>
+
+<h3 id="new-features-and-refinements">New Features and Refinements</h3>
+
+<p>Swift 5.6 enhances the language through a number of proposals from the <a href="https://github.com/apple/swift-evolution">Swift Evolution</a> process, including:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0290-negative-availability.md">SE-0290</a> - Unavailability Condition</li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0315-placeholder-types.md">SE-0315</a> - Type placeholders (formerly, “Placeholder types”)</li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0320-codingkeyrepresentable.md">SE-0320</a> - Allow coding of non <code class="language-plaintext highlighter-rouge">String</code> / <code class="language-plaintext highlighter-rouge">Int</code> keyed <code class="language-plaintext highlighter-rouge">Dictionary</code> into a <code class="language-plaintext highlighter-rouge">KeyedContainer</code></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0322-temporary-buffers.md">SE-0322</a> - Temporary uninitialized buffers</li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0324-c-lang-pointer-arg-conversion.md">SE-0324</a> - Relax diagnostics for pointer arguments to C functions</li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0331-remove-sendable-from-unsafepointer.md">SE-0331</a> - Remove Sendable conformance from unsafe pointer types</li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md">SE-0335</a> - Introduces existential <code class="language-plaintext highlighter-rouge">any</code></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0337-support-incremental-migration-to-concurrency-checking.md">SE-0337</a> - Incremental migration to concurrency checking</li>
+</ul>
+
+<p>Let’s take a closer look at some of these below.</p>
+
+<h3 id="enhancements-to-the-type-system">Enhancements to the Type System</h3>
+
+<h4 id="type-placeholders-se-0315">Type Placeholders (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0315-placeholder-types.md">SE-0315</a>)</h4>
+
+<p>Swift allows you to omit verbose, incidental details from your code using type inference. However, writing explicit types when needed can feel excessive because you have to specify a complete type, even when your code only needed a specific part of the type to provide clarity:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">Either</span><span class="o">&lt;</span><span class="kt">Left</span><span class="p">,</span> <span class="kt">Right</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nf">left</span><span class="p">(</span><span class="kt">Left</span><span class="p">)</span>
+  <span class="k">case</span> <span class="nf">right</span><span class="p">(</span><span class="kt">Right</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">either</span><span class="p">:</span> <span class="kt">Either</span><span class="o">&lt;</span><span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span> <span class="o">=</span> <span class="o">.</span><span class="nf">left</span><span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>With type placeholders, you can now write partial type annotations in your code to provide only the details that were necessary. A type placeholder is written with _, and it directs the compiler to infer the missing type:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">Either</span><span class="o">&lt;</span><span class="kt">Left</span><span class="p">,</span> <span class="kt">Right</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nf">left</span><span class="p">(</span><span class="kt">Left</span><span class="p">)</span>
+  <span class="k">case</span> <span class="nf">right</span><span class="p">(</span><span class="kt">Right</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Inferred as 'Either&lt;ClosedRange&lt;Int&gt;, Range&lt;Int&gt;&gt;'</span>
+<span class="k">let</span> <span class="nv">either</span><span class="p">:</span> <span class="kt">Either</span><span class="o">&lt;</span><span class="n">_</span><span class="p">,</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span> <span class="o">=</span> <span class="o">.</span><span class="nf">left</span><span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="existential-any-se-0335">Existential <code class="language-plaintext highlighter-rouge">any</code> (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md">SE-0335</a>)</h4>
+
+<p>Existential types in Swift are used to store a value of any type conforming to a specific protocol. Today, existential types are spelled using a plain protocol name or protocol composition:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">DataSourceObserver</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">DataSource</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="kt">DataSourceObserver</span><span class="p">]</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>An existential type erases its underlying type information, which is useful when you need to dynamically change the underlying type, but it prohibits existential types from other useful capabilities such as conforming to protocols. The existing syntax is confusing because an existential type looks just like a generic conformance requirement, which doesn’t have these fundamental limitations.</p>
+
+<p>In Swift 5.6, existential types can be explicitly marked with the any keyword:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">DataSourceObserver</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">DataSource</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="n">any</span> <span class="kt">DataSourceObserver</span><span class="p">]</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="improved-interaction-with-pointers">Improved Interaction with Pointers</h3>
+
+<p>Swift 5.6 introduces three significant improvements when working with unsafe pointers:</p>
+
+<h4 id="temporary-uninitialized-buffers-se-0322">Temporary uninitialized buffers (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0322-temporary-buffers.md">SE-0322</a>)</h4>
+<p>This introduces a new way to create temporary uninitialized memory space, which is particularly useful when interacting with C APIs that need to be supplied with memory into which to store results of a computation.</p>
+
+<h4 id="relax-diagnostics-for-pointer-arguments-to-c-functions-se-0324">Relax diagnostics for pointer arguments to C functions (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0324-c-lang-pointer-arg-conversion.md">SE-0324</a>)</h4>
+<p>This change allows the passing of <em>mutable</em> variants of unsafe pointers (e.g. <code class="language-plaintext highlighter-rouge">UnsafeMutablePointer</code>) to APIs that take the immutable version (e.g. <code class="language-plaintext highlighter-rouge">UnsafePointer</code>) without an explicit conversion.</p>
+
+<h4 id="remove-sendable-conformance-from-unsafe-pointer-types-se-0331">Remove Sendable conformance from unsafe pointer types (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0331-remove-sendable-from-unsafepointer.md">SE-0331</a>)</h4>
+<p>Feedback from early adoption of Sendable shows that pointer conformance has unexpected negative consequences, especially for implicit conformance, since these types behave like references.</p>
+
+<h3 id="improved-concurrency-safety-model">Improved Concurrency Safety Model</h3>
+
+<p>Swift 5.6 also includes several improvements to the concurrency safety model:</p>
+
+<h4 id="incremental-migration-to-concurrency-checking-se-0337">Incremental migration to concurrency checking (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0337-support-incremental-migration-to-concurrency-checking.md">SE-0337</a>)</h4>
+<p>Diagnostics about <code class="language-plaintext highlighter-rouge">Sendable</code> are suppressed by default in Swift 5.6, but can be enabled by explicitly defining conformances to <code class="language-plaintext highlighter-rouge">Sendable</code> or using the <code class="language-plaintext highlighter-rouge">-warn-concurrency</code> compiler flag, enabling an incremental migration path to concurrency checking.</p>
+
+<h2 id="ecosystem">Ecosystem</h2>
+
+<h3 id="swift-package-manager">Swift Package Manager</h3>
+
+<p>The Swift Package Manager gained extensibility features in Swift 5.6, alongside several important security, performance and reliability updates.</p>
+
+<h4 id="extensible-build-tools-se-0303">Extensible Build Tools (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0303-swiftpm-extensible-build-tools.md">SE-0303</a>)</h4>
+
+<p>Introduces the ability to define build tool plugins in SwiftPM, allowing custom tools to be automatically invoked during a build. Build tool plugins are focused on code generation during the build of a package, for such purposes as generating Swift source files from .proto files or from other inputs, in order to allow build tools to be incorporated into the build graph and to run automatically in a safe manner.</p>
+
+<h4 id="command-plugins-se-0332">Command Plugins (<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0332-swiftpm-command-plugins.md">SE-0332</a>)</h4>
+<p>Extends SwiftPM plugin support first introduced with SE-0303 to allow the definition of custom command plugins — plugins that users can invoke directly from the SwiftPM CLI, or from an IDE that supports Swift Packages, in order to perform custom actions on their packages. A command plugin specifies the semantic intent of the command — this might be one of the predefined intents such “documentation generation” or “source code formatting”, or it might be a custom intent with a specialized verb that can be passed to the swift package command.</p>
+
+<p>Other updates include:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/main/proposals/0305-swiftpm-binary-target-improvements.md">SE-0305</a> - Package Manager Binary Target Improvements</li>
+  <li>Semantic version dependencies can now be resolved against Git tag names that contain only major and minor version identifiers. A tag with the form X.Y will be treated as X.Y.0. This improves compatibility with existing repositories.</li>
+  <li>To increase the security of packages, SwiftPM performs trust on first use (TOFU) validation. The fingerprint of a package is now being recorded when the package is first downloaded from a Git repository. Subsequent downloads must have fingerpints matching previous recorded values, otherwise it would result in build warnings or failures depending on settings.</li>
+  <li>Multiple improvements to dependencies resolution infrastructure, leading to improved performance and reliability of dependency resolution</li>
+</ul>
+
+<h3 id="swift-docc-updates">Swift-DocC Updates</h3>
+
+<p>Swift-DocC is now available <a href="https://github.com/apple/swift-docc-plugin">as a SwiftPM plugin</a> using the new plugin command support. See the documentation to <a href="https://apple.github.io/swift-docc-plugin/documentation/swiftdoccplugin/getting-started-with-the-swift-docc-plugin">learn how to get started</a>.</p>
+
+<p>In addition, you can now use Swift-DocC to <a href="https://apple.github.io/swift-docc-plugin/documentation/swiftdoccplugin/publishing-to-github-pages">publish static content to GitHub Pages</a>.</p>
+
+<p>Other enhancements include:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">docc</code> command-line tool is now a part of the open-source, release Swift toolchain for macOS and Linux platforms.</li>
+  <li>Swift-DocC can now build documentation that is compatible with static hosting environments, like GitHub Pages.</li>
+  <li>Swift-DocC can now produce documentation for executable targets like command-line tools and apps.</li>
+</ul>
+
+<p>Be sure to check out Joseph Heck’s <a href="https://rhonabwy.com/2022/01/28/hosting-your-swift-library-docs-on-github-pages/">great blog post</a> covering this is in more detail.</p>
+
+<h2 id="downloads">Downloads</h2>
+
+<p>Official binaries are <a href="https://swift.org/download/">available for download</a> from Swift.org for Xcode, Windows, and Linux. Swift 5.6 is also included in <a href="https://apps.apple.com/app/xcode/id497799835">Xcode 13.3</a>.</p>
+
+<p>We also provide RPMs for Amazon Linux 2 and CentOS 7 for <strong>experimental use only</strong>. Please provide your <a href="https://bugs.swift.org">feedback</a>.</p>
+
+<p>Use the instructions below for RPM installation:</p>
+
+<p><strong>Amazon Linux 2</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl https://download.swift.org/experimental-use-only/repo/amazonlinux/releases/2/swiftlang.repo <span class="o">&gt;</span> /etc/yum.repos.d/swiftlang.repo
+<span class="nv">$ </span>amazon-linux-extras <span class="nb">install </span>epel
+<span class="nv">$ </span>yum <span class="nb">install </span>swiftlang
+</code></pre></div></div>
+
+<p><strong>CentOS 7</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl https://download.swift.org/experimental-use-only/repo/centos/releases/7/swiftlang.repo <span class="o">&gt;</span> /etc/yum.repos.d/swiftlang.repo
+<span class="nv">$ </span>yum <span class="nb">install </span>epel-release
+<span class="nv">$ </span>yum <span class="nb">install </span>swiftlang
+</code></pre></div></div>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/distributed-actors/" rel="prev" title="Previous: Introducing Swift Distributed Actors">Introducing Swift Distributed Actors</a>
+      
+
+      
+      <a href="/blog/website-open-source/" rel="next" title="Next: Swift.org Website is Now Open Source">Swift.org Website is Now Open Source</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

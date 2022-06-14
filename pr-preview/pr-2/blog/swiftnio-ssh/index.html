@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing SwiftNIO SSH</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swiftnio-ssh/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing SwiftNIO SSH" />
+  <meta name="twitter:description" content="I am delighted to introduce a new open source project for the Swift Server ecosystem, SwiftNIO SSH. Distributed as a Swift package, SwiftNIO SSH is designed to enable Swift developers to interact with the SSH network protocol.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing SwiftNIO SSH" />
+  <meta property="og:url" content="https://swift.org/blog/swiftnio-ssh/" />
+  <meta property="og:description" content="I am delighted to introduce a new open source project for the Swift Server ecosystem, SwiftNIO SSH. Distributed as a Swift package, SwiftNIO SSH is designed to enable Swift developers to interact with the SSH network protocol.
+" />
+  <meta property="article:published_time" content="2020-11-19T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing SwiftNIO SSH</h1>
+
+    <time pubdate datetime="2020-11-19T05:00:00-04:00">November 19, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/Lukasa/" rel="nofollow" title="Cory Benfield (@Lukasa) on GitHub">Cory Benfield</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Cory Benfield is a member of a team developing foundational server-side Swift libraries as part of Apple‘s Cloud Services division, and is a core developer on SwiftNIO.</div>
+      
+    
+    
+  </header>
+
+  <p>I am delighted to introduce a new open source project for the Swift Server ecosystem, <a href="https://github.com/apple/swift-nio-ssh">SwiftNIO SSH</a>. Distributed as a Swift package, SwiftNIO SSH is designed to enable Swift developers to interact with the SSH network protocol.</p>
+
+<h2 id="what-is-swiftnio-ssh">What is SwiftNIO SSH?</h2>
+
+<p>SwiftNIO SSH is a programmatic implementation of SSH: that is, it is a collection of APIs that allow programmers to implement SSH-speaking endpoints. Critically, this means it is more like libssh2 than openssh. SwiftNIO SSH does not ship production-ready SSH clients and servers, but instead provides the building blocks for building this kind of client and server.</p>
+
+<p>There are a number of reasons to provide a programmatic SSH implementation. One is that SSH has a unique relationship to user interactivity. Technical users are highly accustomed to interacting with SSH interactively, either to run commands on remote machines or to run interactive shells. Having the ability to programmatically respond to these requests enables interesting alternative modes of interaction. As prior art, we can point to Twisted’s <a href="https://howto.lintel.in/how-to-run-manhole-service-in-twisted/">Manhole</a>, which uses <a href="https://twistedmatrix.com/trac/wiki/TwistedConch">a programmatic SSH implementation called <code class="language-plaintext highlighter-rouge">conch</code></a> to provide an interactive Python interpreter within a running Python server, or <a href="https://github.com/shazow/ssh-chat">ssh-chat</a>, a SSH server that provides a chat room instead of regular SSH shell functionality. Innovative uses can also be imagined for TCP forwarding.</p>
+
+<p>Another good reason to provide programmatic SSH is that it is not uncommon for services to need to interact with other services in a way that involves running commands. While <code class="language-plaintext highlighter-rouge">Process</code> solves this for the local use-case, sometimes the commands that need to be invoked are remote. While <code class="language-plaintext highlighter-rouge">Process</code> could launch an <code class="language-plaintext highlighter-rouge">ssh</code> client as a sub-process in order to run this invocation, it can be substantially more straightforward to simply invoke SSH directly. This is <a href="https://www.libssh2.org/"><code class="language-plaintext highlighter-rouge">libssh2</code></a>’s target use-case. SwiftNIO SSH provides the equivalent of the networking and cryptographic layer of libssh2, allowing motivated users to drive SSH sessions directly from within Swift services.</p>
+
+<h2 id="what-does-swiftnio-ssh-support">What does SwiftNIO SSH support?</h2>
+
+<p>SwiftNIO SSH supports SSHv2 with the following feature set:</p>
+
+<ul>
+  <li>All session channel features, including shell and exec channel requests</li>
+  <li>Direct and reverse TCP port forwarding</li>
+  <li>Modern cryptographic primitives only: Ed25519 and EDCSA over the major NIST curves (P256, P384, P521) for asymmetric cryptography, AES-GCM for symmetric cryptography, x25519 for key exchange</li>
+  <li>Password and public key user authentication</li>
+  <li>Supports all platforms supported by SwiftNIO and Swift Crypto</li>
+</ul>
+
+<h2 id="how-do-i-use-swiftnio-ssh">How do I use SwiftNIO SSH?</h2>
+
+<p>SwiftNIO SSH provides a SwiftNIO <code class="language-plaintext highlighter-rouge">ChannelHandler</code>, <code class="language-plaintext highlighter-rouge">NIOSSHHandler</code>. This handler implements the bulk of the SSH protocol. Users are not expected to generate SSH messages directly: instead, they interact with the <code class="language-plaintext highlighter-rouge">NIOSSHHandler</code> through child channels and delegates.</p>
+
+<p>SSH is a multiplexed protocol: each SSH connection is subdivided into multiple bidirectional communication channels called, appropriately enough, channels. SwiftNIO SSH reflects this construction by using a “child channel” abstraction. When a peer creates a new SSH channel, SwiftNIO SSH will create a new NIO <code class="language-plaintext highlighter-rouge">Channel</code> that is used to represent all traffic on that SSH channel. Within this child <code class="language-plaintext highlighter-rouge">Channel</code> all events are strictly ordered with respect to one another: however, events in different <code class="language-plaintext highlighter-rouge">Channel</code>s may be interleaved freely by the implementation.</p>
+
+<p>An active SSH connection therefore looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌ ─ NIO Channel ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+
+│   ┌───────────────────────────┐   │
+    │                           │
+│   │                           │   │
+    │                           │
+│   │                           │   │
+    │       NIOSSHHandler       │──────────────────────┐
+│   │                           │   │                  │
+    │                           │                      │
+│   │                           │   │                  │
+    │                           │                      │
+│   └───────────────────────────┘   │                  │
+                                                       │
+└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘                  │
+                                                       │
+                                                       │
+                                                       │
+                                                       │
+                                                       ▼
+    ┌── SSH Child Channel ────────────────────────────────────────────────────┐
+    │                                                                         │
+    │   ┌───────────────────────────┐      ┌────────────────────────────┐     ├───┐
+    │   │                           │      │                            │     │   │
+    │   │                           │      │                            │     │   ├───┐
+    │   │                           │      │                            │     │   │   │
+    │   │                           │      │                            │     │   │   │
+    │   │        User Handler       │      │        User Handler        │     │   │   │
+    │   │                           │      │                            │     │   │   │
+    │   │                           │      │                            │     │   │   │
+    │   │                           │      │                            │     │   │   │
+    │   │                           │      │                            │     │   │   │
+    │   └───────────────────────────┘      └────────────────────────────┘     │   │   │
+    │                                                                         │   │   │
+    └───┬─────────────────────────────────────────────────────────────────────┘   │   │
+        │                                                                         │   │
+        └───┬─────────────────────────────────────────────────────────────────────┘   │
+            │                                                                         │
+            └─────────────────────────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<p>An SSH channel is invoked with a channel type. SwiftNIO SSH supports three: <code class="language-plaintext highlighter-rouge">session</code>, <code class="language-plaintext highlighter-rouge">directTCPIP</code>, and <code class="language-plaintext highlighter-rouge">forwardedTCPIP</code>. The most common channel type is <code class="language-plaintext highlighter-rouge">session</code>, which is used to represent the invocation of a program, whether a specific named program or a shell. The other two channel types are related to TCP port forwarding, and will be discussed later.</p>
+
+<p>An SSH channel operates on a single data type: <code class="language-plaintext highlighter-rouge">SSHChannelData</code>. This structure encapsulates the fact that SSH supports both regular and “extended” channel data. The regular channel data (<code class="language-plaintext highlighter-rouge">SSHChannelData.DataType.channel</code>) is used for the vast majority of core data. In <code class="language-plaintext highlighter-rouge">session</code> channels the <code class="language-plaintext highlighter-rouge">.channel</code> data type is used for standard input and standard output: the <code class="language-plaintext highlighter-rouge">.stdErr</code> data type is used for standard error. In TCP forwarding channels, the <code class="language-plaintext highlighter-rouge">.channel</code> data type is the only kind used, and represents the forwarded data.</p>
+
+<h3 id="channel-events">Channel Events</h3>
+
+<p>A <code class="language-plaintext highlighter-rouge">session</code> channel represents an invocation of a command. Exactly how the channel operates is communicated in a number of inbound user events. SwiftNIO SSH supports a wide range, and it covers the most important use-cases, including executing a command directly, requesting a shell, requesting a pseudo terminal, setting environment variables, and more.</p>
+
+<h3 id="user-authentication">User Authentication</h3>
+
+<p>User authentication is a vital part of SSH. SwiftNIO SSH manages user authentication via a series of delegate protocols. These protocols are fully asynchronous, supporting use-cases that may need to read from disk in order to perform user authentication.</p>
+
+<h3 id="direct-port-forwarding">Direct Port Forwarding</h3>
+
+<p>Direct port forwarding is port forwarding from client to server. In this mode traditionally the client will listen on a local port, and will forward inbound connections to the server. It will ask that the server forward these connections as outbound connections to a specific host and port.</p>
+
+<p>These channels can be directly opened by clients by using the <code class="language-plaintext highlighter-rouge">.directTCPIP</code> channel type.</p>
+
+<h3 id="remote-port-forwarding-and-global-requests">Remote Port Forwarding and Global Requests</h3>
+
+<p>Remote port forwarding is a less-common situation where the client asks the server to listen on a specific address and port, and to forward all inbound connections to the client. As the client needs to request this behaviour, it does so using “global requests”, an SSH feature that enables requesting features that operate at a connection-scope.</p>
+
+<p>Global requests are initiated using <code class="language-plaintext highlighter-rouge">NIOSSHHandler.sendGlobalRequest</code>, and are received and handled by way of a <code class="language-plaintext highlighter-rouge">GlobalRequestDelegate</code>. There are two global requests supported today:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GlobalRequest.TCPForwardingRequest.listen(host:port:)</code>: a request for the server to listen on a given host and port.</li>
+  <li><code class="language-plaintext highlighter-rouge">GlobalRequest.TCPForwardingRequest.cancel(host:port:)</code>: a request to cancel the listening on the given host and port.</li>
+</ul>
+
+<p>Servers may be notified of and respond to these requests using a <code class="language-plaintext highlighter-rouge">GlobalRequestDelegate</code>. This delegate will be invoked any time a global request is received. Once a listener is established, inbound connections are then sent from server to client using the <code class="language-plaintext highlighter-rouge">.forwardedTCPIP</code> channel type.</p>
+
+<h2 id="additional-resources">Additional Resources</h2>
+
+<p>Additional documentation and examples can be found on <a href="https://github.com/apple/swift-nio-ssh">GitHub</a>.</p>
+
+<h2 id="project-status">Project Status</h2>
+
+<p>This project is currently in a pre-release state. While it’s considered to be feature complete, we’d like to give it some more time to bake in the public eye before we tag a 1.0 release. However, we do not expect any API breakage between now and that release.</p>
+
+<h2 id="getting-involved">Getting Involved</h2>
+
+<p>If you are interested in SwiftNIO SSH, please get involved! SwiftNIO SSH is a fully open-source project, developed on <a href="https://github.com/apple/swift-nio-ssh">GitHub</a>. Contributions from the open source community are welcome at all times. We encourage discussion on the <a href="https://forums.swift.org/c/server">Swift forums</a>. For bug reports, feature requests, and pull requests, please use the GitHub repository.</p>
+
+<p>We’re very excited to see what amazing things you do with SwiftNIO SSH!</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-service-discovery/" rel="prev" title="Previous: Introducing Swift Service Discovery">Introducing Swift Service Discovery</a>
+      
+
+      
+      <a href="/blog/accessibility-and-inclusion/" rel="next" title="Next: Accessibility and Inclusion in the Swift Community">Accessibility and Inclusion in the Swift Community</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing Swift on Windows</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-on-windows/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing Swift on Windows" />
+  <meta name="twitter:description" content="The Swift project is introducing new downloadable Swift toolchain images for Windows!  These images contain development components needed to build and run Swift code on Windows.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing Swift on Windows" />
+  <meta property="og:url" content="https://swift.org/blog/swift-on-windows/" />
+  <meta property="og:description" content="The Swift project is introducing new downloadable Swift toolchain images for Windows!  These images contain development components needed to build and run Swift code on Windows.
+" />
+  <meta property="article:published_time" content="2020-09-22T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing Swift on Windows</h1>
+
+    <time pubdate datetime="2020-09-22T05:00:00-04:00">September 22, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/compnerd/" rel="nofollow" title="Saleem Abdulrasool (@compnerd) on Twitter">Saleem Abdulrasool</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Saleem Abdulrasool is a member of the Swift Core Team and a software engineer at Google Brain.</div>
+      
+    
+    
+  </header>
+
+  <p>The Swift project is introducing <a href="https://swift.org/download">new downloadable Swift toolchain images</a> for Windows!  These images contain development components needed to build and run Swift code on Windows.</p>
+
+<p>For over a year now, there has been a significant endeavour to port Swift to Windows in conjunction with the developer community at swift.org.  The Windows support is now at a point where early adopters can start using Swift to build real experiences on this platform.</p>
+
+<h2 id="bringing-swift-to-windows">Bringing Swift to Windows</h2>
+
+<p>Porting Swift to Windows is not about simply porting the compiler, but rather ensuring that the full ecosystem is available on the platform.  This includes the compiler, the standard library, and the core libraries (dispatch, Foundation, XCTest).  These libraries are part of what enables developers to write powerful applications with ease and without having to worry about many of the details of the underlying system.  There are many technical details in the story of bringing Swift to a usable state on Windows, and if you are interested in them, I would recommend checking out my <a href="https://www.youtube.com/watch?v=Zjlxa1NIfJc">talk on the topic</a> from the LLVM Developer Conference.</p>
+
+<p>With these core libraries and the flexible interoperability of Swift with C, it is possible to develop applications on Windows purely in Swift while taking advantage of the existing corpus of libraries on the Windows platforms.</p>
+
+<h2 id="example-application">Example Application</h2>
+
+<p>This <a href="https://github.com/compnerd/swift-win32/blob/ed4993f7cbb284a83ee77fcecdc2570cf24355e4/Examples/Calculator/Calculator.swift">demo calculator</a> is written entirely in Swift, with code seamlessly flipping between the application code written in Swift and the system libraries:</p>
+
+<p><img src="https://swift.org/assets/images/windows-blog/calculator.gif" alt="Calculator app written in Swift running on Windows" /></p>
+
+<p>This project was built using:</p>
+
+<ol>
+  <li>
+    <p>The Swift toolchain on Windows</p>
+  </li>
+  <li>
+    <p>An installation of Visual Studio 2019 which delivers the other needed pieces in the form of CMake, Ninja, and the Windows SDK</p>
+  </li>
+</ol>
+
+<p>Although the demo application is built with CMake, Swift Package Manager support on Windows is coming along.  It will soon be possible to get the application building using <code class="language-plaintext highlighter-rouge">swift build</code> without needing CMake or Ninja.</p>
+
+<p>Here you can see stepping through the application using <code class="language-plaintext highlighter-rouge">lldb</code>:</p>
+
+<p><img src="https://swift.org/assets/images/windows-blog/lldb.png" alt="LLDB console debugging Swift application on Windows" /></p>
+
+<h2 id="cross-platform-applications">Cross-Platform Applications</h2>
+
+<p>Early adopters like <a href="https://readdle.com/">Readdle</a> are experimenting with cross-platform applications written in Swift, easily bringing many of the existing Swift libraries to Windows to support their applications.</p>
+
+<p>I had been working with Alexander at Readdle about his team’s work, and he sent me this note:</p>
+
+<blockquote>
+  <p><em>We at Readdle started experimenting with Swift on Windows more than a year ago, in Q2 of 2019. By that time we already released Spark for Android which uses Swift to share core code with iOS/macOS, and the opportunity to extend to one more platform was really tempting.</em></p>
+
+  <p><em>Despite some functionality being unready as of yet, Swift on Windows turned out to be fully satisfying our needs. In fact, some third party C/C++ dependencies gave us more headaches than Swift did itself. All business logic of Spark is located in a separate Core module. A pack of modules, actually, but we refer to them as Core. This allows us to use any UI framework on the target platform: AppKit on macOS, UIKit on iOS, native UI Toolkit on Android. So, basically, we had to port Spark Core on Windows. After all initial concepts were proved, it was mostly routine day-to-day work to bring it alive on Windows.</em></p>
+
+  <p><em>What we have now:</em></p>
+
+  <ul>
+    <li><em>9 Swift modules (255 739 SLOC, 2 133 source files)</em></li>
+    <li><em>3 third party swift modules</em></li>
+    <li><em>1452 tests (powered by XCTest)</em></li>
+    <li><em>Windows-based CI to keep all tests green</em></li>
+    <li><em>Heterogenous build system (partially CMake, partially custom scripts)</em></li>
+  </ul>
+
+  <p><em>As a good example, pure Swift modules like CryptoSwift and OAuthSwift almost worked right out of the box. We did trivial imports adjustment, excluded a few AppKit/UIKit references and voilà!</em></p>
+
+  <p><em>Another challenge was to decide how to implement the user interface. After extensive discourse we ended up with Electron as the front-end part of future Spark for Windows. That meant we not only needed to be able to build Spark Core on Windows but also use it as a loadable addon for Node.js.</em></p>
+
+  <p><em>Node.js addon in pure Swift? That appeared to be surprisingly easy. Swift perfectly imports N-API headers. We still need three lines of C code plus one small C header to define addon entry point, but all logic is in Swift. Due to the crossplatform nature of Node.js, we were able to use macOS as a development platform with Xcode as IDE, and then use the agility of CMake to build the same code on Windows.</em></p>
+
+  <p><em>Since the first day we started, Swift on Windows did a giant step forward in terms of platform support and stability. I’d say, if you are thinking about extending your existing application codebase to platforms other than macOS/iOS – you absolutely can do it with Swift now, or, at least, soon. If you are maintaining a small Swift library – you could easily add Windows support already!</em></p>
+
+  <p>— Alexander Smarus; Product Engineering Lead at Spark Team, Readdle Inc</p>
+</blockquote>
+
+<p>More details are available on <a href="https://sparkmailapp.com/blog/swift-windows">Readdle’s blog</a>.</p>
+
+<p>Adding support for Windows to Swift is the beginning of a journey.  The current support sets the first milestone where the language is usable.  There is yet another even broader part of the ecosystem like lldb and the Swift Package Manager which still need more work to be as complete in their support for this different platform.</p>
+
+<h2 id="getting-started-and-getting-involved">Getting Started and Getting Involved!</h2>
+
+<p>The <a href="https://swift.org/getting-started/">Getting Started</a> section has been updated with new information about using Swift on Windows!  For the early adopters who are getting started and finding issues, please report them to the <a href="https://bugs.swift.org">Swift Bug Tracker</a>.</p>
+
+<p>There are many opportunities for those interested in helping push Swift on Windows forward.  One of the things that makes Swift easy to use is libraries: publishing new libraries and packages for Swift on Windows or porting existing ones is another way to get involved and help make working with Swift an ever greater delight.</p>
+
+<p>For the ones interested in working on core tooling, there is plenty of work to be done to improve the debugger and to improve the Windows support in the Swift Package Manager.  We invite you to check out the <a href="https://bugs.swift.org">Swift Bug Tracker</a> for the current issues and to send patches to the GitHub repositories.  There is also a new section on the Swift forums to <a href="https://forums.swift.org/c/development/windows/67">discuss the development of Swift on Windows</a>.  There the community can discuss issues or you can introduce yourself and let others know what area of the tooling you are focusing on.  This is the perfect opportunity to become involved in the project and help it grow into a strong, vibrant, cross-platform ecosystem.  We cannot wait to see what exciting things you build with Swift!</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-5.3-released/" rel="prev" title="Previous: Swift 5.3 released!">Swift 5.3 released!</a>
+      
+
+      
+      <a href="/blog/swift-system/" rel="next" title="Next: Swift System is Now Open Source">Swift System is Now Open Source</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

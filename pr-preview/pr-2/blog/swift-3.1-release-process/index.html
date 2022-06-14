@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 3.1 Release Process</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-3.1-release-process/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 3.1 Release Process" />
+  <meta name="twitter:description" content="This post describes the goals, release process, and estimated schedule for Swift 3.1.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 3.1 Release Process" />
+  <meta property="og:url" content="https://swift.org/blog/swift-3.1-release-process/" />
+  <meta property="og:description" content="This post describes the goals, release process, and estimated schedule for Swift 3.1.
+" />
+  <meta property="article:published_time" content="2016-12-09T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 3.1 Release Process</h1>
+
+    <time pubdate datetime="2016-12-09T06:00:00-04:00">December 9, 2016</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/b6520643611a05fd040d0abcee3c883c?s=64" alt="Ted Kremenek"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/tkremenek/" rel="nofollow" title="Ted Kremenek (@tkremenek) on GitHub">Ted Kremenek</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Ted Kremenek is a member of the Swift Core Team and manages the Languages and Runtimes group at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>This post describes the goals, release process, and estimated schedule for Swift 3.1.</p>
+
+<p>Swift 3.1 is intended to be <a href="https://swift.org/blog/swift-3.1-release-process/#source-compatibility">source compatible</a> with Swift 3.0.
+It will contain a few additive enhancements to the core language as well as improvements to the Swift Package Manager, Swift on Linux, and general quality improvements to the compiler and Standard Library.</p>
+
+<p>Swift 3.1 is intended to be released in the spring of 2017.</p>
+
+<h2 id="source-compatibility">Source Compatibility</h2>
+
+<p>It is a strong goal that the vast majority of sources that built with the Swift 3.0 compiler continue to build with the Swift 3.1 compiler.  The exception will be bug fixes to the compiler that cause it to reject code that should never have been accepted in the first place.  These cases should be relatively rare in practice.</p>
+
+<p>A description of the intent for source compatibility for Swift releases can be found on a <a href="https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20161128/029099.html">thread</a> on the <a href="https://lists.swift.org/mailman/listinfo/swift-evolution">swift-evolution</a> mailing list.</p>
+
+<p>Please file <a href="https://bugs.swift.org">bug reports</a> if you encounter cases where the Swift 3.1 compiler unexpectedly rejects code that previously compiled with the Swift 3.0 compiler.</p>
+
+<h2 id="snapshots-of-swift-31">Snapshots of Swift 3.1</h2>
+
+<p>Previous releases of Swift have had “Developer Previews”, e.g. “Preview 1”, “Preview 2”, etc., that represent stabilized snapshots of a Swift release as it converges.  Developer previews have often been irregularly spaced apart, and have sometimes not provided enough granularity for the Swift community to try out new features or verify bug fixes in a release as it converges.</p>
+
+<p>For Swift 3.1 there will instead be daily downloadable snapshots of the release branch.  Snapshots will be produced as part of <a href="https://ci.swift.org">continuous integration</a> testing.  The cadence of downloadable snapshots will thus be more frequent and granular.  Snapshots will be posted daily, assuming tests are passing.</p>
+
+<p>Once Swift 3.1 is released, official final builds will also be posted in addition to the snapshots.</p>
+
+<h2 id="getting-changes-into-swift-31">Getting Changes into Swift 3.1</h2>
+
+<p>Swift 3.1 is intended to be limited in scope, with the desire to move focus early in 2017 to the development of Swift 4.  To meet this goal, Swift 3.1 will include changes in mainline development (i.e. the <code class="language-plaintext highlighter-rouge">master</code> branch) only until January 16.  After that date there will be a “bake” period in which only select, critical fixes will go into the <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> and move <code class="language-plaintext highlighter-rouge">master</code> on to Swift 4 development.</p>
+
+<h3 id="branches">Branches</h3>
+
+<ul>
+  <li>
+    <p><strong>master</strong>: With the exception of the <a href="https://github.com/apple/swift-llvm">swift-llvm</a> and <a href="https://github.com/apple/swift-clang">swift-clang</a> repositories (see <a href="https://swift.org/blog/swift-3.1-release-process/#impacted-repositories">Impacted Repositories</a>), development of Swift 3.1 happens in <code class="language-plaintext highlighter-rouge">master</code>.  All changes going in <code class="language-plaintext highlighter-rouge">master</code> will be part of the final Swift 3.1 release until January 16.  At that point <code class="language-plaintext highlighter-rouge">master</code> tracks development for Swift 4.</p>
+  </li>
+  <li>
+    <p><strong>swift-3.1-branch</strong>: Release management for Swift 3.1 happens on the <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code>.  All Swift 3.1 snapshots are built from this branch, and Swift 3.1 will GM from this branch as well.</p>
+  </li>
+</ul>
+
+<p>Operationally, <code class="language-plaintext highlighter-rouge">master</code> will be regularly merged into <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> approximately every two weeks until January 16.  The two week window provides a buffer between hot development on <code class="language-plaintext highlighter-rouge">master</code> and a curated release branch.  Changes may be cherry-picked (via pull requests) into <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> between merges of <code class="language-plaintext highlighter-rouge">master</code>.</p>
+
+<p>A notable exception to this plan is the <a href="https://github.com/apple/swift-package-manager">swift-package-manager</a>, which will merge from <code class="language-plaintext highlighter-rouge">master</code> into the <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> daily.</p>
+
+<h3 id="philosophy-on-taking-changes-into-swift-31">Philosophy on Taking Changes into Swift 3.1</h3>
+
+<ul>
+  <li>
+    <p>Source compatibility with Swift 3.0 is a top priority.</p>
+  </li>
+  <li>
+    <p>As Swift 3.1 converges only changes that align with the core goals of the release will be considered.</p>
+  </li>
+  <li>
+    <p>All language and API changes for Swift 3.1 will go through the <a href="https://github.com/apple/swift-evolution">Swift Evolution</a> process.</p>
+  </li>
+  <li>
+    <p>Major work for Swift 3.1 should orient around the January 16 date, but changes can still land in 3.1 afterwards per the judgement of the release manager.  As the release converges, the criteria for pulling changes into 3.1 will become increasingly restrictive.</p>
+  </li>
+</ul>
+
+<h2 id="impacted-repositories">Impacted Repositories</h2>
+
+<p>The following repositories will have a <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> branch to track sources as part of Swift 3.1 release:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift">swift</a></li>
+  <li><a href="https://github.com/apple/swift-lldb">swift-lldb</a></li>
+  <li><a href="https://github.com/apple/swift-cmark">swift-cmark</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild">swift-llbuild</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager">swift-package-manager</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a></li>
+  <li><a href="https://github.com/apple/swift-llvm">swift-llvm</a></li>
+  <li><a href="https://github.com/apple/swift-clang">swift-clang</a></li>
+</ul>
+
+<p>Note that the <a href="https://github.com/apple/swift-llvm">swift-llvm</a> and <a href="https://github.com/apple/swift-clang">swift-clang</a> repositories have already branched <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> from <code class="language-plaintext highlighter-rouge">master</code> and will not rebranch again.</p>
+
+<h2 id="release-managers">Release Managers</h2>
+
+<p>The overall management of the release will be overseen by the following individuals, who will announce when stricter control of change goes into effect for the Swift 3.1 release as the release converges:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/tkremenek">Ted Kremenek</a> is the overall release manager for Swift 3.1.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/fredriss">Frédéric Riss</a>
+is the release manager for <a href="https://github.com/apple/swift-llvm">swift-llvm</a> and <a href="https://github.com/apple/swift-clang">swift-clang</a>.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/gosnellj">Jason Gosnell</a> is the
+release manager for <a href="https://github.com/apple/swift-lldb">swift-lldb</a>.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/parkera">Tony Parker</a> is the release
+manager for <a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a>.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/das">Daniel Steffen</a> is the release
+manager for <a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a>.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/briancroom">Brian Croom</a> is the
+release manager for <a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a>.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/rballard">Rick Ballard</a> is the release
+manager for <a href="https://github.com/apple/swift-package-manager">swift-package-manager</a>.</p>
+  </li>
+</ul>
+
+<p>Please feel free to email <a href="https://lists.swift.org/mailman/listinfo/swift-dev">swift-dev</a> or <a href="https://github.com/tkremenek">Ted Kremenek</a> directly concerning any
+questions about the release management process.</p>
+
+<h2 id="pull-requests-for-release-branch">Pull Requests for Release Branch</h2>
+
+<p>All pull requests nominating changes for inclusion in the release branch
+should include the following information:</p>
+
+<ul>
+  <li>
+    <p><strong>Explanation</strong>: A description of the issue being fixed or
+enhancement being made.  This can be brief, but it should be
+clear.</p>
+  </li>
+  <li>
+    <p><strong>Scope</strong>: An assessment of the impact/importance of the change.
+For example, is the change a source-breaking language change, etc.</p>
+  </li>
+  <li>
+    <p><strong>SR Issue</strong>: The SR if the change fixes/implements an
+issue/enhancement on <a href="https://bugs.swift.org">bugs.swift.org</a>.</p>
+  </li>
+  <li>
+    <p><strong>Risk</strong>: What is the (specific) risk to the release for taking this
+change?</p>
+  </li>
+  <li>
+    <p><strong>Testing</strong>: What specific testing has been done or needs to be done
+to further validate any impact of this change?</p>
+  </li>
+</ul>
+
+<p>One or more <a href="https://swift.org/community/#code-owners">code owners</a> for the impacted
+components should review the change. Technical review can be delegated
+by a code owner or otherwise requested as deemed appropriate or
+useful.</p>
+
+<p><strong>All change</strong> going into the <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> (outside changes being merged in automatically from <code class="language-plaintext highlighter-rouge">master</code>) <strong>must go through pull requests</strong> that are accepted by the corresponding release manager.</p>
+
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/server-api-workgroup/" rel="prev" title="Previous: Server APIs Work Group">Server APIs Work Group</a>
+      
+
+      
+      <a href="/blog/swift-evolution-status-page/" rel="next" title="Next: Swift Evolution Status Page Now Available">Swift Evolution Status Page Now Available</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

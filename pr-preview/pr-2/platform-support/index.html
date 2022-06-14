@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Platform Support</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/platform-support/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift.org" />
+  <meta name="twitter:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:title" content="Swift.org" />
+  <meta property="og:url" content="https://swift.org" />
+  <meta property="og:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li class="active">
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+  <article class="page">
+  <header>
+    <h1>Platform Support</h1>
+  </header>
+
+  
+<p>Swift can be used on different platforms. The information below documents the current level of support for each platform.</p>
+
+<p>Each Swift platform is categorized based two categories:</p>
+
+<ul>
+  <li>
+    <p><strong><a href="#deployment-and-development">Deployment and Development</a></strong>: Swift programs can be built to run on this platform and the development tools for Swift — such as the Swift compiler — also run on this platform.</p>
+  </li>
+  <li>
+    <p><strong><a href="#deployment-only">Deployment-only</a></strong>: Swift programs can be built to run on this platform, but the development tools themselves that build those programs may not themselves run on this platform.</p>
+  </li>
+</ul>
+
+<p>The current set of supported platforms for development and deployment are described below.</p>
+
+<h3 id="deployment-and-development">Deployment and Development</h3>
+
+<p>These are the platforms one can use for Swift’s development tools. This table shows which platforms you can target when the tools are used on a given platform.  For example, the tools on macOS can build Swift applications that run on iOS.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running development tools</th>
+      <th style="text-align: center">Deployable targets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">Apple platforms</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">Ubuntu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">CentOS</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">Amazon Linux</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">Windows</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="minimum-deployment-version">Minimum deployment version</h4>
+
+<p>This table shows the minimum OS version for which a Swift application can be deployed.  For example, a Swift application can run on iOS 7.0 or later, but not iOS 6.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running Swift application</th>
+      <th style="text-align: center">Minimum deployment version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">10.9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>iOS</strong></td>
+      <td style="text-align: center">7.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>watchOS</strong></td>
+      <td style="text-align: center">2.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>tvOS</strong></td>
+      <td style="text-align: center">9.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">18.04</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">10.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="development-tools">Development Tools</h4>
+
+<p>The Swift compiler and debugger run on platforms supporting development.  Support for the Swift Package Manager and <a href="https://github.com/apple/sourcekit-lsp">SourceKit-LSP</a> are currently supported on most, but not all platforms that support the tools.  This table provides the current breakdown of what tools are available on what platforms.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running development tools</th>
+      <th style="text-align: center"><a href="https://github.com/apple/swift-package-manager">Swift Package Manager</a></th>
+      <th style="text-align: center"><a href="https://github.com/apple/sourcekit-lsp">SourceKit-LSP</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="deployment-only">Deployment-only</h3>
+
+<p>Each platform that supports running Swift applications is required to provide documentation for getting started. The documentation should contain information for installing Swift, using the REPL, using the Swift Package Manager and using the Debugger. Every platform is expected to have core runtime, Standard Library support, and core libraries, except where explicitly documented otherwise.</p>
+
+<p>The table below list the available capabilities on each platform for running Swift applications:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running Swift application</th>
+      <th style="text-align: center">Debugger</th>
+      <th style="text-align: center">REPL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>iOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>watchOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>tvOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="platform-owners">Platform Owners</h2>
+
+<p>Support for developing and running Swift applications on various platforms is supported by different members of the Swift open source community.  Each platform has a champion, called a <em>platform owner</em>, that acts as the primary steward of maintaining support for a given platform.</p>
+
+<p>Platform owners help facilitate contributors to the Swift project to collaborate and continue to work towards progressing a given platform. These individuals would also be able to guide porting specific changes on the platform. Platform owners have sections on <a href="https://forums.swift.org">forums.swift.org</a> and meet bi-weekly to discuss active development and open issues on the platform.</p>
+
+<h3 id="current-platform-owners">Current Platform Owners</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">Getting Started</th>
+      <th style="text-align: center">Toolchain Provider</th>
+      <th style="text-align: center">Pull Request Testing Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>Apple platforms</strong></td>
+      <td style="text-align: center"><a href="https://swift.org/getting-started/#on-macos">Docs</a></td>
+      <td style="text-align: center"><a href="https://www.apple.com">Apple Inc.</a></td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Linux</strong></td>
+      <td style="text-align: center"><a href="https://swift.org/getting-started/#on-linux">Docs</a></td>
+      <td style="text-align: center"><a href="https://www.apple.com">Apple Inc.</a></td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center"><a href="https://swift.org/getting-started/#on-windows">Docs</a></td>
+      <td style="text-align: center"><a href="https://github.com/compnerd">Saleem Abdulrasool</a></td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Apple platforms includes macOS, iOS, tvOS, and watchOS.</li>
+  <li>Linux includes Ubuntu, CentOS and Amazon Linux platforms.</li>
+</ul>
+
+<h3 id="continuous-integration-for-platforms">Continuous Integration for Platforms</h3>
+
+<p>Continuous integration is a critical aspect of maintaining the health of the Swift project.  Pull requests support (and for officially supported platforms) require builds and test to pass prior to the pull request being merged.</p>
+
+<p>Pull request testing hardware for a given platform are provided by various members of the community.  Platform owners are responsible for monitoring continuous testing for main and release branch on Swift Community-Hosted CI or separate continuous integration systems. Platform owners are responsible for providing or securing the hardware to support continuous testing on Swift Community-Hosted CI.</p>
+
+<h3 id="code-signature-for-downloadable-builds">Code Signature for Downloadable Builds</h3>
+
+<p>Platform owners will build and sign the toolchain before providing it to Apple. Apple will then re-sign the toolchain under <a href="https://swift.org">swift.org</a> certificate and distribute it on the website. The builds will only be re-signed if they are not built by Apple. There will be random audits to validate the signatures between both the platform owners and Apple.</p>
+
+<h3 id="platform-review">Platform Review</h3>
+
+<p>Swift community members can propose adding new platforms to the tables by requesting a review on forums.swift.org. The Swift Core team will review such proposals.</p>
+
+
+</article>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

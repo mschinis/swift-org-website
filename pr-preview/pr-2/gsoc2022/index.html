@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Project Ideas for GSoC 2022</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/gsoc2022/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift.org" />
+  <meta name="twitter:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:title" content="Swift.org" />
+  <meta property="og:url" content="https://swift.org" />
+  <meta property="og:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+  <article class="page">
+  <header>
+    <h1>Project Ideas for GSoC 2022</h1>
+  </header>
+
+  <p>This page contains a non-exhaustive list of potential project ideas that we are keen to develop during <a href="https://summerofcode.withgoogle.com/">GSoC 2022</a>. If you would like to apply as a GSoC student, please follow these steps to get started:</p>
+
+<ol>
+  <li>Read through this page and the Google Summer of Code guides,</li>
+  <li>Identify, or come up with your own project ideas you find interesting.</li>
+  <li>Check out the <a href="https://forums.swift.org/c/development">Development forum</a> to connect with potential mentors.
+    <ul>
+      <li>Feel free to mention the project mentors on the forums, when starting a thread about your interest in participating in a specific project they are offering to mentor.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>When posting on the forums about GSoC this year, please use the <a href="https://forums.swift.org/tag/gsoc-2022"><code class="language-plaintext highlighter-rouge">gsoc-2022</code> tag</a>, so it is easy to identify.</p>
+
+<h2 id="tips-for-contacting-mentors">Tips for contacting mentors</h2>
+
+<p>The Swift forums are powered by discourse, a discussion forums platform which also has a number of spam avoidance mechanisms built-in. If this is your first time joining the forums, you <em>may</em> not be able to send mentors a direct-message, as this requires a minimum amount of prior participation before the “send private message” feature is automatically enabled.</p>
+
+<p>If you would like to reach out to a mentor privately, rather than making a public forums post, and the forums are not allowing you to send private messages (yet), please reach out to Konrad Malawski at <code class="language-plaintext highlighter-rouge">ktoso AT apple.com</code> directly via email with the <code class="language-plaintext highlighter-rouge">[gsoc2022]</code> tag in the email subject and describe the project you would like to work on – and we’ll route you to the appropriate mentor.</p>
+
+<h2 id="potential-projects">Potential Projects</h2>
+
+<h3 id="swiftsyntax">SwiftSyntax</h3>
+
+<h4 id="use-swiftsyntax-itself-to-generate-swiftsyntaxs-source-code">Use SwiftSyntax itself to generate SwiftSyntax’s source code</h4>
+
+<p><strong>Project Size</strong>: Large (350 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Python knowledge is beneficial but not necessary</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p><a href="http://github.com/apple/swift-syntax">SwiftSyntax</a> heavily relies on code-generation for its syntax node definitions. These files are currently being generated using gyb, a Python-based code generation tool developed as part of the Swift compiler. SwiftSyntax itself also has code generation capabilities, which have recently been significantly improved by the introduction of <a href="https://github.com/apple/swift-syntax/tree/main/Sources/SwiftSyntaxBuilder">SwiftSyntaxBuilder</a>.</p>
+
+<p>During the Google Summer of Code project, the student will migrate the current gyb-based code generation to use SwiftSyntaxBuilder, dogfooding SwiftSyntaxBuilder inside SwiftSyntax itself. To perform the migration, the student will also make further improvements to SwiftSyntaxBuilder, with the goal of transitioning SwiftSyntaxBuilder from its current development state to be production-ready.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>Valuable real-world experience of using SwiftSyntaxBuilder and a production-ready Swift library to generate Swift code.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Alex Hoppen</p>
+
+<h3 id="swift-on-linux-and-server">Swift on Linux and Server</h3>
+
+<h4 id="native-linux-swift-installer-packages-rpms-debs-for-swift">Native Linux Swift installer packages (RPMs, Debs) for Swift</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift and scripting languages</li>
+  <li>Proficient with RPMs, Debian packages and software packaging on Linux.</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Installing Swift toolchain on Linux today is done by downloading tarballs, and installing the required dependencies manually. Supporting native packages like RPMs and Debian packages would make using Swift on Linux dramatically easier.  Prototype versions of such packages exist, but there is further work that needs to be done to turn them into a high quality product that the Swift community could use in production use cases.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>High quality RPMs and Debian packages that follow RPM and Debian best practices.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Tom Doron, Mishal Shah</p>
+
+<h4 id="backtraces-support-for-swift-on-linux">Backtraces support for Swift on Linux</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with backtrace mechanisms in C++ or other languages</li>
+  <li>Optionally, some familiarity with libraries like backtrace_symbols, libbacktrace, backward-cpp etc.</li>
+  <li>Basic proficiency with C++ and Swift</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium / Hard</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Today, Swift does not produce backtraces when a process crashes on Linux, which could hinder users ability to troubleshoot production issues. To address the need, the Swift server workgroup has created a library which relies on private APIs and is a stop gap solution. The goal of this project is to design and prototype a high quality solution that can be integrated into the Swift runtime.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:
+Swift produces quality backtraces when a process crashes on Linux.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Tom Doron, or Dario Rexin</p>
+
+<h4 id="kafka-client-package">Kafka client package</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Nice to have: Kafka experience</li>
+  <li>Nice to have: experience with wrapping C APIs from Swift</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Kafka is a widely used distributed event streaming platform for high-performance data pipelines. Since the Swift on Server ecosystem is becoming more mature and with the recent introduction of Concurrency features in the language, we want to provide a Kafka client in Swift that allows to produce and consume messages. This client should vend native Swift APIs that leverage the new Concurrency features. Furthermore, the client should use librdkafka (https://github.com/edenhill/librdkafka) and wrap its C APIs.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>Implementation of a native Swift package wrapping librdkafka that vends Swift APIs using Concurrency features.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Franz-Joseph Busch</p>
+
+<h3 id="swift-package-manager">Swift Package Manager</h3>
+
+<h4 id="improve-cli-user-experience">Improve CLI User Experience</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Experience with CLI based systems</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Easy</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>SwiftPM is used in two main ways: As a library integrated into Xcode and as a command line tool. The CLI user experience can be improved by adopting modern presentation techniques about concurrent processes such as build, tests and download progress. SwiftPM already has most of the required information available for presentation, and this work is focused on the design and implementation of a better UX/UI for this information.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>Better user experience of using SwiftPM as a CLI tool.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Boris Beugling, Anders Bertelrund, Tom Doron</p>
+
+<h3 id="software-bill-of-materials">Software Bill of Materials</h3>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Experience with dependency management systems</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Software Bill of Material (aka SBOM) is a technique for sharing dependency versions between different projects. This technique is useful for larger systems that span across multiple repositories, share same core dependencies, and need to align the versions of these core dependencies system wide.</p>
+
+<p>See more:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Software_bill_of_materials">https://en.wikipedia.org/wiki/Software_bill_of_materials</a></li>
+  <li><a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#bill-of-materials-bom-poms">https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#bill-of-materials-bom-poms</a></li>
+</ul>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<ul>
+  <li>Support BOM as new dependency type in SwiftPM, helping companies that build large systems with Swift.</li>
+  <li>Produce BOM artifact from a resolved dependencies graph.</li>
+</ul>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Boris Beugling, Anders Bertelrund, Tom Doron</p>
+
+<h4 id="package-creation-command-and-templates-support-for-swiftpm">Package creation command and templates support for SwiftPM</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Easy</p>
+
+<p><strong>Description</strong>: SwiftPM includes a simple system for creating new packages, which is good for trivial use cases, but not flexible enough for more sophisticated development scenarios. To extend this feature, we can adopt a template driven system, potentially based on SwiftPM’s plugin system.</p>
+
+<p>See more:</p>
+
+<ul>
+  <li><a href="https://forums.swift.org/t/pitch-new-command-for-package-creation-and-package-templates/47874">https://forums.swift.org/t/pitch-new-command-for-package-creation-and-package-templates</a></li>
+</ul>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>Users can define their own templates or plugins for deciding how the package creation sub-system works.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Boris Beugling, Anders Bertelrund, Tom Doron</p>
+
+<h3 id="swift-docc">Swift-DocC</h3>
+
+<p>Swift-DocC is the documentation compiler for Swift, read more about it here: <a href="https://www.swift.org/blog/swift-docc/">Swift-DocC is Now Open Source</a>.</p>
+
+<h4 id="swift-docc-support-for-diffing-documentation-archives">Swift-DocC support for diffing documentation archives</h4>
+
+<p><strong>Project Size</strong>: Large (350 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Familiarity with Swift-DocC and developer tooling.</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Currently, DocC supports publishing documentation for a single version of a framework. However, as frameworks evolve, their APIs and documentation content do as well. To help framework authors and users better keep track of changes in a framework, this project explores new functionality to produce diff data that can be used by DocC’s web renderer to present API changes and documentation changes UI. The participant will take part in collaborative technical design and Swift-DocC compiler development.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>Technical design and implementation for emitting diff data when compiling documentation.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Franklin Schrans</p>
+
+<h4 id="quick-navigation-in-docc-render">Quick navigation in DocC Render</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Proficient with web technologies such as JavaScript and CSS</li>
+  <li>Basic familiarity with Swift-DocC and developer tooling</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>The new Swift-DocC sidebar provides an easy to get a bird’s-eye of a framework’s documentation content, this project explores adding a quick navigation UI to jump to a symbol using keyboard shortcuts, similar to how IDEs support jumping to symbols. The participant will take part in collaborative UI/UX design and Swift-DocC Render web development.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>UX design, technical design, and implementation for a quick navigation UI in documentation websites.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Marina Aisa, Beatriz Magalhaes</p>
+
+<h3 id="swift-standard-library--packages">Swift Standard Library / Packages</h3>
+
+<h4 id="swift-argumentparser-interactive-mode">Swift ArgumentParser: Interactive mode</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>An interest in command line tools</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>ArgumentParser provides a straightforward way to declare command-line interfaces in Swift, with the dual goals of making it (1) fast and easy to create (2) high-quality, user-friendly CLI tools. For this project, we would design and implement an interactive mode for tools built using ArgumentParser that prompts for any required arguments not given in the initial command. This work would need to allow partial initialization of types, and could include features like validation and auto-completion for user input.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:
+Design, implementation, and tests of an interactive CLI.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Nate Cook</p>
+
+<h3 id="swift">Swift</h3>
+
+<h4 id="improving-debug-output-of-the-type-inference-algorithm">Improving Debug Output Of The Type Inference Algorithm</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with C++</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Swift’s type inference algorithm, implemented by the constraint solver, supports printing of debug information while type-checking an expression. This data in intended to help compiler developers to understand how/when/what types have been inferred, what restrictions have been applied, and what overload choices have been used in each attempt to reach a solution. Unfortunately, for a complex expression, the constraint solver would produce a lot of output which makes it very hard or sometimes impossible to work with, even for experienced compiler developers, because there were too many choices that the solver had to make and a lot of irrelevant information provided for each one of them.</p>
+
+<p>The goal of this project is to make the output of the constraint solver human friendly by including only the important information for understanding the source of each inferred type and errors that were encountered, and changing the format and presentation of the output in general and for each of its components.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>The new and improved debug output of the constraint solver which is much easier to work with for both experienced compiler developers and newcomers to the project.</p>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Pavel Yaskevich</p>
+
+<h3 id="swift-and-c-interoperability">Swift and C++ Interoperability</h3>
+
+<p>Swift and C++ interoperability is an ongoing open-source project that aims to make Swift APIs convenient to use from C++ (and vice versa). It’s spearheaded
+by the <a href="https://forums.swift.org/c/development/c-interoperability/82">Swift and C++ interoperability workgroup</a>.</p>
+
+<h4 id="bridging-swift-error-handling-model-to-c">Bridging Swift Error Handling Model to C++</h4>
+
+<p><strong>Project Size</strong>: Large (350 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Basic proficiency with C++ (advanced knowledge of C++ is not required)</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>This project builds upon the ongoing open-source effort for exposing Swift APIs to C++, by adding support for exposing functions that <code class="language-plaintext highlighter-rouge">throw</code> Swift errors to C++, and by providing C++ classes that let users handle Swift <code class="language-plaintext highlighter-rouge">Error</code> values from C++.</p>
+
+<p>This project has two primary aspects. At first, the participant will need to extend the C++ interface generator for a Swift module to emit C++ interfaces for Swift
+functions that <code class="language-plaintext highlighter-rouge">throw</code>, and a C++ class that represents Swift’s <code class="language-plaintext highlighter-rouge">Error</code> type. Then, the participant will need to implement a C++ exception class that wraps around
+the <code class="language-plaintext highlighter-rouge">Error</code> type, and a C++ class that resembles the proposed <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0323r4.html">std::expected class</a>, to provide error handling for clients that don’t use C++ exceptions. The participant will need to write test cases to verify the implementation. The participant will also need to interact with the Swift open-source community when working on the implementation.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<ul>
+  <li>The participant will learn more about Swift’s error handling model, C++ error handling model, and working with an open-source compiler codebase.</li>
+  <li>Enable C++ users to call Swift functions that can throw. Enable C++ users to examine error values produced by Swift.</li>
+</ul>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Alex Lorenz</p>
+
+<h4 id="bridging-swift-enums-with-associated-values-to-c">Bridging Swift Enums With Associated Values to C++</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Recommended skills</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Basic proficiency with C++ (advanced knowledge of C++ is not required)</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>This project builds upon the ongoing open-source effort for exposing Swift APIs to C++, by adding support for exposing enumerations with associated values to C++. These enumerations are <a href="https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html#ID148">documented in the Swift language guide</a>.</p>
+
+<p>The participant will need to extend the C++ interface generator for a Swift module to emit a C++ class that represents Swift enumerations with associated types. The generator will also need to be extended to emit the C++ member functions that allow the following operations in C++:</p>
+
+<ul>
+  <li>switch over the enumeration cases</li>
+  <li>check if the enum is of a specific case</li>
+  <li>extract the payload of the associated value of the case</li>
+</ul>
+
+<p>The participant will need to write test cases to verify the implementation. The participant will also need to interact with the Swift open-source community when working on the implementation.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<ul>
+  <li>The participant will learn more about Swift’s enums with associated types, and working with an open-source compiler codebase.</li>
+  <li>Enable C++ users to create and examine Swift enumerations with associated values.</li>
+  <li>Enable C++ users to pass Swift enumerations with associated values to C++, and vice versa.</li>
+</ul>
+
+<p><strong>Potential mentors</strong>:</p>
+
+<p>Alex Lorenz</p>
+
+<h4 id="providing-swift-overlays-for-c-standard-library-types">Providing Swift overlays for C++ standard library types</h4>
+
+<p><strong>Project Size</strong>: Medium (175 hours)</p>
+
+<p><strong>Skills required</strong>:</p>
+
+<ul>
+  <li>Basic proficiency with Swift</li>
+  <li>Basic proficiency with C++ (advanced knowledge of C++ is not required)</li>
+</ul>
+
+<p><strong>Expected difficulty</strong>: Medium</p>
+
+<p><strong>Description</strong>:</p>
+
+<p>Swift and C++ interoperability is an ongoing open-source initiative
+that aims to make C++ APIs convenient to use from Swift (and vice versa). It’s spearheaded
+by the Swift and C++ interoperability workgroup (https://forums.swift.org/g/cxx-interop-work-group, https://forums.swift.org/c/development/c-interoperability/82).
+This project builds upon the ongoing effort for exposing C++ APIs to Swift,
+by providing some Swift overlays for the C++ standard library types, like std::string
+and std::vector.</p>
+
+<p>The participant will need to write Swift code to provide conformances to standard Swift protocols such as Collection for several C++ standard library types, like the following ones:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">std::string</code></li>
+  <li><code class="language-plaintext highlighter-rouge">std::vector</code></li>
+  <li><code class="language-plaintext highlighter-rouge">std::map</code></li>
+  <li><code class="language-plaintext highlighter-rouge">std::set</code></li>
+</ul>
+
+<p>These conformances should be built as a separate overlay module, similar to the Darwin overlay and made available in Swift toolchains. The participant will need to modify the CMake build scripts to enable building and packaging the overlay module.
+The participant will need to write test cases to verify the implementation and also need to interact with the Swift open-source community to obtain and respond to code reviews while working on the implementation.</p>
+
+<p><strong>Expected outcomes/benefits/deliverables</strong>:</p>
+
+<p>The participant will learn more about Swift’s type system, the Swift standard library protocols, and the C++ standard library types like <code class="language-plaintext highlighter-rouge">std::string</code> and <code class="language-plaintext highlighter-rouge">std::vector</code>. The participant will also learn more about  working with an open-source compiler codebase.</p>
+
+<p>Successful implementation of this project would enable Swift users to use certain C++ standard library types such as std::vector with APIs vended by the Swift standard library. E.g., this would enable iterating over a <code class="language-plaintext highlighter-rouge">std::vector</code> with a Swift for-in loop or invoking a compactMap method on it.</p>
+
+<p><strong>Potential mentors</strong>:
+Egor Zhdan and Alex Lorenz</p>
+
+
+</article>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

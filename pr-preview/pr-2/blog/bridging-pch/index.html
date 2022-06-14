@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Faster Mix-and-Match Builds with Precompiled Bridging Headers</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/bridging-pch/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Faster Mix-and-Match Builds with Precompiled Bridging Headers" />
+  <meta name="twitter:description" content="An examination of build times of Xcode projects that mix Objective-C and Swift, which can contain large bridging headers, shows that the Swift compiler spends a lot of time re-processing the same bridging headers for all the Swift files in a project.
+In certain projects, each additional Swift file increases the overall build time noticeably, even when the Swift file is quite modest.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Faster Mix-and-Match Builds with Precompiled Bridging Headers" />
+  <meta property="og:url" content="https://swift.org/blog/bridging-pch/" />
+  <meta property="og:description" content="An examination of build times of Xcode projects that mix Objective-C and Swift, which can contain large bridging headers, shows that the Swift compiler spends a lot of time re-processing the same bridging headers for all the Swift files in a project.
+In certain projects, each additional Swift file increases the overall build time noticeably, even when the Swift file is quite modest.
+" />
+  <meta property="article:published_time" content="2017-01-26T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Faster Mix-and-Match Builds with Precompiled Bridging Headers</h1>
+
+    <time pubdate datetime="2017-01-26T06:00:00-04:00">January 26, 2017</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/f1bc67b53f1a5512d778426cf447c5ab?s=64" alt="Graydon Hoare"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/graydon/" rel="nofollow" title="Graydon Hoare (@graydon) on GitHub">Graydon Hoare</a>
+          
+        </span>
+      </div>
+      
+    
+    
+  </header>
+
+  <p>An examination of build times of Xcode projects that mix Objective-C and Swift, which can contain large bridging headers, shows that the Swift compiler spends a lot of time re-processing the same bridging headers for all the Swift files in a project.
+In certain projects, each additional Swift file increases the overall build time noticeably, even when the Swift file is quite modest.</p>
+
+<p>This post will discuss this compile-time cost, and how it is being addressed in Swift 3.1.</p>
+
+<h2 id="the-problem">The Problem</h2>
+
+<p>Every time a Swift file in a mixed-language target is compiled, the Swift compiler parses the project’s bridging header in order to make Objective-C code visible to Swift code.
+When the bridging header is large and the Swift compiler runs many times – as in a debug configuration – the cost of repeatedly parsing the bridging header can be a substantial part of the overall build time.</p>
+
+<h2 id="the-solution">The Solution</h2>
+
+<p>In Swift 3.1, the compiler has gained a new mode to reduce this cost: <em>precompiling</em> bridging headers.
+When this mode is enabled, instead of repeatedly parsing the bridging header for each Swift file in a mixed-language target, the bridging header is parsed only once, and the result (a temporary “precompiled header” or “PCH” file) is cached and reused across all Swift files in the target.
+This leverages the same precompiled header technology that is used to precompile prefix headers in Objective-C and C++ code.</p>
+
+<p>In the Swift project this mode was developed and tested against, it <strong>reduced debug build time by 30%</strong>. The speedup depends on the size of a project’s bridging header, and the mode does not affect <a href="https://swift.org/blog/whole-module-optimizations">whole-module-optimization builds</a>.
+But it can significantly improve compile times when iterating in debug configuration.</p>
+
+<h2 id="trying-it-out">Trying it out</h2>
+
+<p>This mode is part of Swift 3.1 and is available in <a href="https://swift.org/download/#snapshots">nightly snapshots on swift.org</a>, as well as in <a href="https://developer.apple.com/download/">Xcode 8.3 beta</a>.
+It is currently experimental and must be manually enabled; in future releases, if developer feedback indicates it’s working well and providing significant speedup, it will be enabled by default.
+To try it out in the meantime, install a compiler that supports it, open the build settings for your project and set “Other Swift Flags” to contain the option <code class="language-plaintext highlighter-rouge">-enable-bridging-pch</code>:</p>
+
+<p><img src="https://swift.org/assets/images/bridging-pch-blog/build-setting.png" alt="Enabling bridging PCH" /></p>
+
+<h2 id="reporting-feedback">Reporting feedback</h2>
+
+<p>If you have a project with a large bridging header, please try using this new mode.
+If you encounter problems, please file a bug in either <a href="https://bugs.swift.org/">Swift.org’s bug-tracking system</a> or <a href="https://bugreport.apple.com/">Apple’s</a>.
+General feedback is also welcome by emailing the <a href="https://lists.swift.org/mailman/listinfo/swift-users">swift-users@swift.org</a> mailing list, or on <a href="https://twitter.com/swiftlang">Twitter</a> (mention <code class="language-plaintext highlighter-rouge">#SwiftBridgingPCH</code>).</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-evolution-status-page/" rel="prev" title="Previous: Swift Evolution Status Page Now Available">Swift Evolution Status Page Now Available</a>
+      
+
+      
+      <a href="/blog/swift-4.0-release-process/" rel="next" title="Next: Swift 4 Release Process">Swift 4 Release Process</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

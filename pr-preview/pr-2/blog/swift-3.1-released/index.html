@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 3.1 Released!</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-3.1-released/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 3.1 Released!" />
+  <meta name="twitter:description" content="Swift 3.1 is now officially released!  Swift 3.1 is a minor release that contains improvements and refinements to the Standard Library. Thanks to efforts by IBM and other members of the community, it also includes many updates to the Linux implementation of Swift.  There are also a number of updates to Swift Package Manager.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 3.1 Released!" />
+  <meta property="og:url" content="https://swift.org/blog/swift-3.1-released/" />
+  <meta property="og:description" content="Swift 3.1 is now officially released!  Swift 3.1 is a minor release that contains improvements and refinements to the Standard Library. Thanks to efforts by IBM and other members of the community, it also includes many updates to the Linux implementation of Swift.  There are also a number of updates to Swift Package Manager.
+" />
+  <meta property="article:published_time" content="2017-03-27T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 3.1 Released!</h1>
+
+    <time pubdate datetime="2017-03-27T06:00:00-04:00">March 27, 2017</time>
+    
+    
+    
+    
+  </header>
+
+  <p>Swift 3.1 is now officially released!  Swift 3.1 is a minor release that contains improvements and refinements to the Standard Library. Thanks to efforts by IBM and other members of the community, it also includes many updates to the Linux implementation of Swift.  There are also a number of updates to Swift Package Manager.</p>
+
+<h3 id="language-updates">Language Updates</h3>
+<p>Swift 3.1 is a minor language release.  It is source compatible with Swift 3.0.  It contains the following language changes and updates, most of which went through the Swift <a href="https://swift.org/contributing/#participating-in-the-swift-evolution-process">Evolution process</a>:</p>
+
+<h4 id="new-sequence-protocol-members">New <code class="language-plaintext highlighter-rouge">Sequence</code> protocol members</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">Sequence</code> protocol now has two new members:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Sequence</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+  <span class="c1">/// Returns a subsequence by skipping elements while `predicate` returns</span>
+  <span class="c1">/// `true` and returning the remainder.</span>
+  <span class="kd">func</span> <span class="nf">drop</span><span class="p">(</span><span class="k">while</span> <span class="nv">predicate</span><span class="p">:</span> <span class="p">(</span><span class="k">Self</span><span class="o">.</span><span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span>
+  <span class="c1">/// Returns a subsequence containing the initial elements until `predicate`</span>
+  <span class="c1">/// returns `false` and skipping the remainder.</span>
+  <span class="kd">func</span> <span class="nf">prefix</span><span class="p">(</span><span class="k">while</span> <span class="nv">predicate</span><span class="p">:</span> <span class="p">(</span><span class="k">Self</span><span class="o">.</span><span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SubSequence</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0045-scan-takewhile-dropwhile.md">SE-0045: Add <code class="language-plaintext highlighter-rouge">prefix(while:)</code> and <code class="language-plaintext highlighter-rouge">drop(while:)</code> to stdlib</a></p>
+
+<h4 id="availability-by-swift-version">Availability by Swift version</h4>
+<p>Swift 3.1 extends the <code class="language-plaintext highlighter-rouge">@availability</code> attribute to use the version of Swift to indicate the lifecycle of a declaration.  As an example, an API that is removed in Swift 3.1 would be written as:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@available</span><span class="p">(</span><span class="n">swift</span><span class="p">,</span> <span class="nv">obsoleted</span><span class="p">:</span> <span class="mf">3.1</span><span class="p">)</span>
+<span class="kd">class</span> <span class="kt">Foo</span> <span class="p">{</span>
+  <span class="c1">//...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0141-available-by-swift-version.md">SE-0141: Availability by Swift version</a></p>
+
+<h4 id="improved-numeric-conversion-initializers">Improved numeric conversion initializers</h4>
+<p>Swift 3.1 adds a new family of conversion initializers to all numeric types that either complete successfully without loss of information or return nil.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0080-failable-numeric-initializers.md">SE-0080: Failable Numeric Conversion Initializers</a></p>
+
+<h4 id="deprecation-and-replacement-of-unsafemutablepointerinitializefrom">Deprecation and replacement of UnsafeMutablePointer.initialize(from:)</h4>
+<p>The version of <code class="language-plaintext highlighter-rouge">UnsafeMutablePointer.initialize(from:)</code> that takes a <code class="language-plaintext highlighter-rouge">Collection</code> is deprecated in favor of a new method on <code class="language-plaintext highlighter-rouge">UnsafeMutableBufferPointer</code> that takes a <code class="language-plaintext highlighter-rouge">Sequence</code>, with a goal of improving memory safety and enabling faster initialization of memory from sequences.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0147-move-unsafe-initialize-from.md">SE-0147: Move UnsafeMutablePointer.initialize(from:) to UnsafeMutableBufferPointer</a></p>
+
+<h4 id="improvements-to-the-linux-implementation">Improvements to the Linux implementation</h4>
+
+<ul>
+  <li>Implementation of <code class="language-plaintext highlighter-rouge">NSDecimal</code></li>
+  <li>Implementation of <code class="language-plaintext highlighter-rouge">NSLengthFormatter</code></li>
+  <li>Implementation of <code class="language-plaintext highlighter-rouge">Progress</code></li>
+  <li>Many improvements to <code class="language-plaintext highlighter-rouge">URLSession</code> functionality, including API coverage and optimized usage of <code class="language-plaintext highlighter-rouge">libdispatch</code></li>
+  <li>Improved API coverage in <code class="language-plaintext highlighter-rouge">NSArray</code>, <code class="language-plaintext highlighter-rouge">NSAttributedString</code> and many others</li>
+  <li>Significant performance improvements in <code class="language-plaintext highlighter-rouge">Data</code>. <a href="https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Performance%20Refinement%20of%20Data.md">See more details here</a></li>
+  <li>Improved JSON serialization performance</li>
+  <li>Memory leaks fixed in <code class="language-plaintext highlighter-rouge">NSUUID</code>, <code class="language-plaintext highlighter-rouge">NSURLComponents</code> and others</li>
+  <li>Improved test coverage, especially in <code class="language-plaintext highlighter-rouge">URLSession</code></li>
+</ul>
+
+<h3 id="package-manager-updates">Package Manager Updates</h3>
+
+<h4 id="editable-packages">Editable packages</h4>
+
+<p>Package dependencies are now stored in the tool-managed build directory by default, and a new <code class="language-plaintext highlighter-rouge">swift package edit</code> command allows users to “begin editing” on a package, moving it under the user’s control (into the <code class="language-plaintext highlighter-rouge">Packages</code> directory), exempting it from dependency updates, and allowing the user to commit and push changes to that package.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0082-swiftpm-package-edit.md">SE-0082: Package Manager Editable Packages</a></p>
+
+<h4 id="version-pinning">Version pinning</h4>
+
+<p>The version of each dependency you’ve used is now recorded in a <code class="language-plaintext highlighter-rouge">Package.pins</code> file, which can be checked in to share those versions with other users of your package; <code class="language-plaintext highlighter-rouge">swift package pin</code> and <code class="language-plaintext highlighter-rouge">swift package unpin</code> commands provide further control. The pinned versions of a package’s dependencies are fetched by default when resolving dependencies, but <code class="language-plaintext highlighter-rouge">swift package update</code> will re-resolve to the latest allowable dependency versions and update the pinfile.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0145-package-manager-version-pinning.md">SE-0145: Package Manager Version Pinning</a></p>
+
+<h4 id="tools-version">Tools version</h4>
+
+<p>Packages can now specify the minimum version of the Swift tools that they require. This requirement can be edited with the <code class="language-plaintext highlighter-rouge">swift package tools-version</code> command and is recorded at the top of the <code class="language-plaintext highlighter-rouge">Package.swift</code> manifest. Package versions which require newer Swift tools than those in use will be ignored by dependency resolution, so packages can adopt new Swift features without breaking clients who are using older Swift tools. The minimum tools version required determines which Swift language version is used to interpret the <code class="language-plaintext highlighter-rouge">Package.swift</code> manifest, and which version of the <code class="language-plaintext highlighter-rouge">PackageDescription</code> API is available.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0152-package-manager-tools-version.md">SE-0152: Package Manager Tools Version</a></p>
+
+<h4 id="swift-language-compatibility-version">Swift language compatibility version</h4>
+
+<p>Packages can now specify whether their sources are written in the Swift 3 or Swift 4 language version. If not specified, a default is inferred from the Package’s minimum Swift tools version.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0151-package-manager-swift-language-compatibility-version.md">SE-0151: Package Manager Swift Language Compatibility Version</a></p>
+
+<h4 id="other-package-manager-improvements">Other Package Manager improvements</h4>
+
+<ul>
+  <li>
+    <p>Package dependency resolution is now correct in cases where it could have resolved to incorrect dependency versions previously. Dependency cycles are now detected during a build, and incremental builds will rebuild fewer sources when possible.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">swift test</code> now supports running tests in parallel with the <code class="language-plaintext highlighter-rouge">--parallel</code> flag. <code class="language-plaintext highlighter-rouge">swift build</code>, <code class="language-plaintext highlighter-rouge">swift test</code>, and all <code class="language-plaintext highlighter-rouge">swift package</code> commands which resolve dependencies now support fetching those dependencies in parallel with the <code class="language-plaintext highlighter-rouge">--enable-prefetching</code> flag.</p>
+  </li>
+</ul>
+
+<p>Documentation for the Swift Package Manager can be found <a href="https://github.com/apple/swift-package-manager/tree/swift-3.1-branch/Documentation">in the repository</a>.</p>
+
+<h3 id="migrating-to-swift-31">Migrating to Swift 3.1</h3>
+<p>Swift 3.1 is source compatible with Swift 3.0.  To help with moving to Swift 3.1 from earlier releases of Swift, <a href="https://itunes.apple.com/app/xcode/id497799835">Xcode 8.3</a> contains a code migrator that can automatically handle many of the needed source changes.  There is also a <a href="https://swift.org/migration-guide/">migration guide</a> available to guide you through many of the changes — especially through the ones that are less mechanical and require more direct scrutiny.</p>
+
+<h3 id="documentation">Documentation</h3>
+<p>An updated version of <a href="https://swift.org/documentation/#the-swift-programming-language">The Swift Programming Language</a> for Swift 3.1 is now available on Swift.org.  It is also available for free on Apple’s iBooks store.</p>
+
+<h3 id="platforms">Platforms</h3>
+
+<h4 id="linux-ubuntu-1404-ubuntu-1604-and-ubuntu-1610">Linux (Ubuntu 14.04, Ubuntu 16.04 and Ubuntu 16.10)</h4>
+
+<p>Official binaries for Ubuntu 14.04, Ubuntu 16.04 and Ubuntu 16.10 are <a href="https://swift.org/download/">available for download</a>.</p>
+
+<h4 id="apple-xcode">Apple (Xcode)</h4>
+<p>For development on Apple’s platforms, Swift 3.1 ships as part of <a href="https://itunes.apple.com/app/xcode/id497799835">Xcode 8.3</a>.</p>
+
+<h3 id="sources">Sources</h3>
+<p>Development on Swift 3.1 was tracked in the <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> on the following repositories on GitHub:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift">swift</a></li>
+  <li><a href="https://github.com/apple/swift-llvm">swift-llvm</a></li>
+  <li><a href="https://github.com/apple/swift-clang">swift-clang</a></li>
+  <li><a href="https://github.com/apple/swift-lldb">swift-lldb</a></li>
+  <li><a href="https://github.com/apple/swift-cmark">swift-cmark</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild">swift-llbuild</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager">swift-package-manager</a></li>
+  <li><a href="https://github.com/apple/swift-xcode-playground-support">swift-xcode-playground-support</a></li>
+  <li><a href="https://github.com/apple/swift-compiler-rt">swift-compiler-rt</a></li>
+</ul>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">swift-3.1-RELEASE</code> designates the specific revisions in those repositories that make up the final version of Swift 3.1.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">swift-3.1-branch</code> will remain open, but under the same <a href="https://swift.org/blog/swift-3-0-release-process/">release management process</a>, to accumulate changes for a potential future bug-fix “dot” release.</p>
+
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-4.0-release-process/" rel="prev" title="Previous: Swift 4 Release Process">Swift 4 Release Process</a>
+      
+
+      
+      <a href="/blog/swift-source-compatibility-test-suite/" rel="next" title="Next: Swift Source Compatibility Test Suite Now Available">Swift Source Compatibility Test Suite Now Available</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

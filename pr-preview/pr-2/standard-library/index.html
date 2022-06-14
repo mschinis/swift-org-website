@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Standard Library</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/standard-library/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift.org" />
+  <meta name="twitter:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:title" content="Swift.org" />
+  <meta property="og:url" content="https://swift.org" />
+  <meta property="og:description" content="Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns." />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li class="active">
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+        <ul>
+          
+          <li><a href="/standard-library/#standard-library-preview-package">Standard Library Preview Package</a></li>
+          
+          <li><a href="/standard-library/#standard-library-design">Standard Library Design</a></li>
+          
+        </ul>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+  <article class="page">
+  <header>
+    <h1>Standard Library</h1>
+  </header>
+
+  <p>The Swift standard library, along with its tests and inline documentation,
+are a part of the <a href="https://github.com/apple/swift" title="Swift repository">main Swift repository</a>.</p>
+
+<h2 id="standard-library-preview-package">Standard Library Preview Package</h2>
+
+<p>The <strong><a href="https://github.com/apple/swift-standard-library-preview/">Standard Library Preview package</a></strong> provides
+early access to new additions to the standard library. When new standard
+library APIs that can be implemented as a standalone library are accepted
+through the Swift Evolution process, they are published as individual
+packages and included in the preview package, which acts as an umbrella
+library. The preview package currently includes the following individual
+packages:</p>
+
+<table>
+<tr>
+    <th>Package</th>
+    <th>Description</th>
+</tr>
+
+<tr>
+    <td><a href="https://github.com/apple/swift-se0270-range-set/">SE0270_RangeSet</a></td>
+    <td>Operations on noncontiguous subranges of collections,  such as <code>subranges(where:)</code> and <code>moveSubranges(_:to:)</code>,  as well as the supporting <code>RangeSet</code> type.</td>
+</tr>
+
+<tr>
+    <td><a href="https://github.com/apple/swift-se0288-is-power/">SE0288_IsPower</a></td>
+    <td>Extends <code>BinaryInteger</code> with an <code>isPower(of:)</code> method  that returns whether an integer is a power of another.</td>
+</tr>
+
+</table>
+
+<h2 id="standard-library-design">Standard Library Design</h2>
+
+<p>The Swift standard library encompasses a number of data types,
+protocols and functions, including fundamental data types (e.g.,
+<code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">Double</code>), collections (e.g., <code class="language-plaintext highlighter-rouge">Array</code>, <code class="language-plaintext highlighter-rouge">Dictionary</code>) along with
+the protocols that describe them and algorithms that operate on them,
+characters and strings, and low-level primitives (e.g.,
+<code class="language-plaintext highlighter-rouge">UnsafeMutablePointer</code>). The implementation of the standard library
+resides in the <code class="language-plaintext highlighter-rouge">stdlib/public</code> subdirectory within the <a href="https://github.com/apple/swift" title="Swift repository">Swift
+repository</a>, which is further subdivided into:</p>
+
+<ul>
+  <li>
+    <p><strong>Standard library core</strong>: The core of the standard library (implemented in <a href="https://github.com/apple/swift/tree/main/stdlib/public/core">stdlib/public/core</a>), including the definitions of all of the data types, protocols, functions, etc.</p>
+  </li>
+  <li>
+    <p><strong>Runtime</strong>: The language support runtime (implemented in <a href="https://github.com/apple/swift/tree/main/stdlib/public/runtime">stdlib/public/runtime</a>), which is layered between the compiler and the core standard library. It is responsible for implementing many of the dynamic features of the language, such as casting (e.g., for the <code class="language-plaintext highlighter-rouge">as!</code> and <code class="language-plaintext highlighter-rouge">as?</code> operators), type metadata (to support generics and reflection), and memory management (object allocation, reference counting, etc.). Unlike higher-level libraries, the runtime is written mostly in C++ or (where needed for interoperability) Objective-C.</p>
+  </li>
+  <li>
+    <p><strong>SDK Overlays</strong>: Specific to Apple platforms, the SDK overlays (implemented in <a href="https://github.com/apple/swift/tree/main/stdlib/public/Darwin">stdlib/public/Darwin</a>) provide Swift-specific additions and modifications to existing Objective-C frameworks to improve their mapping into Swift. In particular, the <code class="language-plaintext highlighter-rouge">Foundation</code> overlay provides additional support for interoperability with Objective-C code.</p>
+  </li>
+</ul>
+
+<p>The Swift standard library is written in Swift, but because it is the lowest-level Swift code in the stack—responsible for implementing the core data types on which other Swift code is built—it is a bit different from normal Swift code. Some of the differences include:</p>
+
+<ul>
+  <li>
+    <p><strong>Access to compiler builtins</strong>: The <code class="language-plaintext highlighter-rouge">Builtin</code> module, which is only generally accessible to the standard library, provides compiler builtin functions (e.g., to directly create SIL instructions) and data types (e.g., “raw” pointers, primitive LLVM integer types) needed to implement the data types that are fundamental to programming in Swift.</p>
+  </li>
+  <li>
+    <p><strong>Visibility is often managed by convention</strong>: Standard library declarations often need to have greater visibility than one would generally like, due to the way in which the standard library is compiled and optimized. For example, <code class="language-plaintext highlighter-rouge">private</code> modifiers are never used. More importantly, it is common to need to make something <code class="language-plaintext highlighter-rouge">public</code> even when it is not intended as part of the public interface. In such cases, one should use a leading underscore to indicate that the public API is meant to be private. The policy for access control in the standard library is documented in <a href="https://github.com/apple/swift/blob/main/docs/AccessControlInStdlib.rst">docs/AccessControlInStdlib.rst</a>.</p>
+  </li>
+  <li>
+    <p><strong>Repetitive code uses gyb</strong>: <a href="https://github.com/apple/swift/blob/main/utils/gyb.py">gyb</a> is a simple tool for generating repetitive code from a template that is used often in the standard library. For example, it is used to create the definitions of the various sized integer types (<code class="language-plaintext highlighter-rouge">Int8</code>, <code class="language-plaintext highlighter-rouge">Int16</code>, <code class="language-plaintext highlighter-rouge">Int32</code>, <code class="language-plaintext highlighter-rouge">Int64</code>, etc.) from a single source.</p>
+  </li>
+  <li>
+    <p><strong>Testing is tightly coupled with the compiler</strong>: The standard library and the compiler evolve together and are tightly coupled. Changes in core data types (e.g., <code class="language-plaintext highlighter-rouge">Array</code> or <code class="language-plaintext highlighter-rouge">Int</code>) can require compiler-side changes, and vice-versa, so the standard library test suite is stored within the same directory structure as the compiler, in <a href="https://github.com/apple/swift/tree/main/test/stdlib">test/stdlib</a> and <a href="https://github.com/apple/swift/tree/main/validation-test/stdlib">validation-test/stdlib</a>.</p>
+  </li>
+</ul>
+
+
+</article>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

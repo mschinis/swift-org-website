@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing Swift Service Discovery</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-service-discovery/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing Swift Service Discovery" />
+  <meta name="twitter:description" content="It is my pleasure to announce a new open source project for the Swift Server ecosystem, Swift Service Discovery. Service Discovery is a Swift package designed to establish a standard API that can be implemented by various service discovery backends such as DNS-based, key-value store, etc.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing Swift Service Discovery" />
+  <meta property="og:url" content="https://swift.org/blog/swift-service-discovery/" />
+  <meta property="og:description" content="It is my pleasure to announce a new open source project for the Swift Server ecosystem, Swift Service Discovery. Service Discovery is a Swift package designed to establish a standard API that can be implemented by various service discovery backends such as DNS-based, key-value store, etc.
+" />
+  <meta property="article:published_time" content="2020-10-21T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing Swift Service Discovery</h1>
+
+    <time pubdate datetime="2020-10-21T05:00:00-04:00">October 21, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/6c6eb474fd49bcafa7a8ba7d91ad06e0?s=64" alt="Yim Lee"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/yim-lee/" rel="nofollow" title="Yim Lee (@yim-lee) on GitHub">Yim Lee</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Yim Lee is an engineer on the Swift team at Apple, developing foundational server-side technologies with focus on distributed systems.</div>
+      
+    
+    
+  </header>
+
+  <p>It is my pleasure to announce a new open source project for the Swift Server ecosystem, <a href="https://github.com/apple/swift-service-discovery">Swift Service Discovery</a>. Service Discovery is a Swift package designed to establish a standard API that can be implemented by various <a href="https://en.wikipedia.org/wiki/Service_discovery">service discovery</a> backends such as DNS-based, key-value store, etc.</p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>The Swift Service Discovery package defines the API only, similar to <a href="https://github.com/apple/swift-log">SwiftLog</a> and <a href="https://github.com/apple/swift-metrics">SwiftMetrics</a>; actual functionalities are provided by backend implementations.</p>
+
+<h3 id="concepts">Concepts</h3>
+
+<ul>
+  <li><strong>Service Identity</strong>: Each service must have a unique identity. <code class="language-plaintext highlighter-rouge">Service</code> denotes the identity type used in a backend implementation.</li>
+  <li><strong>Service Instance</strong>: A service may have zero or more instances, each of which has an associated location (typically host-port). <code class="language-plaintext highlighter-rouge">Instance</code> denotes the service instance type used in a backend implementation.</li>
+</ul>
+
+<h3 id="server-applications">Server Applications</h3>
+
+<p>Application owners need to select a service discovery backend to make querying available. This is done by adding a dependency on the desired backend implementation and instantiating it at the beginning of the program.</p>
+
+<p>For example, suppose the hypothetical <code class="language-plaintext highlighter-rouge">DNSBasedServiceDiscovery</code> is chosen as the backend:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1) Import the service discovery backend package</span>
+<span class="kd">import</span> <span class="kt">DNSBasedServiceDiscovery</span>
+
+<span class="c1">// 2) Create a concrete ServiceDiscovery object</span>
+<span class="k">let</span> <span class="nv">serviceDiscovery</span> <span class="o">=</span> <span class="kt">DNSBasedServiceDiscovery</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>To fetch the current list of instances (where <code class="language-plaintext highlighter-rouge">result</code> is <code class="language-plaintext highlighter-rouge">Result&lt;[Instance], Error&gt;</code>):</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">serviceDiscovery</span><span class="o">.</span><span class="nf">lookup</span><span class="p">(</span><span class="n">service</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To fetch the current list of instances (where <code class="language-plaintext highlighter-rouge">result</code> is <code class="language-plaintext highlighter-rouge">Result&lt;[Instance], Error&gt;</code>) AND subscribe to future changes:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">cancellationToken</span> <span class="o">=</span> <span class="n">serviceDiscovery</span><span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span>
+    <span class="nv">to</span><span class="p">:</span> <span class="n">service</span><span class="p">,</span>
+    <span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="c1">// This closure gets invoked once at the beginning and</span>
+        <span class="c1">// subsequently each time a change occurs</span>
+        <span class="o">...</span>
+    <span class="p">},</span>
+    <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="n">reason</span> <span class="k">in</span>
+        <span class="c1">// This closure gets invoked when the subscription completes</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="o">...</span>
+
+<span class="c1">// Cancel the `subscribe` request</span>
+<span class="n">cancellationToken</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">subscribe</code> returns a <code class="language-plaintext highlighter-rouge">CancellationToken</code> that can be used to cancel the subscription later on.
+<code class="language-plaintext highlighter-rouge">onComplete</code> is a closure that gets invoked when the subscription ends (e.g., when the service discovery instance shuts down) or gets cancelled through the <code class="language-plaintext highlighter-rouge">CancellationToken</code>.
+<code class="language-plaintext highlighter-rouge">CompletionReason</code> can be used to distinguish what led to the completion.</p>
+
+<h3 id="backend-implementations">Backend Implementations</h3>
+
+<p>To become a compatible service discovery backend, implementations must conform to the <code class="language-plaintext highlighter-rouge">ServiceDiscovery</code> protocol which includes two methods: <code class="language-plaintext highlighter-rouge">lookup</code> and <code class="language-plaintext highlighter-rouge">subscribe</code>.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">lookup</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">service</span><span class="p">:</span> <span class="kt">Service</span><span class="p">,</span>
+    <span class="nv">deadline</span><span class="p">:</span> <span class="kt">DispatchTime</span><span class="p">?,</span>
+    <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Instance</span><span class="p">],</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">lookup</code> fetches the current list of instances for the given service and sends it to <code class="language-plaintext highlighter-rouge">callback</code>.
+If the service is unknown (e.g., registration is required but it has not been done for the service), then the result should be a <code class="language-plaintext highlighter-rouge">LookupError.unknownService</code> failure.
+A deadline should be imposed on when the operation will complete either via <code class="language-plaintext highlighter-rouge">deadline</code> or a default timeout.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span>
+    <span class="n">to</span> <span class="nv">service</span><span class="p">:</span> <span class="kt">Service</span><span class="p">,</span>
+    <span class="n">onNext</span> <span class="nv">nextResultHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Instance</span><span class="p">],</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">,</span>
+    <span class="n">onComplete</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">CompletionReason</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CancellationToken</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">subscribe</code> “pushes” service instances to the <code class="language-plaintext highlighter-rouge">nextResultHandler</code>:</p>
+
+<ul>
+  <li>When <code class="language-plaintext highlighter-rouge">subscribe</code> is first invoked, the caller should receive the current list of instances for the given service. This is essentially the <code class="language-plaintext highlighter-rouge">lookup</code> result.</li>
+  <li>Whenever the given service’s list of instances changes. The backend implementation has full control over how and when its service records get updated, but it must notify <code class="language-plaintext highlighter-rouge">nextResultHandler</code> when the instances list becomes different from the previous result.</li>
+</ul>
+
+<p>A new <code class="language-plaintext highlighter-rouge">CancellationToken</code> is created for each <code class="language-plaintext highlighter-rouge">subscribe</code> request. If the cancellation token’s <code class="language-plaintext highlighter-rouge">isCancelled</code> is <code class="language-plaintext highlighter-rouge">true</code>, the subscription has been cancelled and the backend implementation should cease calling the corresponding <code class="language-plaintext highlighter-rouge">nextResultHandler</code>.</p>
+
+<p>The backend implementation must also notify via <code class="language-plaintext highlighter-rouge">completionHandler</code> when the subscription ends for any reason (e.g., the service discovery instance is shutting down or cancellation is requested through <code class="language-plaintext highlighter-rouge">CancellationToken</code>), so that the subscriber can submit another <code class="language-plaintext highlighter-rouge">subscribe</code> request if needed.</p>
+
+<h2 id="project-status">Project Status</h2>
+
+<p>This is the beginning of a community-driven open-source project actively seeking contributions.
+Besides contributing to Swift Service Discovery itself, we need compatible backend implementations that manage service registration and location information for querying.</p>
+
+<h2 id="getting-involved">Getting Involved</h2>
+
+<p>If you are interested in Swift Service Discovery, come and get involved!
+The <a href="https://github.com/apple/swift-service-discovery">source is available</a>, and we encourage contributions from the open source community.
+If you have feedback, questions or would like to discuss the project, please feel free to chat on the <a href="https://forums.swift.org/c/server">Swift forums</a>.
+If you would like to report bugs, please use <a href="https://github.com/apple/swift-service-discovery/issues">the GitHub issue tracker</a>.
+We look forward to working with you, and helping move the industry forward to a better, safer programming future.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-algorithms/" rel="prev" title="Previous: Announcing Swift Algorithms">Announcing Swift Algorithms</a>
+      
+
+      
+      <a href="/blog/swiftnio-ssh/" rel="next" title="Next: Introducing SwiftNIO SSH">Introducing SwiftNIO SSH</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 4.1 Released!</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-4.1-released/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 4.1 Released!" />
+  <meta name="twitter:description" content="Swift 4.1 is now officially released!  It contains updates to the core language, including more support for generics, new build options, as well as minor enhancements to Swift Package Manager and Foundation.  There was also significant progress made in stabilizing the ABI.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 4.1 Released!" />
+  <meta property="og:url" content="https://swift.org/blog/swift-4.1-released/" />
+  <meta property="og:description" content="Swift 4.1 is now officially released!  It contains updates to the core language, including more support for generics, new build options, as well as minor enhancements to Swift Package Manager and Foundation.  There was also significant progress made in stabilizing the ABI.
+" />
+  <meta property="article:published_time" content="2018-03-29T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 4.1 Released!</h1>
+
+    <time pubdate datetime="2018-03-29T06:00:00-04:00">March 29, 2018</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/b6520643611a05fd040d0abcee3c883c?s=64" alt="Ted Kremenek"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/tkremenek/" rel="nofollow" title="Ted Kremenek (@tkremenek) on GitHub">Ted Kremenek</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Ted Kremenek is a member of the Swift Core Team and manages the Languages and Runtimes group at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>Swift 4.1 is now officially released!  It contains updates to the core language, including more support for generics, new build options, as well as minor enhancements to Swift Package Manager and Foundation.  There was also significant progress made in stabilizing the ABI.</p>
+
+<p>Doug Gregor and Ben Cohen recently discussed many of these features on a two-part episode of the Swift Unwrapped podcast. Check out the podcasts here: <a href="https://itunes.apple.com/us/podcast/50-swift-4-1-w-doug-ben-part-1/id1209817203?i=1000406832583&amp;mt=2">Part 1</a> and <a href="https://itunes.apple.com/us/podcast/51-swift-4-1-w-doug-ben-part-2/id1209817203?i=1000407502590&amp;mt=2">Part 2</a>.</p>
+
+<h3 id="compiler-updates">Compiler Updates</h3>
+
+<p>Swift 4.1 is a minor language release. It is source compatible with Swift 4.0. It contains the following language changes and updates, most of which went through the Swift <a href="https://swift.org/contributing/#participating-in-the-swift-evolution-process">Evolution process</a>:</p>
+
+<h4 id="language-improvements">Language improvements</h4>
+
+<p>Swift 4.1 adds more generics features to the language, furthering the goals set out in the <a href="https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md">Swift Generics Manifesto</a>.  The following generics-related proposals have been implemented in this release:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md">SE-0143 Conditional Conformance</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0157-recursive-protocol-constraints.md">SE-0157 Support recursive constraints on associated types</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0185-synthesize-equatable-hashable.md">SE-0185 Synthesizing Equatable and Hashable conformance</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0187-introduce-filtermap.md">SE-0187 Introduce Sequence.compactMap(_:)</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0188-stdlib-index-types-hashable.md">SE-0188 Make Standard Library Index Types Hashable</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0191-eliminate-indexdistance.md">SE-0191 Eliminate IndexDistance from Collection</a></li>
+</ul>
+
+<p>For more information about progress made with conditional conformance in Swift 4.1, check out this <a href="https://swift.org/blog/conditional-conformance/">blog post</a>.</p>
+
+<h4 id="build-improvements">Build improvements</h4>
+
+<p>This release provides more ways to configure your builds, including a new code size optimization and easier ways to specify target environment and platform support.</p>
+
+<h5 id="code-size-optimization-mode">Code size optimization mode</h5>
+
+<p>The compiler now supports a new optimization mode which enables dedicated optimizations to reduce code size.</p>
+
+<p>This was previously discussed in more detail in this <a href="https://swift.org/blog/osize/">blog post</a>.</p>
+
+<h5 id="build-import-test">Build import test</h5>
+
+<p>The argument for the <code class="language-plaintext highlighter-rouge">canImport()</code> platform condition is the name of a module that may not be present on all platforms. This condition tests whether it’s possible to import the module, but doesn’t actually import it. If the module is present, the platform condition returns <code class="language-plaintext highlighter-rouge">true</code>; otherwise, it returns <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0075-import-test.md">SE-0075 Adding a Build Configuration Import Test</a> and Conditional Compilation Block <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID539">documentation</a>.</p>
+
+<h5 id="target-environment-condition">Target environment condition</h5>
+
+<p>The <code class="language-plaintext highlighter-rouge">targetEnvironment(simulator)</code> platform condition returns <code class="language-plaintext highlighter-rouge">true</code> when code is compiled for a simulator; otherwise, it returns <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0190-target-environment-platform-condition.md">SE-0190 Target environment platform condition</a> and Conditional Compilation Block <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID539">documentation</a>.</p>
+
+<h4 id="foundation">Foundation</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">JSONEncoder</code> and <code class="language-plaintext highlighter-rouge">JSONDecoder</code> classes now support new strategies for converting keys during encoding and decoding.</p>
+
+<p>This was discussed in more detail in this <a href="https://forums.swift.org/t/jsonencoder-key-strategies/6958">forum post</a>.</p>
+
+<h4 id="additional-updates">Additional updates</h4>
+
+<p>These are additional Swift Evolution proposals that were implemented in this release:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0184-unsafe-pointers-add-missing.md">SE-0184 Unsafe[Mutable][Raw][Buffer]Pointer: add missing methods, adjust existing labels for clarity, and remove deallocation size</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0186-remove-ownership-keyword-support-in-protocols.md">SE-0186 Remove ownership keyword support in protocols</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0189-restrict-cross-module-struct-initializers.md">SE-0189 Restrict Cross-module Struct Initializers</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0198-playground-quicklook-api-revamp.md">SE-0198 Playground QuickLook API Revamp</a></li>
+</ul>
+
+<h3 id="abi-stability">ABI Stability</h3>
+
+<p>Swift 4.1 contains a number of under-the-hood changes that are part of the effort to stabilize the ABI in Swift 5.  Here is list of the tasks that were completed in this release:</p>
+
+<ul>
+  <li>Use word-size field in native object header for reference counting (<a href="https://bugs.swift.org/browse/SR-4353">SR-4353</a>)</li>
+  <li>Review the efficiency of interacting with the enum discriminator through the witness table (<a href="https://bugs.swift.org/browse/SR-4332">SR-4332</a>)</li>
+  <li>Decide the layout of existential type metadata, including protocol descriptors (<a href="https://bugs.swift.org/browse/SR-4341">SR-4341</a>)</li>
+  <li>Define canonicalization of generic and protocol requirements for order-agnostic mangling (<a href="https://bugs.swift.org/browse/SR-3733">SR-3733</a>)</li>
+  <li>Audit of every runtime function for desirability and behavior (<a href="https://bugs.swift.org/browse/SR-3735">SR-3735</a>)</li>
+  <li>Enforce appropriate constraints on <code class="language-plaintext highlighter-rouge">Sequence</code>s and <code class="language-plaintext highlighter-rouge">Collection</code>s (<a href="https://bugs.swift.org/browse/SR-3453">SR-3453</a>)</li>
+  <li>Collapse various collection wrappers using conditional conformance (<a href="https://bugs.swift.org/browse/SR-3458">SR-3458</a>)</li>
+</ul>
+
+<p>For more information about the progress of ABI Stability for Swift, check out the <a href="https://swift.org/abi-stability/">ABI Dashboard</a>.</p>
+
+<h3 id="package-manager-enhancements">Package Manager Enhancements</h3>
+
+<p>There are a couple of enhancements to Swift Package Manager in Swift 4.1:</p>
+
+<p>Swift Package Manager now correctly resolves dependences in package graphs that use different URL schemes, such as <code class="language-plaintext highlighter-rouge">ssh</code> and <code class="language-plaintext highlighter-rouge">http</code>.
+Performance has been significantly improved for package graphs that have shared dependencies.</p>
+
+<h3 id="migrating-to-swift-41">Migrating to Swift 4.1</h3>
+
+<p>Swift 4.1 is source compatible with Swift 4.0. To help with moving to Swift 4.1 from earlier releases of Swift, Apple’s <a href="https://itunes.apple.com/app/xcode/id497799835">Xcode 9.3</a> contains a code migrator that can automatically handle many of the needed source changes. There is also a <a href="https://swift.org/migration-guide/">migration guide</a> available to guide you through many of the changes — especially through the ones that are less mechanical and require more direct scrutiny.</p>
+
+<h3 id="documentation">Documentation</h3>
+
+<p>An updated version of <a href="https://swift.org/documentation/#the-swift-programming-language">The Swift Programming Language</a> for Swift 4.1 is now available on Swift.org. It is also available for free on Apple’s iBooks store.</p>
+
+<h3 id="platforms">Platforms</h3>
+
+<h4 id="linux-ubuntu-1404-ubuntu-1604-and-ubuntu-1610">Linux (Ubuntu 14.04, Ubuntu 16.04 and Ubuntu 16.10)</h4>
+
+<p>Official binaries for Ubuntu 14.04, Ubuntu 16.04 and Ubuntu 16.10 are <a href="https://swift.org/download/">available for download</a></p>
+
+<h4 id="apple-xcode">Apple (Xcode)</h4>
+
+<p>For development on Apple’s platforms, Swift 4.1 ships as part of <a href="https://itunes.apple.com/app/xcode/id497799835">Xcode 9.3</a>.</p>
+
+<h3 id="sources">Sources</h3>
+
+<p>Development on Swift 4.1 was tracked in the swift-4.1-branch on the following repositories on GitHub:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift">swift</a></li>
+  <li><a href="https://github.com/apple/swift-llvm">swift-llvm</a></li>
+  <li><a href="https://github.com/apple/swift-clang">swift-clang</a></li>
+  <li><a href="https://github.com/apple/swift-lldb">swift-lldb</a></li>
+  <li><a href="https://github.com/apple/swift-cmark">swift-cmark</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild">swift-llbuild</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager">swift-package-manager</a></li>
+  <li><a href="https://github.com/apple/swift-xcode-playground-support">swift-xcode-playground-support</a></li>
+  <li><a href="https://github.com/apple/swift-compiler-rt">swift-compiler-rt</a></li>
+</ul>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">swift-4.1-RELEASE</code> designates the specific revisions in those repositories that make up the final version of Swift 4.1.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">swift-4.1-branch</code> will remain open, but under the same <a href="https://swift.org/blog/swift-3-0-release-process/">release management process</a>, to accumulate changes for a potential future bug-fix “dot” release.</p>
+
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/4.2-release-process/" rel="prev" title="Previous: Swift 4.2 Release Process">Swift 4.2 Release Process</a>
+      
+
+      
+      <a href="/blog/iuo/" rel="next" title="Next: Reimplementation of Implicitly Unwrapped Optionals">Reimplementation of Implicitly Unwrapped Optionals</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

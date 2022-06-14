@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Code Size Optimization Mode in Swift 4.1</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/osize/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Code Size Optimization Mode in Swift 4.1" />
+  <meta name="twitter:description" content="In Swift 4.1 the compiler now supports a new optimization mode which enables dedicated optimizations to reduce code size.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Code Size Optimization Mode in Swift 4.1" />
+  <meta property="og:url" content="https://swift.org/blog/osize/" />
+  <meta property="og:description" content="In Swift 4.1 the compiler now supports a new optimization mode which enables dedicated optimizations to reduce code size.
+" />
+  <meta property="article:published_time" content="2018-02-08T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Code Size Optimization Mode in Swift 4.1</h1>
+
+    <time pubdate datetime="2018-02-08T06:00:00-04:00">February 8, 2018</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/eeckstein/" rel="nofollow" title="Erik Eckstein (@eeckstein) on GitHub">Erik Eckstein</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Erik Eckstein is member of the Swift team at Apple.  He has worked on various aspects of the Swift compiler's optimization pipeline.</div>
+      
+    
+    
+  </header>
+
+  <p>In Swift 4.1 the compiler now supports a new optimization mode which enables dedicated optimizations to reduce code size.</p>
+
+<p>The Swift compiler comes with powerful optimizations. When compiling with <code class="language-plaintext highlighter-rouge">-O</code> the compiler tries to transform the code so that it executes with maximum performance. However, this improvement in runtime performance can sometimes come with a tradeoff of increased code size.
+With the new <code class="language-plaintext highlighter-rouge">-Osize</code> optimization mode the user has the choice to compile for minimal code size rather than for maximum speed.</p>
+
+<p>To enable the size optimization mode on the command line, use <code class="language-plaintext highlighter-rouge">-Osize</code> instead of <code class="language-plaintext highlighter-rouge">-O</code>. In Xcode 9.3 there is a new Swift compiler code generation build setting:</p>
+
+<p><img src="https://swift.org/assets/images/osize-blog/Xcode-Osize-setting.png" alt="Xcode optimization mode settings" /></p>
+
+<p>Also, the compilation mode — single file or whole-module — can now be selected independently of the optimization mode:</p>
+
+<p><img src="https://swift.org/assets/images/osize-blog/Xcode-mode-setting.png" alt="Xcode compilation mode settings" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">-Osize</code> mode works in whole-module as well as in single-file compilation, whereas whole-module mode gives the best optimization results.</p>
+
+<p>We have seen that using <code class="language-plaintext highlighter-rouge">-Osize</code> reduces code size from 5% to even 30% for some projects.</p>
+
+<p>But what about performance? This completely depends on the project. For most applications the performance hit with <code class="language-plaintext highlighter-rouge">-Osize</code> will be negligible, i.e. below 5%. But for performance sensitive code <code class="language-plaintext highlighter-rouge">-O</code> might still be the better choice.</p>
+
+<h3 id="impact-on-code-optimization">Impact on Code Optimization</h3>
+
+<p>Let’s go into the details on what the compiler does differently with <code class="language-plaintext highlighter-rouge">-Osize</code>.
+With <code class="language-plaintext highlighter-rouge">-Osize</code> the compiler optimizes the code, just like with <code class="language-plaintext highlighter-rouge">-O</code>.
+But in contrast to <code class="language-plaintext highlighter-rouge">-O</code>, the compiler tries to avoid code duplication. For example, when inlining functions the compiler uses a lower size limit to decide whether a function should be inlined.</p>
+
+<p>Completely disabling function inlining would be a bad idea, because inlining small functions often improve code size. For example consider simple getter functions, like</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">X</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">27</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The call overhead of calling this getter would be much higher than to inline the function. This is an extreme example, but it turns out that inlining is still worth up to a certain size while still improving code size.
+In addition, function inlining can trigger other optimizations, which in turn can reduce code size. For example, in the code snippet below by inlining the getter <code class="language-plaintext highlighter-rouge">a.x</code> we know that <code class="language-plaintext highlighter-rouge">a.x</code> evaluates to 27 and hence the entire <code class="language-plaintext highlighter-rouge">if</code> branch can be optimized away:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="kt">X</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">27</span> <span class="p">{</span>
+        <span class="c1">// Can be optimized away if the getter of a.x is inlined</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Beside inlining, the compiler performs other code size specific optimizations with <code class="language-plaintext highlighter-rouge">-Osize</code>. For example, some code patterns for handling generic types or for Objective-C bridging are extracted into helper functions and are not generated inline.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The new <code class="language-plaintext highlighter-rouge">-Osize</code> optimization mode is a great way to reduce code size for programs which are not super performance sensitive.</p>
+
+<p>We like to encourage you to try <code class="language-plaintext highlighter-rouge">-Osize</code> and give us feedback. Share your experiences in the forum, using the <a href="https://forums.swift.org/tags/osize">osize</a> tag.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/forums/" rel="prev" title="Previous: Swift Forums Now Open!">Swift Forums Now Open!</a>
+      
+
+      
+      <a href="/blog/4.2-release-process/" rel="next" title="Next: Swift 4.2 Release Process">Swift 4.2 Release Process</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

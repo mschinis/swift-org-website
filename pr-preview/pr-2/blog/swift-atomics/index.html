@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing Swift Atomics</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-atomics/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing Swift Atomics" />
+  <meta name="twitter:description" content="I’m delighted to announce Swift Atomics, a new open source package that enables direct use of low-level atomic operations in Swift code. The goal of this library is to enable intrepid systems programmers to start building synchronization constructs (such as concurrent data structures) directly in Swift.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing Swift Atomics" />
+  <meta property="og:url" content="https://swift.org/blog/swift-atomics/" />
+  <meta property="og:description" content="I’m delighted to announce Swift Atomics, a new open source package that enables direct use of low-level atomic operations in Swift code. The goal of this library is to enable intrepid systems programmers to start building synchronization constructs (such as concurrent data structures) directly in Swift.
+" />
+  <meta property="article:published_time" content="2020-10-01T10:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing Swift Atomics</h1>
+
+    <time pubdate datetime="2020-10-01T10:00:00-04:00">October 1, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/lorentey/" rel="nofollow" title="Karoy Lorentey (@lorentey) on Twitter">Karoy Lorentey</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Karoy Lorentey is an engineer on the Swift Standard Library team at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>I’m delighted to announce Swift Atomics, a new open source package that enables direct use of low-level atomic operations in Swift code. The goal of this library is to enable intrepid systems programmers to start building synchronization constructs (such as concurrent data structures) directly in Swift.</p>
+
+<p>As a quick taste, this is what atomic operations look like using this new package:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Atomics</span>
+<span class="kd">import</span> <span class="kt">Dispatch</span>
+
+<span class="k">let</span> <span class="nv">counter</span> <span class="o">=</span> <span class="kt">ManagedAtomic</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">concurrentPerform</span><span class="p">(</span><span class="nv">iterations</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+  <span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">1_000_000</span> <span class="p">{</span>
+    <span class="n">counter</span><span class="o">.</span><span class="nf">wrappingIncrement</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">ordering</span><span class="p">:</span> <span class="o">.</span><span class="n">relaxed</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">counter</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="o">.</span><span class="n">relaxed</span><span class="p">)</span> <span class="c1">// ⟹ 10_000_000</span>
+</code></pre></div></div>
+
+<p>You may have noticed that the atomic operations in this example do not follow the exclusivity rules that govern normal Swift variables. Atomic operations may be performed from multiple concurrent threads of execution, so long as the value is only accessed via atomic operations.</p>
+
+<p>This is enabled by <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0282-atomics.md">SE-0282</a>, a recently accepted Swift Evolution proposal that explicitly adopted a C/C++-style memory model for Swift, and (informally) described how regular Swift code interoperates with atomic operations. In fact, most APIs in this new package come from previous incarnations of the SE-0282 proposal: they were originally developed by an extremely productive collaborative effort on the <a href="https://forums.swift.org/t/low-level-atomic-operations/34683">Evolution forum</a>. I am deeply grateful to all contributors to these discussions, and I hope the package will continue the collaboration in similarly high spirits!</p>
+
+<h2 id="proceed-at-your-own-risk">Proceed at Your Own Risk</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">Atomics</code> package provides carefully considered API for atomic operations that follows established design principles for Swift APIs. However, the underlying operations work on a very low level of abstraction. Atomics – even more than other low-level concurrency constructs – are notoriously difficult to use correctly.</p>
+
+<p>These APIs enable systems programming use cases that were previously out of reach for Swift programmers. In particular, atomics enable the creation of higher-level, easier-to-use constructs for managing concurrency without resorting to importing their implementation from another language.</p>
+
+<p>Like unsafe APIs in the Standard Library, we recommend using this package very sparingly – preferably not at all! If it’s necessary, though, it is a good idea to:</p>
+
+<ul>
+  <li>Implement existing published algorithms rather than inventing new ones,</li>
+  <li>Isolate atomic code to small, easily reviewable units,</li>
+  <li>And avoid passing around atomic constructs as interface types.</li>
+</ul>
+
+<p>Approach atomic code with extreme caution. Use copious amounts of Thread Sanitizer after every contact!</p>
+
+<h2 id="supported-atomic-types">Supported Atomic Types</h2>
+
+<p>The package implements atomic operations for the following Swift types, all of which conform to the public <code class="language-plaintext highlighter-rouge">AtomicValue</code> protocol:</p>
+
+<ul>
+  <li>Standard signed integer types (<code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">Int64</code>, <code class="language-plaintext highlighter-rouge">Int32</code>, <code class="language-plaintext highlighter-rouge">Int16</code>, <code class="language-plaintext highlighter-rouge">Int8</code>)</li>
+  <li>Standard unsigned integer types (<code class="language-plaintext highlighter-rouge">UInt</code>, <code class="language-plaintext highlighter-rouge">UInt64</code>, <code class="language-plaintext highlighter-rouge">UInt32</code>, <code class="language-plaintext highlighter-rouge">UInt16</code>, <code class="language-plaintext highlighter-rouge">UInt8</code>)</li>
+  <li>Booleans (<code class="language-plaintext highlighter-rouge">Bool</code>)</li>
+  <li>Standard pointer types (<code class="language-plaintext highlighter-rouge">UnsafeRawPointer</code>, <code class="language-plaintext highlighter-rouge">UnsafeMutableRawPointer</code>, <code class="language-plaintext highlighter-rouge">UnsafePointer&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">UnsafeMutablePointer&lt;T&gt;</code>), along with their optional-wrapped forms (such as <code class="language-plaintext highlighter-rouge">Optional&lt;UnsafePointer&lt;T&gt;&gt;</code>)</li>
+  <li>Unmanaged references (<code class="language-plaintext highlighter-rouge">Unmanaged&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">Optional&lt;Unmanaged&lt;T&gt;&gt;</code>)</li>
+  <li>A special <code class="language-plaintext highlighter-rouge">DoubleWord</code> type that consists of two <code class="language-plaintext highlighter-rouge">UInt</code> values, <code class="language-plaintext highlighter-rouge">low</code> and <code class="language-plaintext highlighter-rouge">high</code>, providing double-wide atomic primitives</li>
+  <li>Any <code class="language-plaintext highlighter-rouge">RawRepresentable</code> type whose <code class="language-plaintext highlighter-rouge">RawValue</code> is in turn an atomic type (such as simple custom enum types)</li>
+  <li>Strong references to class instances that opted into atomic use (by conforming to the <code class="language-plaintext highlighter-rouge">AtomicReference</code> protocol)</li>
+</ul>
+
+<p>Of particular note is full support for atomic strong references. This provides a convenient memory reclamation solution for concurrent data structures that fits perfectly with Swift’s reference counting memory management model. (Atomic strong references are implemented in terms of <code class="language-plaintext highlighter-rouge">DoubleWord</code> operations.)</p>
+
+<p>One common use case for an atomic strong reference is to create a lazily initialized (but otherwise constant) variable of some class type. Using general atomic references would be unreasonably expensive in this simple case, so we also provide a separate set of more efficient constructs (<code class="language-plaintext highlighter-rouge">ManagedAtomicLazyReference</code> and <code class="language-plaintext highlighter-rouge">UnsafeAtomicLazyReference</code>) that are optimized specifically for lazy initialization. This can be a useful replacement for <code class="language-plaintext highlighter-rouge">lazy var</code> stored properties in class contexts, which aren’t safe to use in concurrent contexts.</p>
+
+<h2 id="memory-management">Memory Management</h2>
+
+<p>Atomic access is implemented in terms of dedicated atomic storage representations that are kept distinct from the corresponding regular (non-atomic) type. (E.g., the actual integer value underlying the counter above isn’t directly accessible.) This has several advantages:</p>
+
+<ul>
+  <li>it helps prevent accidental non-atomic access to atomic variables,</li>
+  <li>it enables certain atomic values to use a custom storage representation separate from their regular layout (such as the one used by atomic strong references), and</li>
+  <li>it is a better fit with the standard C atomics library that is used under the hood to implement the actual operations.</li>
+</ul>
+
+<p>While the underlying pointer-based atomic operations are exposed as static methods on the corresponding <code class="language-plaintext highlighter-rouge">AtomicStorage</code> types, we strongly recommend the use of higher-level atomic wrappers to manage the details of preparing/disposing atomic storage. This version of the library provides two wrapper types:</p>
+
+<ul>
+  <li>an easy to use, memory-safe <code class="language-plaintext highlighter-rouge">ManagedAtomic&lt;T&gt;</code> generic class, and</li>
+  <li>a less convenient, but more flexible <code class="language-plaintext highlighter-rouge">UnsafeAtomic&lt;T&gt;</code> generic struct, with manual memory management.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">ManagedAtomic</code> requires a class instance allocation for every atomic value, and it relies on reference counting to manage memory. This makes it very convenient, but the allocation/reference counting overhead may not be appropriate for every use case. On the other hand, <code class="language-plaintext highlighter-rouge">UnsafeAtomic</code> can be used to perform an atomic operations over any memory location (of the appropriate storage type) to which you can retrieve a pointer, including memory you allocate yourself, a slice of <code class="language-plaintext highlighter-rouge">ManagedBuffer</code> storage, etc. In exchange of this flexibility, you need to manually ensure that the pointer remains valid while you’re accessing it.</p>
+
+<p>Both constructs provide the following atomic operations on all <code class="language-plaintext highlighter-rouge">AtomicValue</code> types:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicLoadOrdering</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span>
+<span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicStoreOrdering</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">exchange</span><span class="p">(</span><span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span> <span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span>
+
+<span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="nv">expected</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">ordering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">exchanged</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="nv">expected</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">successOrdering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span><span class="p">,</span>
+    <span class="nv">failureOrdering</span><span class="p">:</span> <span class="kt">AtomicLoadOrdering</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">exchanged</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">weakCompareExchange</span><span class="p">(</span>
+    <span class="nv">expected</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">desired</span><span class="p">:</span> <span class="kt">Value</span><span class="p">,</span>
+    <span class="nv">successOrdering</span><span class="p">:</span> <span class="kt">AtomicUpdateOrdering</span><span class="p">,</span>
+    <span class="nv">failureOrdering</span><span class="p">:</span> <span class="kt">AtomicLoadOrdering</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">exchanged</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Integer types come with additional atomic operations for incrementing or decrementing values and bitwise logical operations. <code class="language-plaintext highlighter-rouge">Bool</code> provides a few boolean operations in the same vein.</p>
+
+<p>The ordering enumerations correspond to <code class="language-plaintext highlighter-rouge">std::memory_order</code> in the C/C++ standard, except this package doesn’t expose a consuming memory ordering. (<code class="language-plaintext highlighter-rouge">memory_order_consume</code> isn’t implemented by any C/C++ compiler, and while it isn’t explicitly deprecated, its semantics are being revised, and its use is discouraged in the current version of the C++ standard.) The <code class="language-plaintext highlighter-rouge">Atomics</code> package provides three separate enumerations for orderings, each representing the subset of orderings that apply to a load, store or update operation, respectively.</p>
+
+<h2 id="lock-free-vs-wait-free-operations">Lock-Free vs Wait-Free Operations</h2>
+
+<p>All atomic operations exposed by this package are guaranteed to have lock-free implementations. Lock-freedom means that the atomic operations are non-blocking – they don’t ever need to wait on the progress of some other thread to complete their own task.</p>
+
+<p>However, we do not guarantee wait-free operation: depending on the capabilities of the target platform, some of the exposed operations may be implemented by compare-and-exchange loops. When multiple threads are repatedly competing for access to the same atomic variable, this may result in unfair scheduling where some threads may get repeatedly preempted by others, forcing them to retry their operation an arbitrary number of times. That said, all atomic operations map directly to dedicated, wait-free CPU instructions where available – to the extent supported by LLVM &amp; Clang.</p>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<p>In the near term, we’d like to round out the package by adding even more atomic types and operations, as well as to validate our assumptions about correctness and performance by improving the existing test suite.</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/apple/swift-atomics/issues/1">Tagged atomics</a> would provide a useful tool for solving common problems with concurrent data structures. This would likely be built on top of the double-wide atomic primitives that are already exposed by the library, but inventing the right API for tagging is an interesting API design challenge.</p>
+  </li>
+  <li>
+    <p>Support for some <a href="https://github.com/apple/swift-atomics/issues/2">atomic floating point operations</a> is a commonly requested feature.</p>
+  </li>
+</ul>
+
+<h2 id="get-involved">Get Involved</h2>
+
+<p>Your experience, feedback, and contributions are greatly encouraged!</p>
+
+<ul>
+  <li>Get started by trying out the <a href="https://github.com/apple/swift-atomics"><code class="language-plaintext highlighter-rouge">Atomics</code> library on GitHub</a>,</li>
+  <li>Discuss the library and get help in the <a href="https://forums.swift.org/c/related-projects/swift-atomics">Atomics forum</a>,</li>
+  <li><a href="https://github.com/apple/swift-atomics/issues">Open an issue</a> with problems you find or ideas you have for improvements,</li>
+  <li>And as always, <a href="https://github.com/apple/swift-atomics/pulls">pull requests</a> are welcome!</li>
+</ul>
+
+<h2 id="questions">Questions?</h2>
+
+<p>Please feel free to ask questions about this post in the <a href="https://forums.swift.org/t/introducing-swift-atomics">associated thread</a> on the <a href="https://forums.swift.org/">Swift forums</a>.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-system/" rel="prev" title="Previous: Swift System is Now Open Source">Swift System is Now Open Source</a>
+      
+
+      
+      <a href="/blog/swift-algorithms/" rel="next" title="Next: Announcing Swift Algorithms">Announcing Swift Algorithms</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

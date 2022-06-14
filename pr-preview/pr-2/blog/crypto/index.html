@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing Swift Crypto</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/crypto/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing Swift Crypto" />
+  <meta name="twitter:description" content="I’m thrilled to announce a new open-source project for the Swift ecosystem,
+Swift Crypto. Swift Crypto is a new
+Swift package that brings the fantastic APIs of Apple
+CryptoKit to the wider
+Swift community. This will allow Swift developers, regardless of the platform
+on which they deploy their applications, to access these APIs for a common set
+of cryptographic operations.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing Swift Crypto" />
+  <meta property="og:url" content="https://swift.org/blog/crypto/" />
+  <meta property="og:description" content="I’m thrilled to announce a new open-source project for the Swift ecosystem,
+Swift Crypto. Swift Crypto is a new
+Swift package that brings the fantastic APIs of Apple
+CryptoKit to the wider
+Swift community. This will allow Swift developers, regardless of the platform
+on which they deploy their applications, to access these APIs for a common set
+of cryptographic operations.
+" />
+  <meta property="article:published_time" content="2020-02-03T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing Swift Crypto</h1>
+
+    <time pubdate datetime="2020-02-03T05:00:00-04:00">February 3, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/Lukasa/" rel="nofollow" title="Cory Benfield (@Lukasa) on GitHub">Cory Benfield</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Cory Benfield is a member of a team developing foundational server-side Swift libraries as part of Apple‘s Cloud Services division, and is a core developer on SwiftNIO.</div>
+      
+    
+    
+  </header>
+
+  <p>I’m thrilled to announce a new open-source project for the Swift ecosystem,
+<a href="https://github.com/apple/swift-crypto">Swift Crypto</a>. Swift Crypto is a new
+Swift package that brings the fantastic APIs of <a href="https://developer.apple.com/documentation/cryptokit">Apple
+CryptoKit</a> to the wider
+Swift community. This will allow Swift developers, regardless of the platform
+on which they deploy their applications, to access these APIs for a common set
+of cryptographic operations.</p>
+
+<p>This new library provides a cross-platform solution for using the CryptoKit
+APIs on all platforms that Swift supports. This means that on all platforms
+Swift supports you can now simply write the following to get all of the
+CryptoKit APIs:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Crypto</span>
+</code></pre></div></div>
+
+<p>On Apple platforms, Swift Crypto defers directly to CryptoKit, while on all
+other platforms it uses a brand-new implementation built on top of the
+BoringSSL library. This gives Swift users easy access to a set of easy to use,
+safe cryptographic APIs on all platforms, and is an extremely useful tool when
+writing cross platform cryptographic code.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>There are many powerful things that Swift Crypto makes extremely easy. For
+example, safe authenticated encryption that hides your data and resists
+attackers trying to modify it using AES GCM is as straightforward as:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">encrypt</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span> <span class="p">{</span>
+    <span class="c1">// Don't forget to save your key somewhere!</span>
+    <span class="k">let</span> <span class="nv">key</span> <span class="o">=</span> <span class="kt">SymmetricKey</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="o">.</span><span class="n">bits256</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">sealedBox</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">AES</span><span class="o">.</span><span class="kt">GCM</span><span class="o">.</span><span class="nf">seal</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sealedBox</span><span class="o">.</span><span class="n">combined</span><span class="o">!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This code avoids some of the numerous pitfalls that you can encounter when
+constructing encryption schemes yourself. For example, it ensures that you use
+a randomly selected nonce, and that you authenticate your ciphertext. Both of
+these protect against various attacks on the system, but are not necessarily
+automatic in many other cryptographic libraries.</p>
+
+<p>Similarly, it’s straightforward to generate message authentication codes,
+which you could use to ensure that data was not tampered with:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">authenticate</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]</span> <span class="p">{</span>
+    <span class="c1">// Again, don't forget to save your keys!</span>
+    <span class="k">let</span> <span class="nv">key</span> <span class="o">=</span> <span class="kt">SymmetricKey</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="o">.</span><span class="n">bits256</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kt">Array</span><span class="p">(</span><span class="kt">HMAC</span><span class="o">&lt;</span><span class="kt">SHA256</span><span class="o">&gt;.</span><span class="nf">authenticationCode</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="n">key</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And even the quite complex logic of performing elliptic curve key exchanges is
+covered by Swift Crypto. For example, using Curve25519 to generate a shared
+secret:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">curve25519SharedSecret</span><span class="p">(</span><span class="nv">myKey</span><span class="p">:</span> <span class="kt">Curve25519</span><span class="o">.</span><span class="kt">KeyAgreement</span><span class="o">.</span><span class="kt">PrivateKey</span><span class="p">,</span> <span class="nv">theirKeyBytes</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">SharedSecret</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">theirKey</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Curve25519</span><span class="o">.</span><span class="kt">KeyAgreement</span><span class="o">.</span><span class="kt">PublicKey</span><span class="p">(</span><span class="nv">rawRepresentation</span><span class="p">:</span> <span class="n">theirKeyBytes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">try</span> <span class="n">myKey</span><span class="o">.</span><span class="nf">sharedSecretFromKeyAgreement</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">theirKey</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The end result of these simple but powerful APIs is that you can now construct
+secure cross-platform encryption schemes with almost no code, and without
+requiring much expertise.</p>
+
+<p>For more details on Apple CryptoKit, please see <a href="https://developer.apple.com/videos/play/wwdc2019/709/">WWDC 2019’s “Cryptography and
+Your Apps” session</a> and
+<a href="https://developer.apple.com/documentation/cryptokit">the project
+documentation</a>. For the
+rest of this post, I’ll discuss what Swift Crypto brings the ecosystem, and
+what users should care about when working with the project.</p>
+
+<h2 id="what-is-swift-crypto">What is Swift Crypto?</h2>
+
+<p>At its heart, Swift Crypto is a very simple idea, made up of two parts:</p>
+
+<ul>
+  <li>
+    <p>The APIs from Apple
+<a href="https://developer.apple.com/documentation/cryptokit">CryptoKit</a>,
+published in a library under an open source software license.</p>
+  </li>
+  <li>
+    <p>A complete greenfield implementation of those APIs using Google’s BoringSSL
+as the underlying implementation of the cryptographic primitives.</p>
+  </li>
+</ul>
+
+<p>However, alongside these simple ideas are a number of very complex
+implementation concerns. The first of these is about hardware. While much of
+Apple CryptoKit is a straightforward implementation of well-known
+cryptographic primitives, a subset of the API is built around using Apple’s
+Secure Enclave processor to securely store and compute on keying material.
+Apple’s Secure Enclave processor is not available on non-Apple hardware: as a
+result, Swift Crypto does not provide these APIs.</p>
+
+<p>The second covers the software distribution model. In order to make it easier
+for developers to update Swift Crypto when they are using it on non-Apple
+platforms, we took advantage of the Swift Package Manager to distribute Swift
+Crypto. This allows users to pull in security fixes and API updates via simple
+<code class="language-plaintext highlighter-rouge">swift package update</code>.</p>
+
+<p>The third issue is about compatibility. It is vital that users can trust that
+the results they get from Swift Crypto are the same as those they get from
+Apple CryptoKit. It is simply unacceptable for the same inputs to the same API
+to produce semantically different results when using Swift Crypto and when
+using Apple CryptoKit. To this end, we have also arranged a shared test suite,
+which ensures that both Swift Crypto and Apple CryptoKit are required to meet
+this criteria.</p>
+
+<p>In some cases, this has required extra, fairly subtle, work to bridge
+mismatches between the validation required by Apple CryptoKit and the
+validation done by BoringSSL. In one or two cases this also required
+completely new implementations of some algorithms. This will continue to be
+the majority of the work on this project going forward, but we considered it
+vitally important to ensure that users can expect that all the functionality
+provided by Apple CryptoKit that possibly can be will be available in Swift
+Crypto.</p>
+
+<p>Given that we had do to this extra work, what advantage is gained from having
+two backends, instead of consolidating onto a single backend for both
+CryptoKit and Swift Crypto? The primary advantage is verification. With two
+independent implementations of the CryptoKit API, we are able to test the
+implementations against each other as well as their own test suites. This
+improves reliability and compatibility for both implementations, reducing
+the chances of regression and making it easy to identify errors by comparing
+the output of the two implementations.</p>
+
+<p>The end result of this project is a package that can be installed anywhere
+Swift is supported, that gives you the best implementation available for
+your given platform, and that makes it easier to write safe cross-platform or
+server side applications in Swift.</p>
+
+<p>Swift Crypto is a semantically versioned Swift package, and is made available
+under the Apache 2.0 license. This makes it easy and reliable to use
+absolutely everywhere.</p>
+
+<h2 id="evolving-swift-crypto">Evolving Swift Crypto</h2>
+
+<p>As Swift Crypto’s core goal is to provide a cross-platform solution for using
+Apple CryptoKit’s APIs on a wider range of platforms, the API will naturally
+follow the evolution of Apple CryptoKit itself. However, as Swift Crypto is an
+open source project, there is some scope for proposing API directly to Swift
+Crypto. Depending on the scope of these APIs, they may also be considered for
+parallel implementation in Apple CryptoKit.</p>
+
+<p>With the exception of APIs requiring specialised hardware, it will always be
+the case that where an Apple CryptoKit implementation of an API is available,
+Swift Crypto will use it, but when such an API is not available it will be
+possible to use the Swift Crypto-based implementation. The core APIs will move
+in step with Apple CryptoKit, and our test suite is shared with Apple
+CryptoKit ensuring that both projects must pass each other’s test suites for
+the API, ensuring that both Swift Crypto and Apple CryptoKit will be
+completely compatible.</p>
+
+<p>Please note, however, that an important design principle of Swift Crypto is
+that supporting all cryptographic primitives is an explicit non-goal. The risk
+with supporting many primitives is that it becomes much harder for users to
+make choices, especially safe ones. Please be aware of that if you consider
+proposing new API surface: some primitives may not be supported because the
+project already has equivalent primitives using more widely-deployed or secure
+alternatives.</p>
+
+<h2 id="get-involved">Get Involved!</h2>
+
+<p>If you’re interested in any of Swift Crypto, come and get involved! <a href="https://github.com/apple/swift-crypto">The
+source is available</a>, and we encourage
+contributions from the open source community. If you have questions or would
+like to discuss Swift Crypto, please feel free to chat on the <a href="https://forums.swift.org/c/related-projects/swift-crypto">Swift
+forums</a>. If you
+would like to report bugs, please use <a href="https://github.com/apple/swift-crypto/issues">the GitHub issue
+tracker</a>. We look forward to
+working with you, and helping move the industry forward to a better, safer
+programming future.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/numerics/" rel="prev" title="Previous: Swift Numerics">Swift Numerics</a>
+      
+
+      
+      <a href="/blog/library-evolution/" rel="next" title="Next: Library Evolution in Swift">Library Evolution in Swift</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

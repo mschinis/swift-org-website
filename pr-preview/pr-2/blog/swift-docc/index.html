@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift-DocC is Now Open Source</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-docc/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift-DocC is Now Open Source" />
+  <meta name="twitter:description" content="At WWDC21, Apple announced Swift-DocC, a new documentation compiler for Swift frameworks and
+packages. Swift-DocC provides an effortless way to author great documentation alongside your code,
+and generate comprehensive documentation websites for Swift codebases. It supports API docs authored
+as code comments, long-form conceptual articles written in Markdown, and even step-by-step tutorials
+with integrated images.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift-DocC is Now Open Source" />
+  <meta property="og:url" content="https://swift.org/blog/swift-docc/" />
+  <meta property="og:description" content="At WWDC21, Apple announced Swift-DocC, a new documentation compiler for Swift frameworks and
+packages. Swift-DocC provides an effortless way to author great documentation alongside your code,
+and generate comprehensive documentation websites for Swift codebases. It supports API docs authored
+as code comments, long-form conceptual articles written in Markdown, and even step-by-step tutorials
+with integrated images.
+" />
+  <meta property="article:published_time" content="2021-10-13T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift-DocC is Now Open Source</h1>
+
+    <time pubdate datetime="2021-10-13T06:00:00-04:00">October 13, 2021</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/0207e0cc0ed5247a65e635fa4d1ed5b9?s=64" alt="Franklin Schrans"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/franklinsch/" rel="nofollow" title="Franklin Schrans (@franklinsch) on GitHub">Franklin Schrans</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Franklin Schrans is a member of the Swift-DocC team at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>At WWDC21, Apple announced Swift-DocC, a new documentation compiler for Swift frameworks and
+packages. Swift-DocC provides an effortless way to author great documentation alongside your code,
+and generate comprehensive documentation websites for Swift codebases. It supports API docs authored
+as code comments, long-form conceptual articles written in Markdown, and even step-by-step tutorials
+with integrated images.</p>
+
+<p>Swift-DocC is included in the Xcode 13 tools, and people are already adding more documentation
+to their code. When it was announced at WWDC21, some of the engineers mentioned that Swift-DocC will
+be released as open source. And that day is now here, with support for multiple platforms.</p>
+
+<p>Swift-DocC was developed with the following goals:</p>
+
+<ul>
+  <li><strong>Integrate with existing development tools.</strong> The Swift-DocC tooling was
+built to seamlessly integrate into existing developer workflows, and to work
+directly within popular coding tools and IDEs. Using Swift-DocC to author
+documentation will easily fit into the same version control process that
+developers already use.</li>
+  <li><strong>Simplify authoring rich reference documentation.</strong> Reference documentation
+is an important resource for describing the behavior of your API, and best
+practices for third-party developers. Often the links among APIs are critical
+to explaining their use, so making these links easy to author and validate was
+a key goal.</li>
+  <li><strong>Encourage high-level technical articles.</strong> Historically, developers
+authored and maintained high-level educational documents separately from API
+documentation, making this content less likely to be written in the first
+place, and likely to fall out of date. By providing facilities for authoring
+this high-level content right alongside the code, and for easy inter-linking of
+API and conceptual docs, the goal is to see even more conceptual documentation
+included with packages and frameworks.</li>
+  <li><strong>Add rich tutorials for new users.</strong> Tutorials can help elevate the Swift
+ecosystem of third-party packages by making it easy to create friendly
+learning experiences, which are especially great for developers new to the
+API. Like articles, tutorials can be easily included in the main documentation
+workflow.</li>
+  <li><strong>Make it easy to connect documentation together.</strong> It’s easier to find
+documentation when it’s well organized. Another key goal is to provide an
+intuitive way for developers to organize documentation into logical groups and
+to write links to other pages.</li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Swift-DocC encompasses tools and libraries to help developers write and
+generate documentation on many platforms, including macOS and Linux, with the
+goal to support all platforms with a Swift toolchain. The <code class="language-plaintext highlighter-rouge">docc</code> command line
+tool is already integrated in Xcode 13 and is architected in a way that
+can be integrated with other build systems such as SwiftPM. The open source
+project is composed of several components, some of which may be interesting in
+their own right for building other developer tools. The components include:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-docc"><strong>Swift-DocC</strong></a> — the documentation compiler tool that processes source file
+comments, standalone Markdown files, and related assets to produce a
+machine-readable JSON archive.</li>
+  <li><a href="https://github.com/apple/swift-docc-render"><strong>Swift-DocC-Render</strong></a> — a JavaScript-based web application that renders
+compiled DocC archives.</li>
+  <li><a href="https://github.com/apple/swift-markdown"><strong>Swift-Markdown</strong></a> — a library that makes it easy to parse Markdown syntax in
+Swift.</li>
+  <li><a href="https://github.com/apple/swift-docc-symbolkit"><strong>SymbolKit</strong></a> — a Swift library that parses the symbol graph files emitted by
+the Swift compiler. These files encapsulate information about a module’s APIs,
+including their documentation comments.</li>
+</ul>
+
+<p>The tooling understands the Swift documentation comment syntax already popular
+within the Swift community in stand-out tools like
+<a href="https://github.com/realm/jazzy">Jazzy</a> and
+<a href="https://github.com/SwiftDocOrg/swift-doc">SwiftDoc</a>, and in IDEs like Xcode.
+It adds some novel syntax features, too. For example, the double-backtick
+<code>``SymbolName``</code> syntax creates links between symbols. An example:</p>
+
+<p>Source file documentation comment</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// A model representing a sloth.</span>
+<span class="c1">/// </span>
+<span class="c1">/// You can create a sloth using the ``init(name:color:power:)`` initializer, or</span>
+<span class="c1">/// create a randomly generated sloth using a ``SlothGenerator``:</span>
+<span class="c1">///</span>
+<span class="c1">/// ```swift</span>
+<span class="c1">/// let slothGenerator = MySlothGenerator(seed: randomSeed())</span>
+<span class="c1">/// let habitat = Habitat(isHumid: false, isWarm: true)</span>
+<span class="c1">/// do {</span>
+<span class="c1">///     let sloth = try slothGenerator.generateSloth(in: habitat)</span>
+<span class="c1">/// } catch {</span>
+<span class="c1">///     fatalError(String(describing: error))</span>
+<span class="c1">/// }</span>
+<span class="c1">/// ```</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Sloth</span> <span class="p">{</span> <span class="err">…</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Rendered website</p>
+
+<p><img src="/assets/images/swift-docc/sloth.png" alt="The rendered version of the Sloth page" width="100%" srcset="/assets/images/swift-docc/sloth@2x.png 2x" /></p>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<h3 id="integration-with-swift-tools">Integration with Swift Tools</h3>
+
+<p>Building documentation should be as easy as building code. To that end, among
+the next steps will be to include Swift-DocC with the core Swift tools, so all
+Swift developers can easily document their code from the very beginning of a
+project.</p>
+
+<p>Like other components of the core Swift tooling, this project will follow the
+Swift Evolution process, with one of the first tasks being to design the
+integration with Swift Package Manager using extensible plug-ins. And soon,
+Swift development trunk snapshots (for a release after Swift 5.5) will include
+the Swift-DocC tools.</p>
+
+<p>To read more about the future of Swift-DocC, check out the <a href="https://forums.swift.org/t/announcing-swift-docc">Swift-DocC project
+announcement post</a> in the
+forums.</p>
+
+<h3 id="adoption">Adoption</h3>
+
+<p>To get started, generated documentation for the Swift-DocC project itself is hosted at
+<a href="/documentation">swift.org/documentation</a>. Longer-term goals
+include adding documentation to more packages, as well as migrating
+documentation for the standard library and other documentation across
+Swift.org. This will make it even easier for the community to participate in
+documenting and teaching Swift.</p>
+
+<h2 id="get-involved">Get Involved</h2>
+
+<p>Your experience, feedback, and contributions are greatly encouraged!</p>
+
+<ul>
+  <li>Get started by trying out <a href="https://github.com/apple/swift-docc">Swift-DocC on GitHub</a></li>
+  <li>Read the Swift-DocC documentation on <a href="/documentation/docc">swift.org/documentation</a> (written using Swift-DocC!)</li>
+  <li>Get help with using Swift-DocC in the <a href="https://forums.swift.org/c/swift-users/15">Using Swift forum</a></li>
+  <li>Discuss the implementation and development of Swift-DocC in the <a href="https://forums.swift.org/c/development/swift-docc">Swift-DocC forum</a></li>
+  <li>Watch the Apple WWDC21 sessions:
+    <ul>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10166/">Meet DocC documentation in Xcode</a></li>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10236/">Host and automate your DocC documentation</a></li>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10167/">Elevate your DocC documentation in Xcode</a></li>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10235/">Build interactive tutorials using DocC</a></li>
+    </ul>
+  </li>
+  <li><a href="https://bugs.swift.org/">File a bug report</a> for problems you find, or ideas for improvements</li>
+  <li>And as always, <a href="https://github.com/apple/swift-docc/pulls">pull requests</a> are welcome!</li>
+</ul>
+
+<h3 id="questions">Questions?</h3>
+
+<p>Please feel free to post questions about this post on the <a href="https://forums.swift.org/t/announcing-swift-docc">associated
+thread</a> on the <a href="https://forums.swift.org/">Swift
+forums</a>.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-5.5-released/" rel="prev" title="Previous: Swift 5.5 Released!">Swift 5.5 Released!</a>
+      
+
+      
+      <a href="/blog/distributed-actors/" rel="next" title="Next: Introducing Swift Distributed Actors">Introducing Swift Distributed Actors</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

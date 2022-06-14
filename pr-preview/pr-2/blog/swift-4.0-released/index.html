@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 4.0 Released!</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-4.0-released/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 4.0 Released!" />
+  <meta name="twitter:description" content="Swift 4 is now officially released!  Swift 4 builds on the strengths of Swift 3, delivering greater robustness and stability, providing source code compatibility with Swift 3, making improvements to the standard library, and adding features like archival and serialization.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 4.0 Released!" />
+  <meta property="og:url" content="https://swift.org/blog/swift-4.0-released/" />
+  <meta property="og:description" content="Swift 4 is now officially released!  Swift 4 builds on the strengths of Swift 3, delivering greater robustness and stability, providing source code compatibility with Swift 3, making improvements to the standard library, and adding features like archival and serialization.
+" />
+  <meta property="article:published_time" content="2017-09-19T08:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 4.0 Released!</h1>
+
+    <time pubdate datetime="2017-09-19T08:00:00-04:00">September 19, 2017</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/b6520643611a05fd040d0abcee3c883c?s=64" alt="Ted Kremenek"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/tkremenek/" rel="nofollow" title="Ted Kremenek (@tkremenek) on GitHub">Ted Kremenek</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Ted Kremenek is a member of the Swift Core Team and manages the Languages and Runtimes group at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>Swift 4 is now officially released!  Swift 4 builds on the strengths of Swift 3, delivering greater robustness and stability, providing source code compatibility with Swift 3, making improvements to the standard library, and adding features like archival and serialization.</p>
+
+<p>You can watch a quick overview of it by watching the <a href="https://developer.apple.com/videos/play/wwdc2017/402/">WWDC 2017: What’s New in Swift</a> presentation, and try out some of the new features in this <a href="https://github.com/ole/whats-new-in-swift-4">playground</a> put together by Ole Begemann.</p>
+
+<h3 id="language-updates">Language updates</h3>
+
+<p>Swift 4.0 is a major language release and contains the following language changes and updates that went through the Swift Evolution process:</p>
+
+<h4 id="string">String</h4>
+
+<p>Swift 4 includes a faster, easier to use <code class="language-plaintext highlighter-rouge">String</code> implementation that retains Unicode correctness and adds support for creating, using and managing substrings.</p>
+
+<p>See more at:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0163-string-revision-1.md">SE-0163 String Revision: Collection Conformance, C Interop, Transcoding</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0168-multi-line-string-literals.md">SE-0168 Multi-Line String Literals</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0178-character-unicode-view.md">SE-0178 Add unicodeScalars property to Character</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0180-string-index-overhaul.md">SE-0180 String Index Overhaul</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0182-newline-escape-in-strings.md">SE-0182 String Newline Escaping</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0183-substring-affordances.md">SE-0183 Substring performance affordances</a></li>
+</ul>
+
+<h4 id="collection">Collection</h4>
+
+<p>Swift 4 adds improvements for creating, using and managing Collection types.</p>
+
+<p>See more at:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0148-generic-subscripts.md">SE-0148 Generic Subscripts</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0154-dictionary-key-and-value-collections.md">SE-0154 Provide Custom Collections for Dictionary Keys and Values</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0165-dict.md">SE-0165 Dictionary &amp; Set Enhancements</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0172-one-sided-ranges.md">SE-0172 One-sided Ranges</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0173-swap-indices.md">SE-0173 Add <code class="language-plaintext highlighter-rouge">MutableCollection.swapAt(_:_:)</code></a></li>
+</ul>
+
+<h4 id="archival-and-serialization">Archival and serialization</h4>
+
+<p>Swift 4 supports archival of struct and enum types and enables type-safe serialization to external formats such as JSON and plist.</p>
+
+<p>See more at: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md">SE-0166 Swift Archival &amp; Serialization</a></p>
+
+<h4 id="additional-language-updates">Additional language updates</h4>
+
+<p>Swift 4 also implements the following language proposals from the Swift Evolution process:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0104-improved-integers.md">SE-0104 Protocol-oriented integers</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0142-associated-types-constraints.md">SE-0142 Permit where clauses to constrain associated types</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0156-subclass-existentials.md">SE-0156 Class and Subtype existentials</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0160-objc-inference.md">SE-0160 Limiting @objc inference</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0164-remove-final-support-in-protocol-extensions.md">SE-0164 Remove final support in protocol extensions</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0169-improve-interaction-between-private-declarations-and-extensions.md">SE-0169 Improve Interaction Between private Declarations and Extensions</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0170-nsnumber_bridge.md">SE-0170 NSNumber bridging and Numeric types</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0171-reduce-with-inout.md">SE-0171 Reduce with inout</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0176-enforce-exclusive-access-to-memory.md">SE-0176 Enforce Exclusive Access to Memory</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md">SE-0179 Swift run Command</a></li>
+</ul>
+
+<h4 id="new-compatibility-modes">New compatibility modes</h4>
+
+<p>With Swift 4, you may not need to modify your code to use the new version of the compiler.  The compiler supports two language modes:</p>
+
+<ul>
+  <li>
+    <p><em>Swift 3.2</em>: In this mode, the compiler will accept the majority of sources that built with the Swift 3.x compilers.  Updates to previously existing APIs (either those that are part of the standard library or APIs shipped by Apple) will not appear in this mode, in order to provide this level of source compatibility.  Most new language features in Swift 4 are available in this language mode.</p>
+  </li>
+  <li>
+    <p><em>Swift 4.0</em>: This mode includes all Swift 4.0 language and API changes.  Some source migration will be needed for many projects, although the number of source changes are quite modest compared to many previous major changes between Swift releases.</p>
+  </li>
+</ul>
+
+<p>The language mode is specified to the compiler by the <code class="language-plaintext highlighter-rouge">-swift-version</code> flag, which is automatically handled by the Swift Package Manager and Xcode.</p>
+
+<p>One advantage of these language modes is that you can start using the new Swift 4 compiler and migrate fully to Swift 4 at your own pace, taking advantage of new Swift 4 features, one module at a time.</p>
+
+<p>For more information about Swift 4 migration and compatibility modes, see <a href="https://swift.org/migration-guide-swift4/">Migrating to Swift 4</a></p>
+
+<h3 id="package-manager-updates">Package Manager Updates</h3>
+
+<p>Swift 4 introduces new workflow features and a more complete API for the Swift Package Manager:</p>
+
+<ul>
+  <li>It’s now easier to develop multiple packages in tandem before tagging your first official release, or to work on a branch of multiple packages together.</li>
+  <li>Package products have been formalized, making it possible to control what libraries a package publishes to clients.</li>
+  <li>The new Package API allows packages to specify a number of new settings, giving package authors more control over how packages build or how sources are organized on disk.  Overall, the API used to create a package is now cleaner and clearer, while retaining source-compatibility with older packages.</li>
+  <li>On macOS, Swift package builds now occur in a sandbox which prevents network access and file system modification, to help mitigate the effect of maliciously crafted manifests.</li>
+</ul>
+
+<p>Further, the Swift Package Manager builds on top of package manager tools versioning introduced in Swift 3.1 (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0152-package-manager-tools-version.md">SE-0159</a>) which allows a package author to specify the version of Swift required for building a package — which now includes Swift 4.</p>
+
+<p>For more information about enhancements to the Package Manager, see:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0146-package-manager-product-definitions.md">SE-0146 Package Manager Product Definitions</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0149-package-manager-top-of-tree.md">SE-0149 Package Manager Support for Top of Tree development</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0150-package-manager-branch-support.md">SE-0150 Package Manager Support for branches</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0158-package-manager-manifest-api-redesign.md">SE-0158 Package Manager Manifest API Redesign</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0162-package-manager-custom-target-layouts.md">SE-0162 Package Manager Custom Target Layouts</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0175-package-manager-revised-dependency-resolution.md">SE-0175 Package Manager Revised Dependency Resolution</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md">SE-0179 Swift run Command</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0181-package-manager-cpp-language-version.md">SE-0181 Package Manager C/C++ Language Standard Support</a></li>
+</ul>
+
+<h3 id="documentation">Documentation</h3>
+
+<p>An updated version of <a href="https://swift.org/documentation/#the-swift-programming-language">The Swift Programming Language</a> for Swift 4.0 is now available on Swift.org. It is also available for free on Apple’s <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks store</a>.</p>
+
+<h3 id="platforms">Platforms</h3>
+
+<h4 id="linux">Linux</h4>
+
+<p>Official binaries for Ubuntu 16.10, Ubuntu 16.04 and Ubuntu 14.04 are
+<a href="https://swift.org/download/">available for download</a>.</p>
+
+<h4 id="apple-xcode">Apple (Xcode)</h4>
+
+<p>For development on Apple’s platforms, Swift 4.0 ships as part of <a href="https://itunes.apple.com/app/xcode/id497799835">Xcode 9</a>.</p>
+
+<p>A toolchain is also <a href="https://swift.org/download/">available for download</a> from Swift.org.</p>
+
+<h3 id="sources">Sources</h3>
+
+<p>Development on Swift 4.0 was tracked in the swift-4.0-branch on the following repositories on GitHub:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift">swift</a></li>
+  <li><a href="https://github.com/apple/swift-llvm">swift-llvm</a></li>
+  <li><a href="https://github.com/apple/swift-clang">swift-clang</a></li>
+  <li><a href="https://github.com/apple/swift-lldb">swift-lldb</a></li>
+  <li><a href="https://github.com/apple/swift-cmark">swift-cmark</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild">swift-llbuild</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager">swift-package-manager</a></li>
+  <li><a href="https://github.com/apple/swift-xcode-playground-support">swift-xcode-playground-support</a></li>
+  <li><a href="https://github.com/apple/swift-compiler-rt">swift-compiler-rt</a></li>
+  <li><a href="https://github.com/apple/swift-integration-tests">swift-integration-tests</a></li>
+</ul>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">swift-4.0-RELEASE</code> designates the specific revisions in those repositories that make up the final version of Swift 4.0.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">swift-4.0-branch</code> will remain open, but under the same release management process, to accumulate changes for a potential future bug-fix “dot” release.</p>
+
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-local-refactoring/" rel="prev" title="Previous: Swift Local Refactoring">Swift Local Refactoring</a>
+      
+
+      
+      <a href="/blog/dictionary-and-set-improvements/" rel="next" title="Next: Dictionary and Set Improvements in Swift 4.0">Dictionary and Set Improvements in Swift 4.0</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

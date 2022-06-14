@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Conditional Conformance in the Standard Library</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/conditional-conformance/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Conditional Conformance in the Standard Library" />
+  <meta name="twitter:description" content="The Swift 4.1 compiler brings the next phase of improvements from the
+roadmap for generics: conditional conformances.
+
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Conditional Conformance in the Standard Library" />
+  <meta property="og:url" content="https://swift.org/blog/conditional-conformance/" />
+  <meta property="og:description" content="The Swift 4.1 compiler brings the next phase of improvements from the
+roadmap for generics: conditional conformances.
+
+" />
+  <meta property="article:published_time" content="2018-01-08T08:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Conditional Conformance in the Standard Library</h1>
+
+    <time pubdate datetime="2018-01-08T08:00:00-04:00">January 8, 2018</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/airspeedswift/" rel="nofollow" title="Ben Cohen (@airspeedswift) on Twitter">Ben Cohen</a>
+          
+        </span>
+      </div>
+      
+    
+    
+  </header>
+
+  <p>The Swift 4.1 compiler brings the next phase of improvements from the
+<a href="https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md">roadmap for generics</a>: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md">conditional conformances</a>.</p>
+
+<p>This post will look at how this much-anticipated feature has been adopted in
+Swift’s standard library, and how it affects you and your code.</p>
+
+<h2 id="equatable-containers">Equatable Containers</h2>
+
+<p>The most noticeable benefit of conditional conformance is the ability for types
+that store other types, like <code class="language-plaintext highlighter-rouge">Array</code> or <code class="language-plaintext highlighter-rouge">Optional</code>, to conform to the
+<code class="language-plaintext highlighter-rouge">Equatable</code> protocol. This is the protocol that guarantees you can use <code class="language-plaintext highlighter-rouge">==</code>
+between two instances of a type. Let’s look at why conformance to this protocol
+is so useful.</p>
+
+<p>You have always been able to use <code class="language-plaintext highlighter-rouge">==</code> with two arrays of any equatable element:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>     <span class="c1">// true</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>       <span class="c1">// false</span>
+</code></pre></div></div>
+
+<p>Or two optionals that wrap an equatable type:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The failable initializer from a String returns an Int?</span>
+<span class="kt">Int</span><span class="p">(</span><span class="s">"1"</span><span class="p">)</span> <span class="o">==</span> <span class="kt">Int</span><span class="p">(</span><span class="s">"1"</span><span class="p">)</span>                        <span class="c1">// true</span>
+<span class="kt">Int</span><span class="p">(</span><span class="s">"1"</span><span class="p">)</span> <span class="o">==</span> <span class="kt">Int</span><span class="p">(</span><span class="s">"2"</span><span class="p">)</span>                        <span class="c1">// false</span>
+<span class="kt">Int</span><span class="p">(</span><span class="s">"1"</span><span class="p">)</span> <span class="o">==</span> <span class="kt">Int</span><span class="p">(</span><span class="s">"swift"</span><span class="p">)</span>                    <span class="c1">// false, Int("swift") is nil</span>
+</code></pre></div></div>
+
+<p>This was possible via overloads of the <code class="language-plaintext highlighter-rouge">==</code> operator, like this one for <code class="language-plaintext highlighter-rouge">Array</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">lhs</span><span class="o">.</span><span class="nf">elementsEqual</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+    <span class="p">}</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>But just because they implemented <code class="language-plaintext highlighter-rouge">==</code> did not mean <code class="language-plaintext highlighter-rouge">Array</code> or <code class="language-plaintext highlighter-rouge">Optional</code> conformed to
+<code class="language-plaintext highlighter-rouge">Equatable</code>. Since these types can store non-equatable types, we needed to
+be able to express that they are equatable only when storing an equatable
+type.</p>
+
+<p>This meant these <code class="language-plaintext highlighter-rouge">==</code> operators had a big limitation: they couldn’t be used two levels deep.
+If you tried something like this in Swift 4.0:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// convert a [String] to [Int?]</span>
+<span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="p">[</span><span class="s">"1"</span><span class="p">,</span><span class="s">"2"</span><span class="p">,</span><span class="s">"x"</span><span class="p">]</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="kd">init</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="kc">nil</span><span class="p">]</span>    <span class="c1">// expecting 'true'</span>
+</code></pre></div></div>
+
+<p>You’d get a compiler error:</p>
+
+<blockquote>
+  <p>Binary operator ‘==’ cannot be applied to two ‘[Int?]’ operands.</p>
+</blockquote>
+
+<p>This is because the implementation of <code class="language-plaintext highlighter-rouge">==</code> for <code class="language-plaintext highlighter-rouge">Array</code>, as shown above, required the array’s
+elements were equatable, and <code class="language-plaintext highlighter-rouge">Optional</code> wasn’t equatable.</p>
+
+<p>With conditional conformance, we can now fix this. It allows us to write
+that these types conform to <code class="language-plaintext highlighter-rouge">Equatable</code>—using the already-defined <code class="language-plaintext highlighter-rouge">==</code>
+operator—if the types they are based on are equatable:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Array</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="p">{</span>
+    <span class="c1">// implementation of == for Array</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">Optional</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">Wrapped</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="p">{</span>
+    <span class="c1">// implementation of == for Optional</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Equatable</code> conformance brings other benefits beyond <code class="language-plaintext highlighter-rouge">==</code>. Having equatable
+elements gives collections other helper functions for tasks like searching:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>                 <span class="c1">// true</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[]]</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="p">[])</span>  <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<p>Using conditional conformance, Swift 4.1’s <code class="language-plaintext highlighter-rouge">Optional</code>, <code class="language-plaintext highlighter-rouge">Array</code>, and
+<code class="language-plaintext highlighter-rouge">Dictionary</code> now conform to <code class="language-plaintext highlighter-rouge">Equatable</code> and <code class="language-plaintext highlighter-rouge">Hashable</code> whenever their values or
+elements conform to those protocols.</p>
+
+<p>This approach also works for <code class="language-plaintext highlighter-rouge">Codable</code>. If you try and encode an array
+of non-codable types, you’ll now get a compile-time error instead of the runtime
+trap you used to get.</p>
+
+<h2 id="collection-protocols">Collection Protocols</h2>
+
+<p>Conditional conformance also has benefits for building up capabilities for your
+types incrementally, avoiding code duplication. To explore some of the changes
+made possible in the Swift standard library via use of conditional conformance,
+we’ll use an example of adding a new feature to <code class="language-plaintext highlighter-rouge">Collection</code>: lazy splitting.
+We’ll create a new type that serves up slices split from a collection, then see
+how conditional conformance can be used to add bidirectional capabilities when
+the base collection is bidirectional.</p>
+
+<h3 id="eager-vs-lazy-splitting">Eager vs Lazy Splitting</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Sequence</code> protocol in Swift has a <code class="language-plaintext highlighter-rouge">split</code> method, which splits a sequence up into an
+<code class="language-plaintext highlighter-rouge">Array</code> of subsequences:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">numbers</span> <span class="o">=</span> <span class="s">"15,x,25,2"</span>
+<span class="k">let</span> <span class="nv">splits</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="nf">split</span><span class="p">(</span><span class="nv">separator</span><span class="p">:</span> <span class="s">","</span><span class="p">)</span>
+<span class="c1">// splits == ["15","x","25","2"]</span>
+<span class="k">var</span> <span class="nv">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">splits</span> <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="kt">Int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">??</span> <span class="mi">0</span>
+<span class="p">}</span>
+<span class="c1">// sum == 42</span>
+</code></pre></div></div>
+
+<p>We characterize this <code class="language-plaintext highlighter-rouge">split</code> method as being “eager,” because it eagerly splits the
+sequence up into subsequences and puts them into an array as soon as you call it.</p>
+
+<p>But suppose you wanted just the first few subsequences? Say you had a giant
+text file, and you wanted to grab just the initial lines of it to display as a
+preview. You wouldn’t want to process the entire file just to use a handful of
+lines at the beginning.</p>
+
+<p>This kind of problem also applies to operations like <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">filter</code>, which
+are similarly eager by default in Swift. To avoid it, the standard library has
+“lazy” sequences and collections. You access them via the <code class="language-plaintext highlighter-rouge">lazy</code> property. These lazy
+sequences and collections have implementations of operations like <code class="language-plaintext highlighter-rouge">map</code> that don’t run
+immediately. Instead, they perform the mapping or filtering on the fly when the elements
+are accessed. For example:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// a huge collection</span>
+<span class="k">let</span> <span class="nv">giant</span> <span class="o">=</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="kt">Int</span><span class="o">.</span><span class="n">max</span>
+<span class="c1">// lazily map it: no work is done yet</span>
+<span class="k">let</span> <span class="nv">mapped</span> <span class="o">=</span> <span class="n">giant</span><span class="o">.</span><span class="kd">lazy</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span>
+<span class="c1">// sum the first few elements</span>
+<span class="k">let</span> <span class="nv">sum</span> <span class="o">=</span> <span class="n">mapped</span><span class="o">.</span><span class="nf">prefix</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="nf">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">+</span><span class="p">)</span>
+<span class="c1">// sum == 90</span>
+</code></pre></div></div>
+
+<p>When the <code class="language-plaintext highlighter-rouge">mapped</code> collection is created, no mapping happens. In fact, you might notice
+that if you performed the mapping operation on every element of  <code class="language-plaintext highlighter-rouge">giant</code>
+it would trap: it would overflow halfway through, when doubling the values
+no longer fits in an <code class="language-plaintext highlighter-rouge">Int</code>. But with a lazy <code class="language-plaintext highlighter-rouge">map</code>, the mapping only happens when you access
+the elements. So in this example, only the first ten values are computed, when the <code class="language-plaintext highlighter-rouge">reduce</code>
+operation sums them up.</p>
+
+<h3 id="a-lazy-splitting-wrapper">A Lazy Splitting Wrapper</h3>
+
+<p>The standard library doesn’t have a lazy split operation. Below is a sketch
+of how one could work. If you’re interested in making a contribution to Swift,
+this would make for a great <a href="https://bugs.swift.org/browse/SR-6691?jql=labels%20%3D%20StarterProposal">starter bug</a> and <a href="https://github.com/apple/swift-evolution/blob/master/process.md">evolution proposal</a>.</p>
+
+<p>First, we create a simple generic wrapper struct that can hold any base collection, and a
+closure to identify elements on which to split:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">LazySplitCollection</span><span class="o">&lt;</span><span class="kt">Base</span><span class="p">:</span> <span class="kt">Collection</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">Base</span>
+    <span class="k">let</span> <span class="nv">isSeparator</span><span class="p">:</span> <span class="p">(</span><span class="kt">Base</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>(we’ll ignore things like access control to keep the code simple for this post)</p>
+
+<p>Next we conform to the <code class="language-plaintext highlighter-rouge">Collection</code> protocol. To be a collection you
+only need to provide four things: a <code class="language-plaintext highlighter-rouge">startIndex</code> and <code class="language-plaintext highlighter-rouge">endIndex</code>, a <code class="language-plaintext highlighter-rouge">subscript</code>
+that gives the element for a given index, and an <code class="language-plaintext highlighter-rouge">index(after:)</code> method to
+advance the index by one.</p>
+
+<p>The elements of this collection are the subsequences of the base collection
+(the substring <code class="language-plaintext highlighter-rouge">"one"</code> from <code class="language-plaintext highlighter-rouge">"one,two,three"</code>). Subsequences of a collection
+use the same index type as their parent collection, so we can reuse the
+index of the base collection as our index too. The index will be the
+start of the next subsequence in the base, or the end.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">LazySplitCollection</span><span class="p">:</span> <span class="kt">Collection</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">Element</span> <span class="o">=</span> <span class="kt">Base</span><span class="o">.</span><span class="kt">SubSequence</span>
+    <span class="kd">typealias</span> <span class="kt">Index</span> <span class="o">=</span> <span class="kt">Base</span><span class="o">.</span><span class="kt">Index</span>
+  
+    <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt">Index</span> <span class="p">{</span> <span class="k">return</span> <span class="n">base</span><span class="o">.</span><span class="n">startIndex</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt">Index</span> <span class="p">{</span> <span class="k">return</span> <span class="n">base</span><span class="o">.</span><span class="n">endIndex</span> <span class="p">}</span>
+  
+    <span class="nf">subscript</span><span class="p">(</span><span class="nv">i</span><span class="p">:</span> <span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">separator</span> <span class="o">=</span> <span class="n">base</span><span class="p">[</span><span class="n">i</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="n">isSeparator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">base</span><span class="p">[</span><span class="n">i</span><span class="o">..&lt;</span><span class="p">(</span><span class="n">separator</span> <span class="p">??</span> <span class="n">endIndex</span><span class="p">)]</span>
+    <span class="p">}</span>
+  
+    <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">after</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Index</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">separator</span> <span class="o">=</span> <span class="n">base</span><span class="p">[</span><span class="n">i</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="n">isSeparator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">separator</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">after</span><span class="p">:))</span> <span class="p">??</span> <span class="n">endIndex</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The work to find the next separator, and return the sequence between, is done
+in the <code class="language-plaintext highlighter-rouge">subscript</code> and <code class="language-plaintext highlighter-rouge">index(after:)</code> methods. In both, we search the base
+collection from the given index for the next separator. If there isn’t one,
+<code class="language-plaintext highlighter-rouge">index(where:)</code> returns <code class="language-plaintext highlighter-rouge">nil</code> for not found, so we use <code class="language-plaintext highlighter-rouge">?? endIndex</code> to
+substitute the end index in that case. The only fiddly part is skipping over
+the separator in the <code class="language-plaintext highlighter-rouge">index(after:)</code> implementation, which we do with an
+ <a href="https://developer.apple.com/documentation/swift/optional/#topics">optional map</a>.</p>
+
+<h3 id="extending-lazy">Extending lazy</h3>
+
+<p>Now that we have this wrapper, we want to extend all the lazy collection types
+to use it in a lazy split method. All lazy collections conform to
+<code class="language-plaintext highlighter-rouge">LazyCollectionProtocol</code>, so that’s what we extend with our method:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">LazyCollectionProtocol</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">split</span><span class="p">(</span>
+        <span class="n">whereSeparator</span> <span class="nv">matches</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">LazySplitCollection</span><span class="o">&lt;</span><span class="kt">Elements</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">LazySplitCollection</span><span class="p">(</span><span class="nv">base</span><span class="p">:</span> <span class="n">elements</span><span class="p">,</span> <span class="nv">isSeparator</span><span class="p">:</span> <span class="n">matches</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It’s also convention with methods like this to provide a version that takes a
+value instead of a closure when the elements are equatable:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">LazyCollectionProtocol</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">split</span><span class="p">(</span><span class="nv">separator</span><span class="p">:</span> <span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">LazySplitCollection</span><span class="o">&lt;</span><span class="kt">Elements</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">LazySplitCollection</span><span class="p">(</span><span class="nv">base</span><span class="p">:</span> <span class="n">elements</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">==</span> <span class="n">separator</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With this, we’ve added our lazy split method to the lazy subsystem:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">one</span> <span class="o">=</span> <span class="s">"one,two,three"</span><span class="o">.</span><span class="kd">lazy</span><span class="o">.</span><span class="nf">split</span><span class="p">(</span><span class="nv">separator</span><span class="p">:</span> <span class="s">","</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+<span class="c1">// one == "one"</span>
+</code></pre></div></div>
+
+<p>We also want to mark our lazy wrapper with the <code class="language-plaintext highlighter-rouge">LazyCollectionProtocol</code>, so
+that any further operations on it are also lazy, as users would expect:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">LazySplitCollection</span><span class="p">:</span> <span class="kt">LazyCollectionProtocol</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="conditionally-bidirectional">Conditionally Bidirectional</h3>
+
+<p>So now we can efficiently split the first few elements from a delimited
+collection. What about reading the last few? <code class="language-plaintext highlighter-rouge">BidirectionalCollection</code> adds an
+<code class="language-plaintext highlighter-rouge">index(before:)</code> method to move an index backwards from the end. This allows
+bidirectional collections to support things like the <code class="language-plaintext highlighter-rouge">last</code> property.</p>
+
+<p>If the collection we’re splitting is bidirectional, we ought to be able to make
+our splitting wrapper bidirectional too. In Swift 4.0, the way to do this was
+pretty clunky. You had to add a whole new type,
+<code class="language-plaintext highlighter-rouge">LazySplitBidirectionalCollection</code>, which required <code class="language-plaintext highlighter-rouge">Base:
+BidirectionalCollection</code> and implemented <code class="language-plaintext highlighter-rouge">BidirectionalCollection</code>. Then, you
+overloaded the <code class="language-plaintext highlighter-rouge">split</code> method to return it <code class="language-plaintext highlighter-rouge">where Base:
+BidirectionalCollection</code>.</p>
+
+<p>Now, with conditional conformance, we have a much simpler solution: just make
+<code class="language-plaintext highlighter-rouge">LazySplitCollection</code> conform to <code class="language-plaintext highlighter-rouge">BidirectionalCollection</code> when its base does.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">LazySplitCollection</span><span class="p">:</span> <span class="kt">BidirectionalCollection</span>
+<span class="k">where</span> <span class="kt">Base</span><span class="p">:</span> <span class="kt">BidirectionalCollection</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">before</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Index</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">reversed</span> <span class="o">=</span> <span class="n">base</span><span class="p">[</span><span class="o">..&lt;</span><span class="n">base</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">before</span><span class="p">:</span> <span class="n">i</span><span class="p">)]</span><span class="o">.</span><span class="nf">reversed</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">separator</span> <span class="o">=</span> <span class="n">reversed</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="n">isSeparator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">separator</span><span class="p">?</span><span class="o">.</span><span class="n">base</span> <span class="p">??</span> <span class="n">startIndex</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here, we’ve used <code class="language-plaintext highlighter-rouge">reversed()</code>, another lazy wrapper that reverses the order of
+any bidirectional collection. This allows us to search backwards for the next
+separator, then use the reversed collection index’s <code class="language-plaintext highlighter-rouge">.base</code> property to get back to
+the index in the underlying collection.</p>
+
+<p>With this one new method, we’ve given our lazy collection access to
+functionality of any bidirectional collection, like the <code class="language-plaintext highlighter-rouge">.last</code> property, or <code class="language-plaintext highlighter-rouge">reversed()</code>
+method:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">backwards</span> <span class="o">=</span> <span class="s">"one,two,three"</span>
+                <span class="o">.</span><span class="kd">lazy</span><span class="o">.</span><span class="nf">split</span><span class="p">(</span><span class="nv">separator</span><span class="p">:</span> <span class="s">","</span><span class="p">)</span>
+                <span class="o">.</span><span class="nf">reversed</span><span class="p">()</span><span class="o">.</span><span class="nf">joined</span><span class="p">(</span><span class="nv">separator</span><span class="p">:</span> <span class="s">","</span><span class="p">)</span>
+<span class="c1">// backwards == "three,two,one"</span>
+</code></pre></div></div>
+
+<p>This kind of incremental conditional conformance really shines when you have to
+combine multiple different independent conformances. Suppose we wanted to make
+our lazy splitter conform to <code class="language-plaintext highlighter-rouge">MutableCollection</code> whenever the base was mutable.
+These two conformances are independent—mutable collections don’t have to be
+bidirectional and vice versa—so we would need to create a specialized type
+for every possible combination of the two.</p>
+
+<p>But with conditional conformance, you would just add a second conditional conformance.</p>
+
+<p>This feature is exactly what the standard library’s <code class="language-plaintext highlighter-rouge">Slice</code> type needed. This
+type provides default slicing capabilities to any collection type. You can see
+it in use if you try slicing our lazy splitter:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// dropFirst() creates a slice without the first element of a collection</span>
+<span class="k">let</span> <span class="nv">slice</span> <span class="o">=</span> <span class="s">"a,b,c"</span><span class="o">.</span><span class="kd">lazy</span><span class="o">.</span><span class="nf">split</span><span class="p">(</span><span class="nv">separator</span><span class="p">:</span> <span class="s">","</span><span class="p">)</span><span class="o">.</span><span class="nf">dropFirst</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">slice</span><span class="p">))</span>
+<span class="c1">// prints: Slice&lt;LazySplitCollection&lt;String&gt;&gt;</span>
+</code></pre></div></div>
+
+<p>In Swift 4, there needed to be a dozen different implementations, up to the
+worst-case <code class="language-plaintext highlighter-rouge">MutableRangeReplaceableRandomAccessSlice</code>. Now, with conditional
+conformance, it can be just one <code class="language-plaintext highlighter-rouge">Slice</code> type with 4 different conditional
+conformances. This change alone resulted in a 5% reduction in the binary size
+of the standard library.</p>
+
+<h3 id="further-experiments">Further experiments</h3>
+
+<p>If you’re familiar with the eager <code class="language-plaintext highlighter-rouge">split</code> you’ll notice that our implementation
+is missing some features, like coalescing empty subsequences. There are also
+performance optimizations you could make, like giving the wrapper a custom
+index of its own that caches the location of the next separator.</p>
+
+<p>If you want to try writing your own lazy wrapper from scratch from you could
+also consider a “chunking” wrapper that served up slices of length n at a time.
+That case is interesting because you could make it a <code class="language-plaintext highlighter-rouge">BidirectionalCollection</code>
+if the base were random access, but not if the base is bidirectional, because
+you need to be able to calculate the length of the last element in constant
+time.</p>
+
+<p>Conditional conformance is available today on the Swift 4.1 development toolchain, so you
+can <a href="https://swift.org/download/#snapshots">download the latest snapshot</a> and try it out!</p>
+
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-4.1-release-process/" rel="prev" title="Previous: Swift 4.1 Release Process">Swift 4.1 Release Process</a>
+      
+
+      
+      <a href="/blog/forums/" rel="next" title="Next: Swift Forums Now Open!">Swift Forums Now Open!</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

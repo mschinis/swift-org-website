@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 5.3 released!</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-5.3-released/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 5.3 released!" />
+  <meta name="twitter:description" content="Swift 5.3 is now officially released! 🎉
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 5.3 released!" />
+  <meta property="og:url" content="https://swift.org/blog/swift-5.3-released/" />
+  <meta property="og:description" content="Swift 5.3 is now officially released! 🎉
+" />
+  <meta property="article:published_time" content="2020-09-16T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 5.3 released!</h1>
+
+    <time pubdate datetime="2020-09-16T05:00:00-04:00">September 16, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/hollyborla/" rel="nofollow" title="Holly Borla (@hollyborla) on Twitter">Holly Borla</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Holly Borla is an engineer on the Swift compiler team at Apple, and a member of the Diversity in Swift work group.</div>
+      
+    
+    
+  </header>
+
+  <p>Swift 5.3 is now officially released! 🎉</p>
+
+<p>Swift 5.3 continues to focus on language refinements, the developer experience, and expanding the Swift ecosystem to enable more opportunities to write Swift. These sketch notes, created by <a href="https://twitter.com/mousiechika">Amy Tsai</a>, illustrate the highlights of the Swift 5.3 release:</p>
+
+<p><img alt="Sketch notes of What's New in Swift 5.3" src="https://swift.org/assets/images/5.3-blog/whats-new-in-swift.png" style="img { max-width: 100%; height: auto; }" /></p>
+
+<blockquote>
+  <p>Full resolution version available on <a href="https://twitter.com/mousiechika/status/1275547535206166531?s=20">Amy’s tweet</a></p>
+</blockquote>
+
+<p>You can also experiment with many of these updates in a <a href="https://github.com/twostraws/whats-new-in-swift-5-3">playground</a> put together by <a href="https://twitter.com/twostraws">Paul Hudson</a>.</p>
+
+<h2 id="language-and-standard-library">Language and Standard Library</h2>
+
+<h3 id="new-features-and-refinements">New Features and Refinements</h3>
+
+<p>Swift 5.3 brings many language refinements that improve the ergonomics of writing Swift code. These updates can help you be a more productive Swift programmer by reducing boilerplate and redundant code, and enabling more functionality to be defined in libraries that you may use.</p>
+
+<p>Swift 5.3 implements the following proposals from the <a href="https://github.com/apple/swift-evolution">Swift Evolution</a> process:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0263-string-uninitialized-initializer.md">SE-0263</a> - Add a <code class="language-plaintext highlighter-rouge">String</code> Initializer with Access to Uninitialized Storage</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0266-synthesized-comparable-for-enumerations.md">SE-0266</a> - Synthesized <code class="language-plaintext highlighter-rouge">Comparable</code> conformance for <code class="language-plaintext highlighter-rouge">enum</code> types</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0267-where-on-contextually-generic.md">SE-0267</a> - <code class="language-plaintext highlighter-rouge">where</code> clauses on contextually generic declarations</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0268-didset-semantics.md">SE-0268</a> - Refine <code class="language-plaintext highlighter-rouge">didSet</code> Semantics</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0269-implicit-self-explicit-capture.md">SE-0269</a> - Increase availability of implicit <code class="language-plaintext highlighter-rouge">self</code> in <code class="language-plaintext highlighter-rouge">@escaping</code> closures when reference cycles are unlikely to occur</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0276-multi-pattern-catch-clauses.md">SE-0276</a> - Multi-Pattern Catch Clauses</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0277-float16.md">SE-0277</a> - Float16</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0279-multiple-trailing-closures.md">SE-0279</a> - Multiple Trailing Closures</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0280-enum-cases-as-protocol-witnesses.md">SE-0280</a> - Enum cases as protocol witnesses</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0281-main-attribute.md">SE-0281</a> - <code class="language-plaintext highlighter-rouge">@main</code>: Type-Based Program Entry Points</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0282-atomics.md">SE-0282</a> - Clarify the Swift memory consistency model ⚛︎</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0285-ease-pound-file-transition.md">SE-0285</a> - Ease the transition to concise magic file strings</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0286-forward-scan-trailing-closures.md">SE-0286</a> - Forward-scan matching for trailing closures</p>
+  </li>
+</ul>
+
+<p>Many of these features were proposed and implemented by active community members: <a href="https://github.com/kelvin13">Kelvin Ma</a>, <a href="https://github.com/AnthonyLatsis">Anthony Latsis</a>, <a href="https://github.com/theblixguy">Suyash Srijan</a>, <a href="https://github.com/Jumhyn">Frederick Kellison-Linn</a> and <a href="https://github.com/owenv">Owen Voorhees</a>. Thank you for your contributions!</p>
+
+<p>Swift 5.3 also includes fixes for several commonly-reported compiler limitations:</p>
+
+<ul>
+  <li>
+    <p><a href="https://bugs.swift.org/browse/SR-75">SR-75</a> - Unapplied references to protocol requirements are now supported</p>
+  </li>
+  <li>
+    <p><a href="https://bugs.swift.org/browse/SR-7083">SR-7083</a> - <code class="language-plaintext highlighter-rouge">lazy</code> properties can define <code class="language-plaintext highlighter-rouge">didSet</code> and <code class="language-plaintext highlighter-rouge">willSet</code> accessors</p>
+  </li>
+  <li>
+    <p><a href="https://bugs.swift.org/browse/SR-8814">SR-8814</a> - Generic classes can use default implementations of protocol requirements when conforming to protocols with associated types</p>
+  </li>
+</ul>
+
+<h3 id="runtime-performance-improvements">Runtime Performance Improvements</h3>
+
+<p>Swift 5.3 significantly improves both binary code size and runtime memory usage. Measurements of these improvements have yielded exciting results across various projects:</p>
+
+<ul>
+  <li>
+    <p>Starting with Swift 4, the Swift team at Apple has been measuring the binary code size of a Swift rewrite of a UIKit application (written in Objective-C) that ships with iOS.  In Swift 4, the code size was about 2.3x the size of the Objective-C version.  In Swift 5.3, the code size is under 1.5x the size of the Objective-C version.</p>
+  </li>
+  <li>
+    <p>In <a href="https://github.com/Dimillian/MovieSwiftUI">MovieSwiftUI</a>, an excellent open-source SwiftUI app by <a href="https://github.com/Dimillian">Thomas Ricouard</a>, the application logic code size is reduced by over 40% compared to Swift 5.1.</p>
+  </li>
+  <li>
+    <p>In a test app that creates an array of 400 model objects, the heap memory due to runtime overhead has been reduced to use less than 1/3 of the heap memory used in Swift 5.1.</p>
+  </li>
+</ul>
+
+<p>These measurements were reported in the ‘<a href="https://developer.apple.com/videos/play/wwdc2020/10170/">What’s New in Swift</a>’ talk at WWDC 2020.</p>
+
+<p>Binary size improvements will vary by patterns of use. The biggest improvement is in projects that declare a large number of types, through reduction in the size of 
+“value functions” – the invisible functions that the compiler generates to create, copy, and destroy value types. This is especially beneficial to SwiftUI apps.</p>
+
+<p>Additionally, Swift applications now have lower heap memory overhead at runtime. The Swift runtime caches less information on startup to track things like protocol conformances, due to improvements in the runtime that made this caching less necessary. An application written in Swift should now use less heap memory than an otherwise-identical program written in Objective-C.</p>
+
+<h2 id="developer-experience">Developer Experience</h2>
+
+<h3 id="indentation-improvements-while-editing-code">Indentation Improvements while Editing Code</h3>
+
+<p>The automatic indentation implementation in <a href="https://github.com/apple/swift/tree/master/tools/SourceKit">SourceKit</a> was overhauled in this release, fixing ~50 feedback reports in the process. In particular, the automatic indentation of the following cases are much improved in this release:</p>
+
+<ul>
+  <li>
+    <p>Chained method calls involving closures</p>
+  </li>
+  <li>
+    <p>Call arguments, parameters, and collection elements that span multiple lines, and</p>
+  </li>
+  <li>
+    <p>Multi-line <code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">guard</code> and <code class="language-plaintext highlighter-rouge">while</code> conditions</p>
+  </li>
+</ul>
+
+<h3 id="code-completion">Code Completion</h3>
+
+<p>Swift 5.3 further improves code completion performance and quality:</p>
+
+<ul>
+  <li>
+    <p>Repeated code completion invocations inside function bodies are now up to 15 times faster compared to Swift 5.2. This was achieved by reusing some of the computation done for previous completions in the same file.  These speedups will be visible in both Xcode and users of <a href="https://github.com/apple/sourcekit-lsp">SourceKit-LSP</a>.</p>
+  </li>
+  <li>
+    <p>Callable values of user-defined nominal types (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0253-callable.md">SE-0253</a>) are now supported in Swift code completion. Code completion shows the calling signature after a base expression followed by an opening parenthesis</p>
+  </li>
+</ul>
+
+<h3 id="build-time-improvements">Build Time Improvements</h3>
+
+<p>Swift 5.3 incorporates a new strategy for how the compiler handles declarations in your Swift code. These changes bring several concrete improvements:</p>
+
+<ul>
+  <li>
+    <p>Faster incremental build times by avoiding duplicated compiler work across source files, and more accurately identifying code that has not changed from the previous build</p>
+  </li>
+  <li>
+    <p>Better correctness, by fixing multiple cases where the behavior of the compiler was sensitive to declaration order or nesting</p>
+  </li>
+  <li>
+    <p>Faster compilation of code that uses types with a large number of properties and functions that are imported from another library.</p>
+  </li>
+</ul>
+
+<p>These improvements were achieved by expanding the adoption of a new centralized framework in the compiler that records fine-grained dependency information, caches the results of expensive computation that may need to be repeated, and automatically detects dependency cycles within your Swift code.</p>
+
+<h3 id="compiler-diagnostics">Compiler Diagnostics</h3>
+
+<p>Swift 5.3 builds upon the diagnostics improvements in Swift 5.2 to further enhance the quality and precision of error messages, especially in SwiftUI code. More specifically, the transition to the <a href="https://swift.org/blog/new-diagnostic-arch-overview/">New Diagnostics Architecture</a> is now complete in Swift 5.3!</p>
+
+<p>Many of the diagnostics improvements in 5.3 involve complex generic code where a generic argument has a failed requirement, such as a missing conformance. For example, consider the following code:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FormList</span><span class="o">&lt;</span><span class="kt">FieldID</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">:</span> <span class="kt">Collection</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Data</span><span class="o">.</span><span class="kt">Element</span><span class="p">:</span> <span class="kt">Identifiable</span><span class="p">,</span> 
+                                             <span class="kt">FieldID</span> <span class="o">==</span> <span class="kt">Data</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">ID</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">Field</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">createForm</span><span class="p">(</span><span class="nv">fields</span><span class="p">:</span> <span class="p">[</span><span class="kt">Field</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">form</span> <span class="o">=</span> <span class="kt">FormList</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In Swift 5.2, this compiler reported a very cryptic error message:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: expression type 'FormList&lt;_&gt;' is ambiguous without more context
+  let form = FormList(fields)
+             ^~~~~~~~~~~~~~~~
+</code></pre></div></div>
+
+<p>In Swift 5.3, the compiler correctly reports the missing conformance, along with a helpful note showing the source of the requirement:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: initializer 'init(_:)' requires that 'Field' conform to 'Identifiable'
+  let form = FormList(fields)
+             ^
+             
+note: where 'Data.Element' = 'Field'
+  init&lt;Data: Collection&gt;(_ data: Data) where Data.Element: Identifiable,
+  ^
+</code></pre></div></div>
+
+<h3 id="debugging">Debugging</h3>
+
+<p>Swift 5.3 supports better error messages for runtime failures. When debug info is available, the debugger will now display the <em>reason</em> for traps in the standard library instead of just showing an opaque invalid instruction crash.</p>
+
+<p>LLDB is now more robust when debugging binaries that were compiled on a different machine:</p>
+
+<ul>
+  <li>
+    <p>SDK paths from the build machine are automatically recognized and remapped to local paths.</p>
+  </li>
+  <li>
+    <p>Source and include paths can optionally be remapped with <code class="language-plaintext highlighter-rouge">.dSYM</code> <a href="https://lldb.llvm.org/use/symbols.html#embedding-uuid-property-lists-inside-the-dsym-bundles">path remapping dictionaries</a>.</p>
+  </li>
+</ul>
+
+<h2 id="ecosystem">Ecosystem</h2>
+
+<h3 id="swift-package-manager">Swift Package Manager</h3>
+
+<h4 id="resources-se-0271">Resources (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0271-package-manager-resources.md">SE-0271</a>)</h4>
+
+<p>Packages can now contain resources such as images and other data files needed at runtime. Resources are scoped by target, and are processed and embedded into client apps when the package is built. Resources can be accessed from source code using Foundation’s <code class="language-plaintext highlighter-rouge">Bundle</code> API.</p>
+
+<p>Resources that are specific to Apple platforms (such as asset catalogs, storyboards, and CoreData models) can only be built in Xcode, but generic resources are supported on all platforms. New API in the package manifest provides control over which source files to treat as resources.</p>
+
+<h4 id="localization-se-0278">Localization (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0278-package-manager-localized-resources.md">SE-0278</a>)</h4>
+
+<p>Packages can now contain localizable content such as <code class="language-plaintext highlighter-rouge">.strings</code> files and localized variants of resources. Localizable content can be added to a package using <code class="language-plaintext highlighter-rouge">.lproj</code> directories, and can be accessed using Foundation APIs.</p>
+
+<h4 id="binary-dependencies-se-0272">Binary Dependencies (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0272-swiftpm-binary-dependencies.md">SE-0272</a>)</h4>
+
+<p>Packages can now vend prebuilt libraries distributed as XCFrameworks, allowing dependencies on libraries that can’t be distributed as source code. This feature is currently only available when building for Apple platforms. New API in the package manifest lets XCFrameworks be referenced as binary targets.</p>
+
+<h4 id="conditional-target-dependencies-se-0273">Conditional Target Dependencies (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0273-swiftpm-conditional-target-dependencies.md">SE-0273</a>)</h4>
+
+<p>A package target’s dependencies can now be declared as conditional, which can be used to limit dependencies by platform. This provides more flexibility to describe complex target dependencies that support multiple platforms.</p>
+
+<p>Note that conditions based on build configuration were also a part of the Swift evolution proposal, but are yet to be implemented, and are therefore not part of Swift 5.3.</p>
+
+<h2 id="downloads">Downloads</h2>
+
+<p>Official binaries are <a href="https://swift.org/download/">available for download</a> from Swift.org as toolchains to work with Xcode, as well as Linux toolchains and Docker images. Swift 5.3 is also included in <a href="https://apps.apple.com/app/xcode/id497799835">Xcode 12</a>. An official toolchain for Windows will be available in the coming weeks.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Development on Swift 5.3 was tracked in the <code class="language-plaintext highlighter-rouge">release/5.3</code> branch on the following repositories:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/indexstore-db/tree/release/5.3">indexstore-db</a></li>
+  <li><a href="https://github.com/apple/sourcekit-lsp/tree/release/5.3">sourcekit-lsp</a></li>
+  <li><a href="https://github.com/apple/swift-tools-support-core/tree/release/5.3">swift-tools-support-core</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild/tree/release/5.3">swift-llbuild</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager/tree/release/5.3">swift-package-manager</a></li>
+  <li><a href="https://github.com/apple/swift/tree/release/5.3">swift</a></li>
+  <li><a href="https://github.com/apple/swift-cmark/tree/release/5.3">swift-cmark</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation/tree/release/5.3">swift-corelibs-foundation</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-libdispatch/tree/release/5.3">swift-corelibs-libdispatch</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-xctest/tree/release/5.3">swift-corelibs-xctest</a></li>
+  <li><a href="https://github.com/apple/swift-integration-tests/tree/release/5.3">swift-integration-tests</a></li>
+  <li><a href="https://github.com/apple/swift-stress-tester/tree/release/5.3">swift-stress-tester</a></li>
+  <li><a href="https://github.com/apple/swift-syntax/tree/release/5.3">swift-syntax</a></li>
+  <li><a href="https://github.com/apple/swift-xcode-playground-support/tree/release/5.3">swift-xcode-playground-support</a></li>
+  <li><a href="https://github.com/apple/llvm-project/tree/swift/release/5.3">llvm-project</a></li>
+</ul>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">swift-5.3-RELEASE</code> designates the specific revisions in those repositories that make up the final version of Swift 5.3.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">release/5.3</code> branch will remain open, but under the same release management process, to accumulate changes for the next release.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-cluster-membership/" rel="prev" title="Previous: Introducing Swift Cluster Membership">Introducing Swift Cluster Membership</a>
+      
+
+      
+      <a href="/blog/swift-on-windows/" rel="next" title="Next: Introducing Swift on Windows">Introducing Swift on Windows</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

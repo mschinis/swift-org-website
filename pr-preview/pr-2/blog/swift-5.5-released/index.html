@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Swift 5.5 Released!</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-5.5-released/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Swift 5.5 Released!" />
+  <meta name="twitter:description" content="Swift 5.5 is now officially released!  Swift 5.5 is a massive release, which includes newly introduced language capabilities for concurrency, including async/await, structured concurrency, and Actors.  My heartfelt thanks to the entire Swift community for all the active discussion, review, and iteration on the concurrency (and other additions) that make up the release.  Thank you!
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Swift 5.5 Released!" />
+  <meta property="og:url" content="https://swift.org/blog/swift-5.5-released/" />
+  <meta property="og:description" content="Swift 5.5 is now officially released!  Swift 5.5 is a massive release, which includes newly introduced language capabilities for concurrency, including async/await, structured concurrency, and Actors.  My heartfelt thanks to the entire Swift community for all the active discussion, review, and iteration on the concurrency (and other additions) that make up the release.  Thank you!
+" />
+  <meta property="article:published_time" content="2021-09-20T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Swift 5.5 Released!</h1>
+
+    <time pubdate datetime="2021-09-20T06:00:00-04:00">September 20, 2021</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/b6520643611a05fd040d0abcee3c883c?s=64" alt="Ted Kremenek"/>
+        
+
+        <span class="author">
+          
+            <a href="https://github.com/tkremenek/" rel="nofollow" title="Ted Kremenek (@tkremenek) on GitHub">Ted Kremenek</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Ted Kremenek is a member of the Swift Core Team and manages the Languages and Runtimes group at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>Swift 5.5 is now officially released!  Swift 5.5 is a massive release, which includes newly introduced language capabilities for concurrency, including <code class="language-plaintext highlighter-rouge">async/await</code>, structured concurrency, and Actors.  My heartfelt thanks to the entire Swift community for all the active discussion, review, and iteration on the concurrency (and other additions) that make up the release.  Thank you!</p>
+
+<h2 id="how-to-learn-more">How to learn more</h2>
+
+<p>An updated version of <a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a> for Swift 5.5 is now available on Swift.org. It is also available for free on the <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">Apple Books store</a>.</p>
+
+<p>You can try out some of the new features in this <a href="https://github.com/twostraws/whats-new-in-swift-5-5">playground</a> put together by Paul Hudson!</p>
+
+<h2 id="swift-evolution-proposals">Swift Evolution proposals</h2>
+
+<p>A number of changes went through the Swift Evolution process for inclusion in Swift 5.5:</p>
+
+<ul>
+  <li>SE-0291 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0291-package-collections.md">Package Collections</a></li>
+  <li>SE-0293 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0293-extend-property-wrappers-to-function-and-closure-parameters.md">Extend Property Wrappers to Function and Closure Parameters</a></li>
+  <li>SE-0295 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0295-codable-synthesis-for-enums-with-associated-values.md">Codable synthesis for enums with associated values</a></li>
+  <li>SE-0296 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md">Async/await</a></li>
+  <li>SE-0297 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0297-concurrency-objc.md">Concurrency Interoperability with Objective-C</a></li>
+  <li>SE-0298 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0298-asyncsequence.md">Async/Await: Sequences</a></li>
+  <li>SE-0299 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0299-extend-generic-static-member-lookup.md">Extending Static Member Lookup in Generic Contexts</a></li>
+  <li>SE-0300 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0300-continuation.md">Continuations for interfacing async tasks with synchronous code</a></li>
+  <li>SE-0304 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0304-structured-concurrency.md">Structured concurrency</a></li>
+  <li>SE-0306 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0306-actors.md">Actors</a></li>
+  <li>SE-0307 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0307-allow-interchangeable-use-of-double-cgfloat-types.md">Allow interchangeable use of CGFloat and Double types</a></li>
+  <li>SE-0308 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0308-postfix-if-config-expressions.md">if for postfix member expressions</a></li>
+  <li>SE-0310 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0310-effectful-readonly-properties.md">Effectful Read-only Properties</a></li>
+  <li>SE-0311 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0311-task-locals.md">Task Local Values</a></li>
+  <li>SE-0313 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0313-actor-isolation-control.md">Improved control over actor isolation</a></li>
+  <li>SE-0314 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0314-async-stream.md">AsyncStream and AsyncThrowingStream</a></li>
+  <li>SE-0316 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0316-global-actors.md">Global actors</a></li>
+  <li>SE-0317 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0317-async-let.md">async let bindings</a></li>
+  <li>SE-0319 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0319-never-identifiable.md">Conform Never to Identifiable</a></li>
+</ul>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/package-collections/" rel="prev" title="Previous: Package Collections">Package Collections</a>
+      
+
+      
+      <a href="/blog/swift-docc/" rel="next" title="Next: Swift-DocC is Now Open Source">Swift-DocC is Now Open Source</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

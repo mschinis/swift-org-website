@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Introducing Swift Cluster Membership</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/swift-cluster-membership/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Introducing Swift Cluster Membership" />
+  <meta name="twitter:description" content="It is my pleasure to announce a new open source project for the Swift Server ecosystem, Swift Cluster Membership. This library aims to help Swift grow in a new space of server applications: clustered multi-node distributed systems. With this library we provide reusable runtime-agnostic membership protocol implementations which can be adopted in various clustering use-cases.
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducing Swift Cluster Membership" />
+  <meta property="og:url" content="https://swift.org/blog/swift-cluster-membership/" />
+  <meta property="og:description" content="It is my pleasure to announce a new open source project for the Swift Server ecosystem, Swift Cluster Membership. This library aims to help Swift grow in a new space of server applications: clustered multi-node distributed systems. With this library we provide reusable runtime-agnostic membership protocol implementations which can be adopted in various clustering use-cases.
+" />
+  <meta property="article:published_time" content="2020-08-27T05:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Introducing Swift Cluster Membership</h1>
+
+    <time pubdate datetime="2020-08-27T05:00:00-04:00">August 27, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/03cb20b97f6a14701c24c4e088b6af87?s=64" alt="Konrad ‘ktoso’ Malawski"/>
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/ktosopl/" rel="nofollow" title="Konrad ‘ktoso’ Malawski (@ktosopl) on Twitter">Konrad ‘ktoso’ Malawski</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Konrad Malawski is a member of a team developing foundational server-side Swift libraries at Apple, with focus on distributed systems and concurrency.</div>
+      
+    
+    
+  </header>
+
+  <p>It is my pleasure to announce a new open source project for the Swift Server ecosystem, <a href="https://www.github.com/apple/swift-cluster-membership">Swift Cluster Membership</a>. This library aims to help Swift grow in a new space of server applications: clustered multi-node distributed systems. With this library we provide reusable runtime-agnostic <em>membership protocol</em> implementations which can be adopted in various clustering use-cases.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Cluster membership protocols are a crucial building block for distributed systems, such as computation intensive clusters, schedulers, databases, key-value stores and more. With the announcement of this package, we aim to make building such systems simpler, as they no longer need to rely on external services to handle service membership for them. We would also like to invite the community to collaborate on and develop additional membership protocols.</p>
+
+<p>At their core, membership protocols need to provide an answer for the question “<em>Who are my (live) peers?</em>”. This seemingly simple task turns out to be not so simple at all in a distributed system where delayed or lost messages, network partitions, and unresponsive but still “alive” nodes are the daily bread and butter. Providing a predictable, reliable answer to this question is what cluster membership protocols do.</p>
+
+<p>There are various trade-offs one can take while implementing a membership protocol, and it continues to be an interesting area of research and continued refinement. As such, the cluster-membership package intends to focus not on a single implementation, but serve as a collaboration space for various distributed algorithms in this space.</p>
+
+<p>Today, along with the initial release of this package, we’re open sourcing an implementation of one such membership protocol: SWIM.</p>
+
+<h2 id="️️️️-swimming-with-swift">🏊🏾‍♀️🏊🏻‍♀️🏊🏾‍♂️🏊🏼‍♂️ SWIMming with Swift</h2>
+
+<p>The first membership protocol we are open sourcing is an implementation of the <a href="https://research.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf"><em>Scalable Weakly-consistent Infection-style process group Membership</em></a> protocol (or “SWIM”), along with a few notable protocol extensions as documented in the 2018 <a href="https://arxiv.org/abs/1707.00788">Lifeguard: Local Health Awareness for More Accurate Failure Detection</a> paper.</p>
+
+<p>SWIM is a <a href="https://en.wikipedia.org/wiki/Gossip_protocol">gossip protocol</a> in which peers periodically exchange bits of information about their observations of other nodes’ statuses, eventually spreading the information to all other members in a cluster. This category of distributed algorithms are very resilient against arbitrary message loss, network partitions and similar issues.</p>
+
+<p>At a high level, SWIM works like this:</p>
+
+<ul>
+  <li>A member periodically pings a randomly selected peer it is aware of. It does so by sending a <code class="language-plaintext highlighter-rouge">.ping</code> message to that peer, expecting an <code class="language-plaintext highlighter-rouge">.ack</code> to be sent back. See how <code class="language-plaintext highlighter-rouge">A</code> probes <code class="language-plaintext highlighter-rouge">B</code> initially in the diagram below.
+    <ul>
+      <li>The exchanged messages also carry a gossip payload, which is (partial) information about what other peers the sender of the message is aware of, along with their membership status (<code class="language-plaintext highlighter-rouge">.alive</code>, <code class="language-plaintext highlighter-rouge">.suspect</code>, etc.)</li>
+    </ul>
+  </li>
+  <li>If it receives an <code class="language-plaintext highlighter-rouge">.ack</code>, the peer is considered still <code class="language-plaintext highlighter-rouge">.alive</code>. Otherwise, the target peer might have terminated/crashed or is unresponsive for other reasons.
+    <ul>
+      <li>In order to double check if the peer really is down, the origin asks a few other peers about the state of the unresponsive peer by sending <code class="language-plaintext highlighter-rouge">.pingRequest</code> messages to a configured number of other peers, which then issue direct pings to that peer (probing peer <code class="language-plaintext highlighter-rouge">E</code> in the diagram below).</li>
+    </ul>
+  </li>
+  <li>If those pings fail, the origin peer would receive <code class="language-plaintext highlighter-rouge">.nack</code> (“negative acknowledgement”) messages back, and due to lack of <code class="language-plaintext highlighter-rouge">.ack</code>s resulting in the peer being marked as <code class="language-plaintext highlighter-rouge">.suspect</code>.</li>
+</ul>
+
+<p><img src="https://swift.org/assets/images/swim-blog/ping_pingreq_cycle.png" alt="image" /></p>
+
+<p>The above mechanism, serves not only as a failure detection mechanism, but also as a gossip mechanism, which carries information about known members of the cluster. This way members eventually learn about the status of their peers, even without having them all listed upfront. It is worth pointing out however that this membership view is <em><a href="https://en.wikipedia.org/wiki/Weak_consistency">weakly-consistent</a></em>, which means there is no guarantee (or way to know, without additional information) if all members have the same exact view on the membership at any given point in time. However, it is an excellent building block for higher-level tools and systems to build their stronger guarantees on top.</p>
+
+<p>Once the failure detection mechanism detects an unresponsive node, it eventually is marked as  <code class="language-plaintext highlighter-rouge">.dead</code> resulting in its irrevocable removal from the cluster. Our implementation offers an optional extension, adding an <code class="language-plaintext highlighter-rouge">.unreachable</code> state to the possible states, however most users will not find it necessary and it is disabled by default. For details and rules about legal status transitions refer to <a href="https://github.com/apple/swift-cluster-membership/blob/main/Sources/SWIM/Status.swift#L18-L39"><code class="language-plaintext highlighter-rouge">SWIM.Status</code></a> or the following diagram:</p>
+
+<p><img src="https://swift.org/assets/images/swim-blog/swim_lifecycle.png" alt="image" /></p>
+
+<p>The way Swift Cluster Membership implements protocols, is by offering “<em>Instances</em>” of them. For example, the SWIM implementation is encapsulated in the runtime agnostic <code class="language-plaintext highlighter-rouge">SWIM.Instance</code> which needs to be “driven” or “interpreted” by some glue code between a networking runtime and the instance itself. We call those glue pieces of an implementation “<em>Shells</em>”, and the library ships with a <code class="language-plaintext highlighter-rouge">SWIMNIOShell</code> implemented using <a href="https://www.github.com/apple/swift-nio">SwiftNIO</a>’s <code class="language-plaintext highlighter-rouge">DatagramChannel</code> that performs all messaging asynchronously over <a href="https://searchnetworking.techtarget.com/definition/UDP-User-Datagram-Protocol">UDP</a>. Alternative implementations can use completely different transports, or piggy back SWIM messages on some other existing gossip system etc.</p>
+
+<p>The SWIM instance also has built-in support for emitting metrics (using <a href="https://github.com/apple/swift-metrics">swift-metrics</a>) and can be configured to log internal details by passing a <a href="https://github.com/apple/swift-log">swift-log</a> <code class="language-plaintext highlighter-rouge">Logger</code>.</p>
+
+<h2 id="example-reusing-the-swim-protocol-logic-implementation">Example: Reusing the SWIM protocol logic implementation</h2>
+
+<p>The primary purpose of this library is to share the <code class="language-plaintext highlighter-rouge">SWIM.Instance</code> implementation across various implementations which need some form of in-process membership service. Implementing a custom runtime is documented in depth in the project’s <a href="https://github.com/apple/swift-cluster-membership/">README</a>, so please have a look there if you are interested in implementing SWIM over some different transport.</p>
+
+<p>Implementing a new transport boils down to a “fill in the blanks” exercise:</p>
+
+<p>First, one has to implement the <a href="https://github.com/apple/swift-cluster-membership/blob/main/Sources/SWIM/Peer.swift">Peer protocols</a> using one’s target transport:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SWIMPeer</span><span class="p">:</span> <span class="kt">SWIMAddressablePeer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">ping</span><span class="p">(</span>
+        <span class="nv">payload</span><span class="p">:</span> <span class="kt">SWIM</span><span class="o">.</span><span class="kt">GossipPayload</span><span class="p">,</span>
+        <span class="n">from</span> <span class="nv">origin</span><span class="p">:</span> <span class="kt">SWIMAddressablePeer</span><span class="p">,</span>
+        <span class="nv">timeout</span><span class="p">:</span> <span class="kt">DispatchTimeInterval</span><span class="p">,</span>
+        <span class="nv">sequenceNumber</span><span class="p">:</span> <span class="kt">SWIM</span><span class="o">.</span><span class="kt">SequenceNumber</span><span class="p">,</span>
+        <span class="nv">onComplete</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">SWIM</span><span class="o">.</span><span class="kt">PingResponse</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">)</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Which usually means wrapping some connection, channel, or other identity with the ability to send messages and invoke the appropriate callbacks when applicable.</p>
+
+<p>Then, on the receiving end of a peer, one has to implement receiving those messages and invoke all the corresponding <code class="language-plaintext highlighter-rouge">on&lt;SomeMessage&gt;</code> callbacks defined on the SWIM.Instance (grouped under <a href="https://github.com/apple/swift-cluster-membership/blob/main/Sources/SWIM/SWIMInstance.swift#L24-L85">SWIMProtocol</a>). These calls perform all SWIM protocol specific tasks internally, and return directives which are simple to interpret “commands” to an implementation about how it should react to the message. For example, upon receiving a <code class="language-plaintext highlighter-rouge">PingRequest</code> message, the returned directive may instruct a shell to <code class="language-plaintext highlighter-rouge">.sendPing(target:pingRequestOrigin:timeout:sequenceNumber)</code> which can be simply implemented by invoking this <code class="language-plaintext highlighter-rouge">ping</code> on the <code class="language-plaintext highlighter-rouge">target</code> peer.</p>
+
+<h2 id="example-swimming-with-swiftnio">Example: SWIMming with SwiftNIO</h2>
+
+<p>The repository contains an <a href="https://github.com/apple/swift-cluster-membership/tree/main/Samples/Sources/SWIMNIOSampleCluster">end-to-end example</a> and an example implementation called <a href="https://github.com/apple/swift-cluster-membership/tree/main/Sources/SWIMNIOExample">SWIMNIOExample</a> which makes use of the <code class="language-plaintext highlighter-rouge">SWIM.Instance</code> to enable a simple UDP based peer monitoring system. This allows peers to gossip and notify each other about node failures using the SWIM protocol by sending datagrams driven by SwiftNIO.</p>
+
+<p>The SWIMNIOExample implementation is offered only as an example, and has not been implemented with production use in mind, however with some amount of effort it could definitely do well for some use-cases. If you are interested in learning more about cluster membership algorithms, scalability benchmarking and using SwiftNIO itself, this is a great module to get your feet wet, and perhaps once the module is mature enough we could consider making it not only an example, but a reusable component for SwiftNIO based clustered applications.</p>
+
+<p>In it’s simplest form, combining the provided SWIM instance and SwiftNIO shell to build a simple server, one can embedd the provided handlers like shown below, in a typical SwiftNIO channel pipeline:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">bootstrap</span> <span class="o">=</span> <span class="kt">DatagramBootstrap</span><span class="p">(</span><span class="nv">group</span><span class="p">:</span> <span class="n">group</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">channelInitializer</span> <span class="p">{</span> <span class="n">channel</span> <span class="k">in</span>
+        <span class="n">channel</span><span class="o">.</span><span class="n">pipeline</span>
+            <span class="c1">// first install the SWIM handler, which contains the SWIMNIOShell:</span>
+            <span class="o">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="kt">SWIMNIOHandler</span><span class="p">(</span><span class="nv">settings</span><span class="p">:</span> <span class="n">settings</span><span class="p">))</span><span class="o">.</span><span class="n">flatMap</span> <span class="p">{</span>
+                <span class="c1">// then install some user handler, it will receive SWIM events:</span>
+                <span class="n">channel</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="kt">SWIMNIOExampleHandler</span><span class="p">())</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="n">bootstrap</span><span class="o">.</span><span class="nf">bind</span><span class="p">(</span><span class="nv">host</span><span class="p">:</span> <span class="n">host</span><span class="p">,</span> <span class="nv">port</span><span class="p">:</span> <span class="n">port</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The example handler can then receive and handle SWIM cluster membership change events:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">SWIMNIOExampleHandler</span><span class="p">:</span> <span class="kt">ChannelInboundHandler</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">InboundIn</span> <span class="o">=</span> <span class="kt">SWIM</span><span class="o">.</span><span class="kt">MemberStatusChangedEvent</span>
+
+    <span class="k">let</span> <span class="nv">log</span> <span class="o">=</span> <span class="kt">Logger</span><span class="p">(</span><span class="nv">label</span><span class="p">:</span> <span class="s">"SWIMNIOExampleHandler"</span><span class="p">)</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">channelRead</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt">ChannelHandlerContext</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">NIOAny</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">change</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="nf">unwrapInboundIn</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="nf">info</span><span class="p">(</span>
+            <span class="s">"""
+            Membership status changed: [</span><span class="se">\(</span><span class="n">change</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">node</span><span class="se">)</span><span class="s">]</span><span class="err">\</span><span class="s">
+             is now [</span><span class="se">\(</span><span class="n">change</span><span class="o">.</span><span class="n">status</span><span class="se">)</span><span class="s">]
+            """</span><span class="p">,</span>
+            <span class="nv">metadata</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s">"swim/member"</span><span class="p">:</span> <span class="s">"</span><span class="se">\(</span><span class="n">change</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">node</span><span class="se">)</span><span class="s">"</span><span class="p">,</span>
+                <span class="s">"swim/member/status"</span><span class="p">:</span> <span class="s">"</span><span class="se">\(</span><span class="n">change</span><span class="o">.</span><span class="n">status</span><span class="se">)</span><span class="s">"</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p>This project is currently in a pre-release state, and we’d like to give it some time to bake before tagging a stable release. We are mostly focused on the quality and correctness of the SWIM.Instance, however there also remain small cleanups to be done in the example Swift NIO implementation. Once we have confirmed that a few use-cases are confident in the SWIM implementation’s API we’d like to tag an 1.0 release.</p>
+
+<p>From there onwards, we would like to continue investigating additional membership implementations as well as minimizing the overheads of the existing implementation.</p>
+
+<h2 id="additional-resources">Additional Resources</h2>
+
+<p>Additional documentation and examples can be found on <a href="https://github.com/apple/swift-cluster-membership">GitHub</a>.</p>
+
+<h2 id="getting-involved">Getting Involved</h2>
+
+<p>If you are interested in cluster membership protocols, please get involved! Swift Cluster Membership is a fully open-source project, developed on <a href="https://github.com/apple/swift-cluster-membership">GitHub</a>. Contributions from the open source community are welcome at all times. We encourage discussion on the <a href="https://forums.swift.org/c/server">Swift forums</a>. For bug reports, feature requests, and pull requests, please use the GitHub repository.</p>
+
+<p>We’re very excited to see what amazing things you do with this library!</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/swift-service-lifecycle/" rel="prev" title="Previous: Introducing Swift Service Lifecycle">Introducing Swift Service Lifecycle</a>
+      
+
+      
+      <a href="/blog/swift-5.3-released/" rel="next" title="Next: Swift 5.3 released!">Swift 5.3 released!</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>

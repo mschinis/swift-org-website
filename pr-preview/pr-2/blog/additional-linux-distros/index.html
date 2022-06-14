@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swift.org - Additional Linux Distributions</title>
+  <meta name="author" content="Apple Inc." />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="license" href="/LICENSE.txt" />
+  <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" />
+  
+
+  
+  <link rel="canonical" href="https://swift.org/blog/additional-linux-distros/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@SwiftLang" />
+  
+  <meta name="twitter:title" content="Additional Linux Distributions" />
+  <meta name="twitter:description" content="It is my pleasure to announce a new set of Linux distributions officially supported by the Swift project. Swift.org now offers downloadable toolchain and Docker images for the following new Linux distributions:
+" />
+  
+
+  <meta property="og:site_name" content="Swift.org" />
+  <meta property="og:image" content="https://swift.org/apple-touch-icon-180x180.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Additional Linux Distributions" />
+  <meta property="og:url" content="https://swift.org/blog/additional-linux-distros/" />
+  <meta property="og:description" content="It is my pleasure to announce a new set of Linux distributions officially supported by the Swift project. Swift.org now offers downloadable toolchain and Docker images for the following new Linux distributions:
+" />
+  <meta property="article:published_time" content="2020-05-05T06:00:00-04:00" />
+  <meta property="article:modified_time" content="2022-06-14T07:08:53-04:00" />
+  
+</head>
+
+<body>
+<script src="/assets/javascripts/color-scheme-toggle.js"></script>
+<nav role="navigation">
+  <div class="nav-menu-container">
+    <header class="menu-item logo-container" role="banner">
+      <h1 id="logo">
+        <a href="/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+    <div id="menu-toggle" class="menu-item menu-toggle open"></div>
+  </div>
+
+  <div class="list-items">
+    
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/about/">About Swift</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/blog/">Blog</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/getting-started/">Getting Started</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/download/">Download</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/platform-support/">Platform Support</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/documentation/">Documentation</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Community</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/community/">Community Overview</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/diversity/">Diversity</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/mentorship/">Mentorship</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/contributing/">Contributing</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Development</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/source-code/">Source Code</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/continuous-integration/">Continuous Integration</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/source-compatibility/">Source Compatibility</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/support/security.html">Security</a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    <h2>Open Source Efforts</h2>
+    
+    <ul>
+      
+      
+      <li>
+      
+        <a href="/swift-compiler/">Swift Compiler</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/standard-library/">Standard Library</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/package-manager/">Package Manager</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/core-libraries/">Core Libraries</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/lldb/">REPL, Debugger & Playgrounds</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/server/">Swift on Server</a>
+        
+      </li>
+      
+      
+      <li>
+      
+        <a href="/website/">Swift.org website</a>
+        
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main">
+<article class="post">
+  <header>
+    <h1>Additional Linux Distributions</h1>
+
+    <time pubdate datetime="2020-05-05T06:00:00-04:00">May 5, 2020</time>
+    
+    
+    
+      <div class="byline">
+        
+          <img src="https://s.gravatar.com/avatar/3cb408ef512103925c4fe709bf3f3b11?s=64" alt="Tom Doron"/>
+        
+
+        <span class="author">
+          
+            <a href="https://twitter.com/tomerdoron/" rel="nofollow" title="Tom Doron (@tomerdoron) on Twitter">Tom Doron</a>
+          
+        </span>
+      </div>
+      
+      <div class="about">Tom Doron is a member of the Swift Core Team and the Swift Server Work Group. He manages a team working on server-side Swift libraries at Apple.</div>
+      
+    
+    
+  </header>
+
+  <p>It is my pleasure to announce a new set of Linux distributions officially supported by the Swift project. <a href="https://swift.org/download/">Swift.org</a> now offers downloadable toolchain and Docker images for the following new Linux distributions:</p>
+
+<ul>
+  <li>Ubuntu 20.04</li>
+  <li>CentOS 8</li>
+  <li>Amazon Linux 2</li>
+</ul>
+
+<p>The above are added to the Linux platforms we already supported:</p>
+
+<ul>
+  <li>Ubuntu 16.04</li>
+  <li>Ubuntu 18.04</li>
+</ul>
+
+<h2 id="porting-work-for-supporting-fedora-based-distributions">Porting work for Supporting Fedora-based Distributions</h2>
+
+<p>The work to support Fedora based distributions such as CentOS and Amazon Linux included subtle changes in various components of the Swift project:</p>
+
+<ul>
+  <li>Changing minimum required version of <code class="language-plaintext highlighter-rouge">libcurl</code> so that FoundationNetworking (in swift-corelibs-foundation) can be built on unmodified older Fedora based systems</li>
+  <li>Teaching SwiftPM about Fedora based systems</li>
+  <li>Refining how the Swift platform support was built and documented which led to dropping the dependency on <code class="language-plaintext highlighter-rouge">libatomic</code> on Linux.</li>
+</ul>
+
+<p>In all, the work included 9 PRs to the Swift project:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift/pull/29581">https://github.com/apple/swift/pull/29581</a></li>
+  <li><a href="https://github.com/apple/swift/pull/30155">https://github.com/apple/swift/pull/30155</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation/pull/2716">https://github.com/apple/swift-corelibs-foundation/pull/2716</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation/pull/2737">https://github.com/apple/swift-corelibs-foundation/pull/2737</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager/pull/2642">https://github.com/apple/swift-package-manager/pull/2642</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager/pull/2647">https://github.com/apple/swift-package-manager/pull/2647</a></li>
+  <li><a href="https://github.com/apple/swift-tools-support-core/pull/59">https://github.com/apple/swift-tools-support-core/pull/59</a></li>
+  <li><a href="https://github.com/apple/swift-tools-support-core/pull/60">https://github.com/apple/swift-tools-support-core/pull/60</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild/pull/644">https://github.com/apple/swift-llbuild/pull/644</a></li>
+</ul>
+
+<h2 id="how-downloadable-images-are-built">How Downloadable Images are Built</h2>
+
+<p>Swift CI has moved to use Docker to build and qualify the new Linux distributions. A Dockerfile has been created for each one of the supported distributions, and CI jobs have been created to build, test and create a signed toolchain.</p>
+
+<p>Linux build Dockerfiles are managed in  <a href="https://github.com/apple/swift-docker">Swift’s Docker repository</a> with the goal of evolving them in the open with the community. Our plan is to continue and grow the number of Linux distributions we support, with CentOS 7, Debian and Fedora the most likely candidates to be added next.</p>
+
+<p>It is important to note that the new distributions do not run automatically as part of PR testing - we continue to automatically test PRs on Ubuntu 16.04 - but you can “summon” them using the following commands:</p>
+
+<ul>
+  <li>@swift-ci Please test Ubuntu 20.04</li>
+  <li>@swift-ci Please test CentOS 8</li>
+  <li>@swift-ci Please test Amazon Linux 2</li>
+</ul>
+
+<h2 id="getting-involved">Getting Involved</h2>
+
+<p>If you are interested in building Swift on Linux, come and get involved!</p>
+
+<p>The <a href="https://github.com/apple/swift-docker">source is available</a>, and we encourage contributions from the open source community. If you have feedback, questions or would like to discuss the project, please feel free to chat on the <a href="https://forums.swift.org/c/server">Swift forums</a>. If you would like to report bugs, please use <a href="https://github.com/apple/swift-docker/issues">the GitHub issue tracker</a>. We look forward to working with you, and helping move the industry forward to a better, safer programming future.</p>
+
+
+  
+  <footer>
+    <nav>
+      
+      <a href="/blog/5.3-release-process/" rel="prev" title="Previous: Swift 5.3 Release Process">Swift 5.3 Release Process</a>
+      
+
+      
+      <a href="/blog/AWS-lambda-runtime/" rel="next" title="Next: Introducing Swift AWS Lambda Runtime">Introducing Swift AWS Lambda Runtime</a>
+      
+    </nav>
+  </footer>
+  
+</article>
+</main>
+
+
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    
+  <p>Except where otherwise noted, all content on this blog is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</p>
+
+    <p class="copyright">Copyright © 2022 Apple Inc. All rights reserved.</p>
+    <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+    <p class="privacy">
+      <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+      <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+    </p>
+  </div>
+  <div class="footer-other">
+    <form
+      class="color-scheme-toggle"
+      role="radiogroup"
+      tabindex="0"
+      id="color-scheme-toggle"
+    >
+      <legend class="visuallyhidden">Color scheme preference</legend>
+      <label for="scheme-light">
+        <input id="scheme-light" type="radio" name="color-scheme-preference" value="light">
+        <span class="color-scheme-toggle-label">Light</span>
+      </label>
+      <label for="scheme-dark">
+        <input id="scheme-dark" type="radio" name="color-scheme-preference" value="dark">
+        <span class="color-scheme-toggle-label">Dark</span>
+      </label>
+      <label for="scheme-auto" id="scheme-auto-wrapper">
+        <input id="scheme-auto" type="radio" name="color-scheme-preference" value="auto">
+        <span class="color-scheme-toggle-label">Auto</span>
+      </label>
+    </form>
+    <aside>
+      <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter"></i></a>
+      <a href="/atom.xml" title="Subscribe to Site Updates"><i class="feed"></i></a>
+    </aside>
+  </div>
+</footer>
+
+
+<script src="/assets/javascripts/application.js"></script>
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdswiftorg"
+</script>
+<script src="https://developer.apple.com/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+</body>
+</html>
