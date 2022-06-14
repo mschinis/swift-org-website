@@ -14,6 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker-compose up -d
+      run: docker-compose build
+    - name: Build the website
+      run: docker-compose run build
+    - name: PR Preview Deploy
+      uses: rossjrw/pr-preview-action@v1
+      with:
+        source-dir: ./.output/
+
 
 #       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
