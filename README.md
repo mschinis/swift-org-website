@@ -1,4 +1,4 @@
-# Swift.org Website
+# Swift Website
 
 ## Overview
 
