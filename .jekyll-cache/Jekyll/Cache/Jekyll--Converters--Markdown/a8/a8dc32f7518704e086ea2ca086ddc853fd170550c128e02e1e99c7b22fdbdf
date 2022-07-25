@@ -1,0 +1,4 @@
+I"�<p>I’m excited to announce a new open-source project for the Swift ecosystem, <a href="https://github.com/apple/swift-numerics">Swift Numerics</a>!
+Swift Numerics will provide the building blocks of numerical computing in Swift, as a set of fine-grained modules bundled together into a single Swift package.
+My hope is that we can quickly fill some important gaps in the Standard Library’s existing APIs, and unlock new domains of programming to the Swift language.</p>
+:ET

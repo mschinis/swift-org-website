@@ -1,0 +1,8 @@
+I"ö<p>Iâ€™m thrilled to announce a new open-source project for the Swift ecosystem,
+<a href="https://github.com/apple/swift-crypto">Swift Crypto</a>. Swift Crypto is a new
+Swift package that brings the fantastic APIs of <a href="https://developer.apple.com/documentation/cryptokit">Apple
+CryptoKit</a> to the wider
+Swift community. This will allow Swift developers, regardless of the platform
+on which they deploy their applications, to access these APIs for a common set
+of cryptographic operations.</p>
+:ET

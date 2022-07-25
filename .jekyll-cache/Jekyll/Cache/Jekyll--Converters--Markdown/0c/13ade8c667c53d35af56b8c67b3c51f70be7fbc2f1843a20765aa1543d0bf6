@@ -1,0 +1,21 @@
+I"�<p>We are pleased to announce the release of a new <a href="https://github.com/apple/swift-source-compat-suite">Swift source compatibility test
+suite</a> as part of the effort
+to maintain source compatibility in future Swift releases.</p>
+
+<p>The source compatibility test suite is community driven, meaning open source
+project owners can submit their projects for inclusion in the suite.
+Instructions for adding open source projects to the test suite can be found in
+the <a href="/source-compatibility">Swift Source Compatibility</a> section on Swift.org.</p>
+
+<p><a href="https://ci.swift.org">Swift’s continuous integration system</a> periodically
+builds projects included in the suite against development versions of Swift to
+catch source compatibility regressions as soon as possible.</p>
+
+<p>Swift compiler developers can now use Swift’s pull request testing system
+to test their changes against the source compatibility test suite, helping
+catch source compatibility regressions before they are merged.</p>
+
+<p>The goal is to have a strong source compatibility test suite containing
+thousands of projects. We look forward to project owners helping to achieve
+this goal by including their open source Swift projects in the test suite.</p>
+:ET

@@ -1,0 +1,336 @@
+I"��<p>I’m excited to announce a new open-source project for the Swift ecosystem, <a href="https://github.com/apple/swift-numerics">Swift Numerics</a>!
+Swift Numerics will provide the building blocks of numerical computing in Swift, as a set of fine-grained modules bundled together into a single Swift package.
+My hope is that we can quickly fill some important gaps in the Standard Library’s existing APIs, and unlock new domains of programming to the Swift language.</p>
+
+<p>I’ve seeded the repository with two much-requested modules that are immediately useful for computational mathematics: <code class="language-plaintext highlighter-rouge">Real</code> (providing the functionality of <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0246-mathable.md">SE-0246</a>) and <code class="language-plaintext highlighter-rouge">Complex</code> (providing complex numbers and arithmetic). Let’s take a look at what they do:</p>
+
+<h3 id="real-numbers">Real Numbers</h3>
+<p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0246-mathable.md">SE-0246</a> proposed an API for “basic math functions” that would make operations like sine and logarithm available in generic contexts.
+It was accepted, but because of limitations in the compiler, the API cannot yet be added to the Standard Library in a source-stable manner.
+The <a href="https://github.com/apple/swift-numerics/tree/master/Sources/RealModule"><code class="language-plaintext highlighter-rouge">Real</code> module</a> provides that API as a separate module so that you can use it right away to get access to the improved API for these operations in your projects.</p>
+
+<p>The module defines three protocols. The most general is <code class="language-plaintext highlighter-rouge">ElementaryFunctions</code>, which makes the following functions available:</p>
+
+<ul>
+  <li>Exponential functions: <code class="language-plaintext highlighter-rouge">exp</code>, <code class="language-plaintext highlighter-rouge">expMinusOne</code></li>
+  <li>Logarithmic functions: <code class="language-plaintext highlighter-rouge">log</code>, <code class="language-plaintext highlighter-rouge">log(onePlus:)</code></li>
+  <li>Trigonometric functions: <code class="language-plaintext highlighter-rouge">cos</code>, <code class="language-plaintext highlighter-rouge">sin</code>, <code class="language-plaintext highlighter-rouge">tan</code></li>
+  <li>Inverse trigonometric functions: <code class="language-plaintext highlighter-rouge">acos</code>, <code class="language-plaintext highlighter-rouge">asin</code>, <code class="language-plaintext highlighter-rouge">atan</code></li>
+  <li>Hyperbolic functions: <code class="language-plaintext highlighter-rouge">cosh</code>, <code class="language-plaintext highlighter-rouge">sinh</code>, <code class="language-plaintext highlighter-rouge">tanh</code></li>
+  <li>Inverse hyperbolic functions: <code class="language-plaintext highlighter-rouge">acosh</code>, <code class="language-plaintext highlighter-rouge">asinh</code>, <code class="language-plaintext highlighter-rouge">atanh</code></li>
+  <li>Power and root functions: <code class="language-plaintext highlighter-rouge">pow</code>, <code class="language-plaintext highlighter-rouge">sqrt</code>, <code class="language-plaintext highlighter-rouge">root</code></li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">RealFunctions</code> protocol refines <code class="language-plaintext highlighter-rouge">ElementaryFunctions</code>, and adds operations that are difficult to define or implement over fields more general than the real numbers:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">atan2(y:x:)</code>, which computes <code class="language-plaintext highlighter-rouge">atan(y/x)</code> with sign chosen by the quadrant of the point <code class="language-plaintext highlighter-rouge">(x,y)</code> in the Cartesian plane.</li>
+  <li><code class="language-plaintext highlighter-rouge">hypot</code>, which computes <code class="language-plaintext highlighter-rouge">sqrt(x*x + y*y)</code> without intermediate overflow or underflow.</li>
+  <li><code class="language-plaintext highlighter-rouge">erf</code> and <code class="language-plaintext highlighter-rouge">erfc</code>, the <a href="https://en.wikipedia.org/wiki/Error_function">error function</a> and its complement.</li>
+  <li>Exponential functions: <code class="language-plaintext highlighter-rouge">exp2</code> and <code class="language-plaintext highlighter-rouge">exp10</code></li>
+  <li>Logarithmetic functions: <code class="language-plaintext highlighter-rouge">log2</code> and <code class="language-plaintext highlighter-rouge">log10</code></li>
+  <li>Gamma functions: <code class="language-plaintext highlighter-rouge">gamma</code>, <code class="language-plaintext highlighter-rouge">logGamma</code>, and <code class="language-plaintext highlighter-rouge">signGamma</code>, which evaluate the <a href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>, its logarithm, and its sign.</li>
+</ul>
+
+<p>The protocol that you will use most often is <code class="language-plaintext highlighter-rouge">Real</code>, which describes a floating-point type equipped with the full set of basic math functions.
+This is a great protocol to use in writing generic code, because it has all the basics that you need to implement most numeric functions.
+Suppose we were experimenting with some basic machine learning, and needed a generic <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a> activation function:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Numerics</span>
+
+<span class="kd">func</span> <span class="n">sigmoid</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Real</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="o">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Or suppose we were implementing a <a href="https://en.m.wikipedia.org/wiki/Discrete_Fourier_transform">DFT</a>, and wanted to precompute weights for the transform; DFT weights are roots of unity:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Numerics</span>
+
+<span class="kd">extension</span> <span class="kt">Real</span> <span class="p">{</span>
+  <span class="c1">// The real and imaginary parts of e^{-2πik/n}</span>
+  <span class="kd">static</span> <span class="kd">func</span> <span class="nf">dftWeight</span><span class="p">(</span><span class="nv">k</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">r</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">i</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">precondition</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">,</span> <span class="s">"k is out of range"</span><span class="p">)</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">N</span> <span class="o">=</span> <span class="kt">Self</span><span class="p">(</span><span class="nv">exactly</span><span class="p">:</span> <span class="n">n</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nf">preconditionFailure</span><span class="p">(</span><span class="s">"n cannot be represented exactly."</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">let</span> <span class="nv">theta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="kt">Self</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="kt">N</span><span class="p">)</span>
+    <span class="nf">return</span> <span class="p">(</span><span class="nv">r</span><span class="p">:</span> <span class="o">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="nv">i</span><span class="p">:</span> <span class="o">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This gives us an implementation that works for <code class="language-plaintext highlighter-rouge">Float</code>, <code class="language-plaintext highlighter-rouge">Double</code>, and <code class="language-plaintext highlighter-rouge">Float80</code> if the target supports it.
+When new basic floating-point types are added to Swift, like <code class="language-plaintext highlighter-rouge">Float16</code> or <code class="language-plaintext highlighter-rouge">Float128</code>, it will work for them as well.
+This module–especially the <code class="language-plaintext highlighter-rouge">Real</code> protocol–is a significant improvement to generic numerical computing in Swift, and I’m really looking forward to seeing what you do with it.</p>
+
+<h3 id="complex-numbers">Complex Numbers</h3>
+<p>The <code class="language-plaintext highlighter-rouge">Complex</code> module builds on <code class="language-plaintext highlighter-rouge">Real</code> to provide a complex number type for Swift.</p>
+
+<p>Complex numbers are useful for computation because they are the “smallest algebraically-closed field that contains the rational numbers”.
+What that means in practice is that common equations (like those that give the roots of a polynomial or the eigenvalues of a matrix) do not necessarily have solutions in the real numbers, but are guaranteed to have solutions in the complex numbers.
+This seems like an esoteric fact, but when you develop algorithms, a guarantee that solutions exist is often useful.</p>
+
+<p>Complex numbers arise naturally in computation when working with Fourier transforms: the Fourier transform of a real signal is a symmetric complex signal.
+This means that the natural setting for many signal processing algorithms used in everything from audio processing to circuit simulations is the complex numbers.
+Libraries frequently hide this detail from you in routine use, but when <em>developing</em> libraries, it’s critical to have this tool available.</p>
+
+<p>For example, the <code class="language-plaintext highlighter-rouge">dftWeight</code> code that we showed above can be written more naturally using <code class="language-plaintext highlighter-rouge">Complex</code> as:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Numerics</span>
+
+<span class="kd">extension</span> <span class="kt">Complex</span> <span class="p">{</span>
+  <span class="c1">// e^{-2πik/n}</span>
+  <span class="kd">static</span> <span class="kd">func</span> <span class="nf">dftWeight</span><span class="p">(</span><span class="nv">k</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Complex</span> <span class="p">{</span>
+    <span class="nf">precondition</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">,</span> <span class="s">"k is out of range"</span><span class="p">)</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">N</span> <span class="o">=</span> <span class="kt">RealType</span><span class="p">(</span><span class="nv">exactly</span><span class="p">:</span> <span class="n">n</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nf">preconditionFailure</span><span class="p">(</span><span class="s">"n cannot be represented exactly."</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kt">Complex</span><span class="p">(</span><span class="nv">length</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">phase</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="kt">RealType</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="kt">N</span><span class="p">))</span><span class="o">!</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>For these reasons complex numbers are an important building block that most languages or standard libraries provide.
+C has <code class="language-plaintext highlighter-rouge">_Complex</code>, C++ has <code class="language-plaintext highlighter-rouge">std::complex</code>, Fortran and Python have complex numbers built right into the language core.
+I expect that once the Swift Numerics module has some use and we do a few iterations of building out its features, we’ll propose part of it for inclusion in the Swift Standard Library as well.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Complex</code> type is generic over an underlying <code class="language-plaintext highlighter-rouge">RealType</code>, which conforms to <code class="language-plaintext highlighter-rouge">Real</code>.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Complex</span><span class="o">&lt;</span><span class="kt">RealType</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">RealType</span><span class="p">:</span> <span class="kt">Real</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Why not support <code class="language-plaintext highlighter-rouge">Complex&lt;T&gt;</code> for integer types <code class="language-plaintext highlighter-rouge">T</code> as well?
+While the Gaussian integers are “just like” the complex numbers–they’re a subset, after all–the actual operations that you perform on them (and the ideal implementation of those operations) are quite different, so it doesn’t make sense to force them together into a single generic type.
+I would love to see support for Gaussian integers added to the library at some future point, but it should be a separate type from <code class="language-plaintext highlighter-rouge">Complex</code>.</p>
+</blockquote>
+
+<p>As a refresher, complex numbers have two components, a real part and an imaginary part.
+There’s a special number, called <em>i</em>,  which is the <em>imaginary unit</em>.
+In mathematics, we write a complex number with real part <em>a</em> and imaginary part <em>b</em> as <em>a + bi</em>.
+In Swift, it looks pretty similar:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Complex</span>
+
+<span class="k">let</span> <span class="nv">z</span><span class="p">:</span> <span class="kt">Complex</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="o">.</span><span class="n">i</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>      <span class="c1">// 2.0</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">imaginary</span><span class="p">)</span> <span class="c1">// 3.0</span>
+</code></pre></div></div>
+
+<p>Swift Numerics prints complex numbers in Fortran style; <em>a + bi</em> is <code class="language-plaintext highlighter-rouge">(a, b)</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="c1">// (2.0, 3.0)</span>
+</code></pre></div></div>
+
+<p>You can also construct a complex number by specifying its real and imaginary parts:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">w</span> <span class="o">=</span> <span class="kt">Complex</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// (1.0, -2.0)</span>
+</code></pre></div></div>
+
+<p>to add two complex numbers, we add the corresponding parts:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">z</span> <span class="o">+</span> <span class="n">w</span><span class="p">)</span> <span class="c1">// (2.0 + 1.0, 3.0 + -2.0) = (3.0, 1.0)</span>
+</code></pre></div></div>
+
+<p>Multiplication and division are only a little bit more complicated; their definitions follow from the identity:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">u</span><span class="p">:</span> <span class="kt">Complex</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">.</span><span class="n">i</span> <span class="o">*</span> <span class="o">.</span><span class="n">i</span> <span class="c1">// (-1.0, 0.0)</span>
+</code></pre></div></div>
+
+<p>(i.e. <em>i</em> is a square root of -1).
+The <code class="language-plaintext highlighter-rouge">Complex</code> type conforms to the <code class="language-plaintext highlighter-rouge">Numeric</code> protocol, and uses the usual division operator <code class="language-plaintext highlighter-rouge">/</code>, so arithmetic on complex numbers looks just like it does on any other number type.
+For example, here’s a function that implements multiplication by <em>2i</em>, which is a 2x scaling and 90˚ rotation in the complex plane:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Complex</span>
+
+<span class="kd">func</span> <span class="n">scaleAndRotate</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">z</span><span class="p">:</span> <span class="kt">Complex</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Complex</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">z</span> <span class="o">*</span> <span class="kt">Complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">z</span> <span class="o">=</span> <span class="nf">scaleAndRotate</span><span class="p">(</span><span class="kt">Complex</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span> <span class="c1">// (-2.0, 2.0)</span>
+</code></pre></div></div>
+
+<p>At this point, it’s worth talking a little about infinities and <a href="https://en.wikipedia.org/wiki/NaN">NaNs</a> and their implications for multiplication and division.
+The C and C++ complex math libraries attempt to make fine-grained distinctions between different zeros and infinities and NaNs.
+This is occasionally useful, but it means that multiplication cannot use the obvious arithmetic expression.</p>
+
+<p>Swift does not attempt to make this distinction.
+Any complex number with zero real and imaginary parts is zero, and all complex numbers with a non-finite real or imaginary part are collapsed into a single “point at infinity”.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ 1&gt; import Complex
+[ 2&gt; Complex(.infinity, 0.0) == Complex(0.0, -.nan) 
+$R0: Bool = true
+</code></pre></div></div>
+
+<p>This loses a little bit of information, but very few programs make productive use of the distinction, and all programs have their performance adversely effected by the decision to try to keep it around.
+To make the performance impact concrete, let’s compare the throughput of double-precision complex multiplication on my 2015 MacBook Pro:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Data distribution</th>
+      <th style="text-align: center">C</th>
+      <th style="text-align: center">Swift</th>
+      <th style="text-align: center">Speedup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">well-scaled</td>
+      <td style="text-align: center">1 / 1.4ns</td>
+      <td style="text-align: center">1 / 1.1ns</td>
+      <td style="text-align: center">1.3x</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">poorly-scaled</td>
+      <td style="text-align: center">1 / 4.5ns</td>
+      <td style="text-align: center">1 / 4.1ns</td>
+      <td style="text-align: center">1.1x</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>A note on benchmarking measurements and methodology: throughput in these tables is reported in units of reciprocal time. 
+<code class="language-plaintext highlighter-rouge">1/1.1ns</code> means “one result is produced every 1.1 nanoseconds”.
+Smaller denominators are better than larger denominators; <code class="language-plaintext highlighter-rouge">1/1.5ns</code> is twice as fast as <code class="language-plaintext highlighter-rouge">1/3ns</code>.
+These benchmarks do not perform multiplication (or division) in isolation; instead they are measuring the time to compute and sum a set of multiplication (or division) results.
+This introduces some overhead to the measurement, but that overhead falls disproportionately on the <em>faster</em> operation, so this makes the Swift performance look worse than it really is.
+You can see the (very simple) benchmark code in ArithmeticBenchmarkTests.swift.
+Pull requests to add more sophisticated benchmarking are welcome!</p>
+</blockquote>
+
+<p>Because Swift Numerics doesn’t need to give special attention to infinities, it is about 30% faster in the common case where values are well-scaled, and somewhat faster even in the unusual case where there are many poorly-scaled values.
+In pathological cases where there are a large number of infinities or NaNs in the data set, the difference will be greater.</p>
+
+<p>There’s an even larger impact for division:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Data distribution</th>
+      <th style="text-align: center">C</th>
+      <th style="text-align: center">Swift</th>
+      <th style="text-align: center">Speedup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">well-scaled</td>
+      <td style="text-align: center">1 / 19 ns</td>
+      <td style="text-align: center">1 / 5ns</td>
+      <td style="text-align: center">3.8x</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">poorly-scaled</td>
+      <td style="text-align: center">1 / 22 ns</td>
+      <td style="text-align: center">1 / 22ns</td>
+      <td style="text-align: center">n/a</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Because Swift Numerics’ complex division operation is exposed to the compiler, it allows greater opportunity for optimization when dividing many values by a single divisor (a very common operation). 
+Here’s the same table, if we divide a whole array of values by a single common well-scaled divisor:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Data distribution</th>
+      <th style="text-align: center">C</th>
+      <th style="text-align: center">Swift</th>
+      <th style="text-align: center">Speedup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">well-scaled</td>
+      <td style="text-align: center">1 / 19 ns</td>
+      <td style="text-align: center">1 / 1.8ns</td>
+      <td style="text-align: center">10.6x</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>I have one last trick up my sleeve: if the data is well-scaled, we can use the <code class="language-plaintext highlighter-rouge">reciprocal</code> property and multiply instead, which brings performance up to 1/1.1ns–a 17x speedup!
+This is possible in C as well, of course, but Swift’s optional semantics gives an easy mechanism that makes it safe:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// If divisor is well-scaled, use multiply by reciprocal instead of division.</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">recip</span> <span class="o">=</span> <span class="n">divisor</span><span class="o">.</span><span class="n">reciprocal</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="n">recip</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Otherwise, fallback on using division.</span>
+<span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">/</span> <span class="n">divisor</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Swift Numerics also gives <em>better</em> answers for complex divisions in some especially difficult cases–consider the following test problem, from Baudin &amp; Smith’s paper “A Robust Complex Division in Scilab”:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">Complex</span><span class="p">(</span><span class="mh">0x1p-1074</span><span class="p">,</span> <span class="mh">0x1p-1074</span><span class="p">)</span> <span class="o">/</span> <span class="kt">Complex</span><span class="p">(</span><span class="mh">0x1p-1073</span><span class="p">,</span> <span class="mh">0x1p-1074</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This looks simple enough; if we scale both the numerator and denominator by <code class="language-plaintext highlighter-rouge">0x1p1074</code>, the problem becomes <code class="language-plaintext highlighter-rouge">(1 + i)/(2 + i)</code>, and we can compute the result by hand:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">)(</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Clang (using compiler-rt) produces <code class="language-plaintext highlighter-rouge">(0.5, 0.5)</code> in both C and C++ for this division.
+Python’s complex numbers give a result of <code class="language-plaintext highlighter-rouge">(1.0, 0.0)</code>.
+The <code class="language-plaintext highlighter-rouge">Complex</code> module gives an answer as accurate as you deserve: <code class="language-plaintext highlighter-rouge">(0.6, 0.2)</code>, and does it without sacrificing any performance.</p>
+
+<p>I’m currently working on a patch to make <code class="language-plaintext highlighter-rouge">Complex</code> conform to <code class="language-plaintext highlighter-rouge">ElementaryFunctions</code>, which makes the usual set of transcendental operations available, and brings <code class="language-plaintext highlighter-rouge">Complex</code> up to feature parity with most other languages. Expect this to be available in the next couple weeks.</p>
+
+<h2 id="why-a-package">Why a Package?</h2>
+<p>Why am I doing this work as a package, rather than in the Standard Library?
+There are a few reasons, but the major one is simply that <em>not everything should go into the Standard Library</em>.
+Some pieces of Swift Numerics will probably make their way into the Standard Library over time, but some modules need to have a home that isn’t part of every project by default.
+My goal for Swift Numerics is that it provides a common home for such modules that are centered on numerical computing, just like SwiftNIO does for networking.</p>
+
+<p>Making a package has a few other nice benefits:</p>
+
+<ul>
+  <li>It allows us (me and the Swift community) to develop and release these modules on a schedule that isn’t locked to Swift releases.</li>
+  <li>It allows us to release modules for experimentation before we declare their API stabilized.</li>
+</ul>
+
+<h2 id="future-plans">Future Plans</h2>
+<p>In the next few months, I’ll be working to add important additional functionality to the package.
+In particular, a few of the focus areas will be:</p>
+
+<ul>
+  <li>
+    <p>A <a href="https://github.com/apple/swift-numerics/issues/6"><code class="language-plaintext highlighter-rouge">ShapedArray</code> protocol</a> and supporting types, capable of representing multidimensional homogeneous data.
+If you’ve worked with <a href="https://github.com/tensorflow/swift">S4TF</a> before, you’re already familiar with this concept; otherwise, you may have used NumPy arrays in Python, or Fortran, Matlab or Julia arrays.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-numerics/issues/3">Approximate equality</a> for floating-point types (continuing where <a href="https://forums.swift.org/t/se-0259-approximate-equality-for-floating-point/23627">SE-0259</a> left off).</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-numerics/issues/4">Fixed-width integer types</a> larger than 64 bits.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apple/swift-numerics/issues/8"><code class="language-plaintext highlighter-rouge">Float16</code></a> support.</p>
+  </li>
+</ul>
+
+<p>All of these projects (and others) are tracked on the <a href="https://github.com/apple/swift-numerics/issues">issues page</a> for Swift Numerics.</p>
+
+<h2 id="get-involved">Get Involved!</h2>
+<p>I love working on Swift Numerics, but I want you to get involved, too.</p>
+
+<ul>
+  <li>If you have questions about how to use the package or the modules, there’s a new Swift Numerics area on the forums under “Related Projects.”</li>
+  <li>If there are features that you’d especially to see, please file issues on the github page.</li>
+  <li>Any information you can provide about your use cases for existing issues is also appreciated!</li>
+  <li>If you’d like to help develop Swift Numerics, jump in and ask some questions on one of the issues, or just throw up a PR that we can start iterating on together.
+I’ll do my best to tag good starter bugs, but almost anything can be a starter bug if it catches your interest.
+Let me know that you want to work on it, and I’ll help you get going.</li>
+</ul>
+
+<h2 id="questions">Questions?</h2>
+
+<p>Please feel free to post questions about this post on the <a href="https://forums.swift.org/t/swift-numerics/30576/2">associated thread</a> on the Swift forums.</p>
+
+:ET

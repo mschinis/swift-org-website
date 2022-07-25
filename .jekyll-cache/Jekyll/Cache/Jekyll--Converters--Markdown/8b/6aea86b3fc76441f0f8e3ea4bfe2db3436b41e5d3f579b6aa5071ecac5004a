@@ -1,0 +1,2 @@
+I"<p>Swift has language constructs that allow you to specify your program’s expectations. If these expectations are not met at runtime, the program will be terminated. For example, <em>indexing into an array</em> implicitly expresses an expectation that the index is in bounds:</p>
+:ET

@@ -1,0 +1,57 @@
+I"B<p><strong>Diversity in Swift</strong> is an effort focused on further elevating diverse voices within the Swift community, and making it easier to start learning or contributing to Swift, regardless of your background.</p>
+
+<h2 id="mission">Mission</h2>
+
+<p>The mission of Diversity in Swift is to foster an inclusive Swift community by creating more pathways for a diverse group of developers, increasing the engagement and retention of those developers, and helping developers of all backgrounds establish leadership and technical expertise within the community. Our differences in identity and experience enrich our community with new ideas and perspectives, and we are committed to ensuring that everybody feels supported and valued in the Swift community.</p>
+
+<h2 id="work-group">Work Group</h2>
+
+<p>The Diversity in Swift work group is made up of Swift community members from various organizations and backgrounds. Members of the work group will serve for two years, and they are all volunteers working to fulfill the Diversity in Swift mission.</p>
+
+<p>The current Diversity in Swift work group consists of the following people:</p>
+
+<ul>
+  <li>Devanshi Modha (<a href="https://forums.swift.org/u/devanshimodha">@devanshimodha</a>)</li>
+  <li>Holly Borla (<a href="https://forums.swift.org/u/hborla/">@hborla</a>)</li>
+  <li>Kristina Fox (<a href="https://forums.swift.org/u/kristina/">@kristina</a>)</li>
+  <li>Marc Aupont (<a href="https://forums.swift.org/u/digimarktech">@digimarktech</a>)</li>
+  <li>Paul Hudson (<a href="https://forums.swift.org/u/paul_hudson/">@paul_hudson</a>)</li>
+  <li>Timirah James (<a href="https://forums.swift.org/u/timirahj">@timirahj</a>)</li>
+</ul>
+
+<p>You can reach the Diversity in Swift work group on the Swift Forums as <a href="https://forums.swift.org/g/diversity-work-group">@diversity-work-group</a>.</p>
+
+<h2 id="community-groups">Community Groups</h2>
+
+<p>To support various members of our Swift community, we have created specific community groups for developers to connect with others who have similar experiences and backgrounds. The available community groups are <strong>Women in Swift</strong>, <strong>Black in Swift</strong>, and <strong>Pride in Swift</strong>. These are private, moderated support spaces on the Swift Forums.</p>
+
+<p>If you’re interested in joining one of these groups, please message <a href="https://forums.swift.org/new-message?groupname=diversity-work-group&amp;title=Join+Community+Group&amp;body=1.+Which+community+group(s)+would+you+like+to+join%0D%0A2.+What+support+do+you+hope+to+get+out+of+this+community+group">@diversity-work-group</a> on the Swift Forums, and briefly answer the following questions:</p>
+
+<ol>
+  <li>Which community group(s) would you like to join?</li>
+  <li>What support do you hope to get out of this community group?</li>
+</ol>
+
+<p>Identity is a personal matter that should never be questioned by others. As a community, we are trusting individuals to only request to join community groups that represent their identity. If you are not represented by any of the current community groups, you are still welcome and encouraged to participate in Diversity in Swift! You can find other ways to contribute to this effort in the Community Participation section.</p>
+
+<h2 id="events">Events</h2>
+
+<p>Diversity in Swift will occasionally host virtual events and meetups for networking within the Swift community and the various community groups. You can view and register for upcoming events <a href="https://www.eventbrite.com/o/diversity-in-swift-33499837783">here</a>.</p>
+
+<h2 id="community-focused-blog-on-swiftorg">Community-focused blog on Swift.org</h2>
+
+<p>The Diversity in Swift work group will include posts on the Swift.org blog that recognize and highlight the work being done by developers across our community. The Diversity in Swift work group will use the <a href="https://forums.swift.org/c/community-showcase">Community Showcase</a> to brainstorm ideas and topics for these community-focused blog posts. Please post any recommendations that you think Swift users would be interested in hearing more about on the Community Showcase, along with a brief description of why you found that work helpful or inspiring. Occasionally, the Diversity in Swift work group may also post a Call For Participation to solicit recommendations about a specific Swift topic.</p>
+
+<h2 id="community-participation">Community Participation</h2>
+
+<p>Everyone is welcome to participate in Diversity in Swift! Below are a few specific ways to contribute:</p>
+
+<ul>
+  <li>Joining community groups that you identify with</li>
+  <li>Proposing new community groups or programs</li>
+  <li>Sharing Swift content on the <a href="https://forums.swift.org/c/community-showcase">Community Showcase</a></li>
+  <li>Encouraging participation and highlighting work from developers who are currently underrepresented in the community</li>
+</ul>
+
+<p>Anybody can work toward making the Swift community even more approachable. Members of the community can help newcomers overcome barriers by <a href="/contributing/#answering-questions">answering questions on the Swift Forums</a>, improving <a href="https://github.com/apple/swift/blob/main/docs/README.md">open source Swift documentation</a>, diligently marking appropriate issues as <a href="https://github.com/apple/swift/issues?q=is%3Aopen+is%3Aissue+label%3AStarterBug">starter bugs</a>, and more.</p>
+:ET

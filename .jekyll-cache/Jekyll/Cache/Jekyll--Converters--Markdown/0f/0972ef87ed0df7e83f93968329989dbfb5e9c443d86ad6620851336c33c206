@@ -1,0 +1,6 @@
+I"©<p>At WWDC21, Apple announced Swift-DocC, a new documentation compiler for Swift frameworks and
+packages. Swift-DocC provides an effortless way to author great documentation alongside your code,
+and generate comprehensive documentation websites for Swift codebases. It supports API docs authored
+as code comments, long-form conceptual articles written in Markdown, and even step-by-step tutorials
+with integrated images.</p>
+:ET

@@ -1,0 +1,3 @@
+I"‰<p>An examination of build times of Xcode projects that mix Objective-C and Swift, which can contain large bridging headers, shows that the Swift compiler spends a lot of time re-processing the same bridging headers for all the Swift files in a project.
+In certain projects, each additional Swift file increases the overall build time noticeably, even when the Swift file is quite modest.</p>
+:ET

@@ -1,0 +1,2 @@
+I"�<p>In June, Apple introduced Swift System, a new library for Apple platforms that provides idiomatic interfaces to system calls and low-level currency types. Today, I’m excited to announce that we’re open-sourcing <a href="https://github.com/apple/swift-system">System</a> and adding Linux support! Our vision is for System to eventually act as the single home for low-level system interfaces for all supported Swift platforms.</p>
+:ET

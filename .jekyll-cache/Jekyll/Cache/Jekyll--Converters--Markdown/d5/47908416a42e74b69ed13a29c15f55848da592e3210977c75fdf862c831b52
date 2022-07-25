@@ -1,0 +1,134 @@
+I"�;<p>It is my pleasure to announce a new open source project for the Swift Server ecosystem, <a href="https://github.com/swift-server/swift-aws-lambda-runtime/">Swift AWS Lambda Runtime</a>. Distributed as a Swift package, the Swift AWS Lambda Runtime is designed to help Swift developers build serverless functions for the <a href="https://aws.amazon.com/lambda/">Amazon Web Services Lambda platform</a>.</p>
+
+<p>The project is a group effort that included engineers across the Swift community, including engineers from Apple and Amazon. Notably <a href="https://github.com/fabianfett">Fabian Fett</a> pioneered the work in the community and co-authored the library. As an open source library, anyone interested in contributing to the project can easily join in to help make it better.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Many modern systems have client components, like iOS, macOS or watchOS applications, as well as server components with which those clients interact. Serverless functions are often the easiest and most efficient way for client application developers to extend their applications into the cloud.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Serverless_computing">Serverless functions</a> are becoming an increasingly popular choice for running event-driven or otherwise ad-hoc compute tasks in the cloud. They power mission critical microservices and data intensive workloads. In many cases, serverless functions allow developers to more easily scale and control compute costs given their on-demand nature.</p>
+
+<p>When using serverless functions, attention must be given to resource utilization as it directly impacts the costs of the system. This is where Swift shines! With its low memory footprint, deterministic performance, and quick start time, Swift is a fantastic match for the serverless functions architecture.</p>
+
+<p>Combine this with Swift’s developer friendliness, expressiveness, and emphasis on safety, and we have a solution that is great for developers at all skill levels, scalable, and cost effective.</p>
+
+<p>Swift AWS Lambda Runtime was designed to make building Lambda functions in Swift simple and safe. The library is an implementation of the <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">AWS Lambda Runtime API</a> and uses an embedded asynchronous HTTP Client that is fine-tuned for performance in the AWS Runtime context. The library provides a multi-tier API that allows building a range of Lambda functions: From quick and simple closures to complex, performance-sensitive event handlers.</p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<h3 id="using-closures">Using Closures</h3>
+
+<p>The simplest way to use AWS Lambda Runtime is to pass in a closure, for example:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the module</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaRuntime</span>
+
+<span class="c1">// In this example we are receiving and responding with strings</span>
+<span class="kt">Lambda</span><span class="o">.</span><span class="n">run</span> <span class="p">{</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="nv">payload</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="k">in</span>
+  <span class="nf">callback</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="s">"Hello, </span><span class="se">\(</span><span class="n">payload</span><span class="se">)</span><span class="s">"</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>More commonly, the payload would be a JSON, which is modeled using <code class="language-plaintext highlighter-rouge">Codable</code>, for example:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the module</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaRuntime</span>
+
+<span class="c1">// Request, uses Codable for transparent JSON encoding</span>
+<span class="kd">private</span> <span class="kd">struct</span> <span class="kt">Request</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="c1">// Response, uses Codable for transparent JSON encoding</span>
+<span class="kd">private</span> <span class="kd">struct</span> <span class="kt">Response</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="c1">// In this example we are receiving and responding with JSON using Codable</span>
+<span class="kt">Lambda</span><span class="o">.</span><span class="n">run</span> <span class="p">{</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="nv">request</span><span class="p">:</span> <span class="kt">Request</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="k">in</span>
+  <span class="nf">callback</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kt">Response</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="s">"Hello, </span><span class="se">\(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s">"</span><span class="p">)))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Since Lambda functions are often triggered by events originating from the AWS platform such as <a href="https://aws.amazon.com/sns/">SNS</a>, <a href="https://aws.amazon.com/sqs">SQS</a>, or <a href="https://aws.amazon.com/s3">S3</a> events,  the package also includes an <code class="language-plaintext highlighter-rouge">AWSLambdaEvents</code> module providing implementations for these common trigger event types. For example, handling a <code class="language-plaintext highlighter-rouge">SQS</code> message:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the modules</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaRuntime</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaEvents</span>
+
+<span class="c1">// In this example we are receiving a SQS Message, with no response (Void)</span>
+<span class="kt">Lambda</span><span class="o">.</span><span class="n">run</span> <span class="p">{</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">SQS</span><span class="o">.</span><span class="kt">Message</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="k">in</span>
+  <span class="o">...</span>
+  <span class="nf">callback</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kt">Void</span><span class="p">()))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In addition to these common trigger events, <code class="language-plaintext highlighter-rouge">AWSLambdaEvents</code> also includes abstractions for integrating Lambda functions with <a href="https://aws.amazon.com/api-gateway/">APIGateway</a> - an AWS system that helps exposing Lambda function as HTTP endpoints.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the modules</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaRuntime</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaEvents</span>
+
+<span class="c1">// In this example we are receiving an APIGateway.V2.Request,</span>
+<span class="c1">// and respoding with APIGateway.V2.Response</span>
+<span class="kt">Lambda</span><span class="o">.</span><span class="n">run</span> <span class="p">{</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="nv">request</span><span class="p">:</span> <span class="kt">APIGateway</span><span class="o">.</span><span class="kt">V2</span><span class="o">.</span><span class="kt">Request</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="k">in</span>
+   <span class="o">...</span>
+   <span class="nf">callback</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kt">APIGateway</span><span class="o">.</span><span class="kt">V2</span><span class="o">.</span><span class="kt">Response</span><span class="p">(</span><span class="nv">statusCode</span><span class="p">:</span> <span class="o">.</span><span class="n">accepted</span><span class="p">)))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="using-eventlooplambdahandler">Using EventLoopLambdaHandler</h3>
+
+<p>Modeling Lambda functions as closures is both simple and safe. Swift AWS Lambda Runtime will ensure that the user-provided function is offloaded from the network processing thread to its own thread so that even if the code becomes slow or unresponsive, the underlying Lambda process can continue and interact with the Runtime engine. This safety comes at a small performance penalty from context switching between the networking and processing threads. In most cases, the simplicity and safety of using the Closure-based API is preferred over the complexity of the performance-oriented API detailed below.</p>
+
+<p>Performance-sensitive Lambda functions may choose to use a more complex API which allows the user code to run on the same thread as the networking handlers. Swift AWS Lambda Runtime uses <a href="https://www.github.com/apple/swift-nio">SwiftNIO</a> as its underlying networking engine, which means these APIs are based on SwiftNIO’s concurrency primitives like the <code class="language-plaintext highlighter-rouge">EventLoop</code> and <code class="language-plaintext highlighter-rouge">EventLoopFuture</code>.</p>
+
+<p>For example, handling an <code class="language-plaintext highlighter-rouge">SNS</code> message:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the modules</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaRuntime</span>
+<span class="kd">import</span> <span class="kt">AWSLambdaEvents</span>
+<span class="kd">import</span> <span class="kt">NIO</span>
+
+<span class="c1">// Our Lambda handler, conforms to EventLoopLambdaHandler</span>
+<span class="kd">struct</span> <span class="kt">Handler</span><span class="p">:</span> <span class="kt">EventLoopLambdaHandler</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">In</span> <span class="o">=</span> <span class="kt">SNS</span><span class="o">.</span><span class="kt">Message</span> <span class="c1">// Request type</span>
+    <span class="kd">typealias</span> <span class="kt">Out</span> <span class="o">=</span> <span class="kt">Void</span> <span class="c1">// Response type, or Void</span>
+
+    <span class="c1">// In this example we are receiving a SNS Message, with no response (Void)</span>
+    <span class="kd">func</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt">Lambda</span><span class="o">.</span><span class="kt">Context</span><span class="p">,</span> <span class="nv">payload</span><span class="p">:</span> <span class="kt">In</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EventLoopFuture</span><span class="o">&lt;</span><span class="kt">Out</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">eventLoop</span><span class="o">.</span><span class="nf">makeSucceededFuture</span><span class="p">(</span><span class="kt">Void</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">Lambda</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="kt">Handler</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>Beyond the cognitive complexity of using the <code class="language-plaintext highlighter-rouge">EventLoopFuture</code> based APIs, note that these APIs should be used with extra care. An <code class="language-plaintext highlighter-rouge">EventLoopLambdaHandler</code> will execute the user-provided function on the same <code class="language-plaintext highlighter-rouge">EventLoop</code> (thread) as the library’s networking engine, putting a requirement on the implementation to never block the underlying  <code class="language-plaintext highlighter-rouge">EventLoop</code>. In other words, the Lambda code should never use blocking API calls as it might prevent the library from interacting with the Lambda platform.</p>
+
+<h2 id="additional-resources">Additional resources</h2>
+
+<p>Additional documentation and examples can be found in the project’s <a href="https://github.com/swift-server/swift-aws-lambda-runtime">readme</a>.</p>
+
+<h2 id="project-status">Project Status</h2>
+
+<p>This is the beginning of a community-driven open-source project actively seeking contributions.
+While the core API is considered stable, the API may still evolve as it gets closer to a <code class="language-plaintext highlighter-rouge">1.0</code> version.
+There are several areas which need additional attention, including but not limited to:</p>
+
+<ul>
+  <li>Further performance tuning</li>
+  <li>Additional trigger events</li>
+  <li>Additional documentation and best practices</li>
+  <li>Additional examples</li>
+</ul>
+
+<h2 id="getting-involved">Getting Involved</h2>
+
+<p>If you are interested in Swift AWS Lambda Runtime, come and get involved! The <a href="https://github.com/swift-server/swift-aws-lambda-runtime">source is available</a>, and we encourage contributions from the open source community. If you have feedback, questions or would like to discuss the project, please feel free to chat on the <a href="https://forums.swift.org/c/server">Swift forums</a>. If you would like to report bugs, please use <a href="https://github.com/swift-server/swift-aws-lambda-runtime/issues">the GitHub issue tracker</a>. We look forward to working with you, and helping move the industry forward to a better, safer programming future.</p>
+
+<h3 id="questions">Questions?</h3>
+
+<p>Please feel free to post questions about this post on the <a href="https://forums.swift.org/t/announcing-swift-aws-lambda-runtime/37009">associated thread</a> on the <a href="https://forums.swift.org">Swift forums</a>.</p>
+:ET
