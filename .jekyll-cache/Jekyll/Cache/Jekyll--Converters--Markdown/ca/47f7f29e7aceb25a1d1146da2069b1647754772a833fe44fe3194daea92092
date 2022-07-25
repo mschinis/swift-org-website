@@ -1,0 +1,100 @@
+I"e(<p>I’m excited to announce <a href="https://github.com/apple/swift-algorithms">Swift Algorithms</a>, a new open-source package of sequence and collection algorithms, along with their related types.</p>
+
+<p>Algorithms are powerful tools for thought because they encapsulate difficult-to-read and error-prone raw loops. The <code class="language-plaintext highlighter-rouge">Algorithms</code> package includes a host of powerful, generic algorithms frequently found in other popular programming languages. We hope this new package will help people <a href="https://developer.apple.com/videos/play/wwdc2018/223/">embrace algorithms</a>, improving the correctness and performance of their code.</p>
+
+<h2 id="a-brief-tour">A Brief Tour</h2>
+
+<p>With the <code class="language-plaintext highlighter-rouge">Algorithms</code> package’s initial set of sequence and collection operations, you can cycle over a collection’s elements, find combinations and permutations, create a random sample, and more.</p>
+
+<p>One inclusion is a pair of <code class="language-plaintext highlighter-rouge">chunked</code> methods, each of which break a collection into consecutive subsequences. One version tests adjacent elements to find the breaking point between chunks — you can use it to quickly separate an array into ascending runs:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">chunks</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="nf">chunked</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">&lt;=</span> <span class="nv">$1</span> <span class="p">})</span>
+<span class="c1">// [[10, 20, 30], [10, 40, 40], [10, 20]]</span>
+</code></pre></div></div>
+
+<p>The other version looks for a change in the transformation of each successive value. You can use that to separate a list of names into groups by the first character:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Cassie"</span><span class="p">,</span> <span class="s">"Chloe"</span><span class="p">,</span> <span class="s">"Jasmine"</span><span class="p">,</span> <span class="s">"Jordan"</span><span class="p">,</span> <span class="s">"Taylor"</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">chunks</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="nf">chunked</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
+<span class="c1">// [["Cassie", "Chloe"], ["Jasmine", "Jordan"], ["Taylor"]] </span>
+</code></pre></div></div>
+
+<p>You can read more about <code class="language-plaintext highlighter-rouge">chunked</code> or any of the other components in the <code class="language-plaintext highlighter-rouge">Algorithms</code> package in the included guides:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Combinations.md">Combinations</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Permutations.md">Permutations</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Product.md">Product</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Chunked.md">Chunked</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Chain.md">Chain</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Cycle.md">Cycle</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Unique.md">Unique</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/RandomSampling.md">Random Sampling</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Indexed.md">Indexed</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Partition.md">Partition</a></li>
+  <li><a href="https://github.com/apple/swift-algorithms/blob/main/Guides/Rotate.md">Rotate</a></li>
+</ul>
+
+<h2 id="relation-to-the-swift-standard-library">Relation to the Swift Standard Library</h2>
+
+<p>It’s our ambition for the standard library to include a rich, pragmatic set of generic algorithms. We think the <code class="language-plaintext highlighter-rouge">Algorithms</code> package can help realize this goal by serving as a low-friction venue to build out new families of related algorithms—giving us an opportunity to iteratively explore the problem space and learn how different algorithms connect and interact—before graduating them into the standard library.</p>
+
+<p>Packages like Swift Algorithms (and <a href="https://github.com/apple/swift-numerics">Swift Numerics</a>) complement the Swift Evolution process by providing a means to:</p>
+
+<ul>
+  <li>Engage the community earlier in the development process</li>
+  <li>Channel contributions towards active areas of focus</li>
+  <li>Solicit feedback informed by real-world usage</li>
+  <li>Coherently tackle large tracts of missing functionality</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">Algorithms</code> package is, in part, a response to the lengthy <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0270-rangeset-and-collection-operations.md">SE-0270</a> review and follow-up <a href="https://forums.swift.org/t/evolution-process-discussion/33272">Evolution process discussion</a>. With SE-0270, we faced a tension in providing a proposal small enough to make effective use of the Swift discussion forums, but large enough to motivate and ensure the consistency of the additions. Going forward, we plan to experiment with chopping up families of related algorithms into multiple, smaller Evolution proposals, using the presence of the <code class="language-plaintext highlighter-rouge">Algorithms</code> package to provide additional context.</p>
+
+<p>However, just because an addition might be a good candidate for inclusion in the <code class="language-plaintext highlighter-rouge">Algorithms</code> package, it doesn’t need to begin its life there. This is <em>not</em> a change to the <a href="https://github.com/apple/swift-evolution/blob/main/process.md">Swift Evolution process</a>. Well-supported pitches will continue to be considered, as always.</p>
+
+<h2 id="contribution-criteria">Contribution Criteria</h2>
+
+<p>The immediate focus of the package is to incubate a pragmatic set of algorithms generalized over the <code class="language-plaintext highlighter-rouge">Sequence</code> and <code class="language-plaintext highlighter-rouge">Collection</code> family of protocols for eventual inclusion in the Swift standard library—the kind of functionality you might find in the Python <a href="https://docs.python.org/3/library/itertools.html">itertools</a> module or the C++ <a href="https://en.cppreference.com/w/cpp/algorithm">algorithms</a> library.</p>
+
+<p>There are many interesting and useful abstractions that <em>don’t</em> meet this criteria. For example:</p>
+
+<ul>
+  <li>Currency types (e.g. <code class="language-plaintext highlighter-rouge">Result</code>) and data structures (e.g. <code class="language-plaintext highlighter-rouge">OrderedDictionary</code>)</li>
+  <li>One-off conveniences (e.g. <code class="language-plaintext highlighter-rouge">Dictionary.subscript(key:default:)</code>) that don’t generalize over <code class="language-plaintext highlighter-rouge">Sequence</code> or <code class="language-plaintext highlighter-rouge">Collection</code></li>
+  <li>Classic algorithms (e.g. quicksort, merge sort, heapsort, insertion sort, etc.) with more pragmatic alternatives</li>
+  <li>Algorithms over non-linear data structures</li>
+</ul>
+
+<p>For any addition to the <code class="language-plaintext highlighter-rouge">Algorithms</code> package, an effort should be made to gather use cases and examine the way the topic has been explored in other languages and on other platforms. To evaluate its suitability, we should ask:</p>
+
+<ul>
+  <li>Does it aid readability?</li>
+  <li>Is it a common operation?</li>
+  <li>Is it consistent with existing abstractions?</li>
+  <li>Does it help avoid a correctness trap?</li>
+  <li>Does it help avoid a performance trap?</li>
+</ul>
+
+<p>… or conversely:</p>
+
+<ul>
+  <li>Is it trivially composable? (e.g. <code class="language-plaintext highlighter-rouge">!isEmpty</code>)</li>
+  <li>Might it encourage misuse?</li>
+</ul>
+
+<h2 id="get-involved">Get Involved!</h2>
+
+<p>Your experience, feedback, and contributions are greatly encouraged!</p>
+
+<ul>
+  <li>Get started by trying out the <a href="https://github.com/apple/swift-algorithms">Swift Algorithms library on GitHub</a>,</li>
+  <li>Discuss the library and get help in the <a href="https://forums.swift.org/c/related-projects/algorithms">Swift Algorithms forum</a>,</li>
+  <li><a href="https://github.com/apple/swift-algorithms/issues">Open an issue</a> with problems you find or ideas you have for improvements,</li>
+  <li>And as noted above, <a href="https://github.com/apple/swift-algorithms/pulls">pull requests are welcome</a> for fixes or for new algorithms that meet the criteria of the package!</li>
+</ul>
+
+<h2 id="questions">Questions?</h2>
+
+<p>Please feel free to ask questions about this post in the <a href="https://forums.swift.org/t/introducing-swift-algorithms/40997">associated thread</a> on the <a href="https://forums.swift.org/">Swift forums</a>.</p>
+:ET

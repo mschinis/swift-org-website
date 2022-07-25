@@ -1,0 +1,320 @@
+I"`k<p>In the latest release of Swift,
+dictionaries and sets gain a number of new methods and initializers
+that make common tasks easier than ever.
+Operations like grouping, filtering, and transforming values
+can now be performed in a single step,
+letting you write more expressive and efficient code.</p>
+
+<p>This post explores these new transformations,
+using some grocery data for a market as an example.
+This custom <code class="language-plaintext highlighter-rouge">GroceryItem</code> struct,
+made up of a name and a department,
+will serve as the data type:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">GroceryItem</span><span class="p">:</span> <span class="kt">Hashable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">var</span> <span class="nv">department</span><span class="p">:</span> <span class="kt">Department</span>
+
+    <span class="kd">enum</span> <span class="kt">Department</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">bakery</span><span class="p">,</span> <span class="n">produce</span><span class="p">,</span> <span class="n">seafood</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">GroceryItem</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">GroceryItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="nf">return</span> <span class="p">(</span><span class="n">lhs</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">lhs</span><span class="o">.</span><span class="n">department</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">rhs</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">rhs</span><span class="o">.</span><span class="n">department</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="c1">// Combine the hash values for the name and department</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">hashValue</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">department</span><span class="o">.</span><span class="n">hashValue</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create some groceries for our store:</span>
+<span class="k">let</span> <span class="nv">🍎</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Apples"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">produce</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">🍌</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Bananas"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">produce</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">🥐</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Croissants"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">bakery</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">🐟</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Salmon"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">seafood</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">🍇</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Grapes"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">produce</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">🍞</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Bread"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">bakery</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">🍤</span> <span class="o">=</span> <span class="kt">GroceryItem</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Shrimp"</span><span class="p">,</span> <span class="nv">department</span><span class="p">:</span> <span class="o">.</span><span class="n">seafood</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">groceries</span> <span class="o">=</span> <span class="p">[</span><span class="n">🍎</span><span class="p">,</span> <span class="n">🍌</span><span class="p">,</span> <span class="n">🥐</span><span class="p">,</span> <span class="n">🐟</span><span class="p">,</span> <span class="n">🍇</span><span class="p">,</span> <span class="n">🍞</span><span class="p">,</span> <span class="n">🍤</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>The examples that follow use the <code class="language-plaintext highlighter-rouge">groceries</code> array
+to build and transform dictionaries with these new tools.</p>
+
+<h2 id="grouping-values-by-a-key">Grouping Values by a Key</h2>
+
+<p><img alt="Grouping groceries by their department" src="https://swift.org/assets/images/dictionary-blog/grouping.png" srcset="https://swift.org/assets/images/dictionary-blog/grouping_2x.png 2x" class="dictionary-blog" /></p>
+
+<p>A new grouping initializer makes it a snap
+to build a dictionary from a sequence of values,
+grouped by keys computed from those values.
+We’ll use this new initializer to build a dictionary of groceries
+grouped by their department.</p>
+
+<p>To do this in earlier versions of Swift,
+you used iteration to build up a dictionary from scratch.
+This required type annotations, manual iteration,
+and a check to see if each key already existed in the dictionary.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Swift &lt;= 3.1</span>
+<span class="k">var</span> <span class="nv">grouped</span><span class="p">:</span> <span class="p">[</span><span class="kt">GroceryItem</span><span class="o">.</span><span class="kt">Department</span><span class="p">:</span> <span class="p">[</span><span class="kt">GroceryItem</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[:]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="k">in</span> <span class="n">groceries</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">grouped</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">department</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="n">grouped</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">department</span><span class="p">]</span><span class="o">!.</span><span class="nf">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">grouped</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">department</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With this update to Swift,
+you can use the <code class="language-plaintext highlighter-rouge">Dictionary(grouping:by)</code> initializer to create the same dictionary
+with a single line of code.
+Pass a closure that returns a key for each element in your array.
+In the following code, the closure returns the department for each grocery item:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Swift 4.0</span>
+<span class="k">let</span> <span class="nv">groceriesByDepartment</span> <span class="o">=</span> <span class="kt">Dictionary</span><span class="p">(</span><span class="nv">grouping</span><span class="p">:</span> <span class="n">groceries</span><span class="p">,</span>
+                                       <span class="nv">by</span><span class="p">:</span> <span class="p">{</span> <span class="n">item</span> <span class="k">in</span> <span class="n">item</span><span class="o">.</span><span class="n">department</span> <span class="p">})</span>
+<span class="c1">// groceriesByDepartment[.bakery] == [🥐, 🍞]</span>
+</code></pre></div></div>
+
+<p>The resulting <code class="language-plaintext highlighter-rouge">groceriesByDepartment</code> dictionary
+has an entry for each department in the list of groceries.
+The value for each key is an array of the groceries within that department,
+in the same order as the original list.
+Using <code class="language-plaintext highlighter-rouge">.bakery</code> as a key in <code class="language-plaintext highlighter-rouge">groceriesByDepartment</code> gives you the array <code class="language-plaintext highlighter-rouge">[🥐, 🍞]</code>.</p>
+
+<h2 id="transforming-a-dictionarys-values">Transforming a Dictionary’s Values</h2>
+
+<p>You can transform the values of a dictionary,
+while keeping the same keys,
+by using the new <code class="language-plaintext highlighter-rouge">mapValues(_:)</code> method.
+This code transforms the arrays of items in <code class="language-plaintext highlighter-rouge">groceriesByDepartment</code> into their counts,
+creating a lookup table for the number of items in each department:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">departmentCounts</span> <span class="o">=</span> <span class="n">groceriesByDepartment</span><span class="o">.</span><span class="n">mapValues</span> <span class="p">{</span> <span class="n">items</span> <span class="k">in</span> <span class="n">items</span><span class="o">.</span><span class="n">count</span> <span class="p">}</span>
+<span class="c1">// departmentCounts[.bakery] == 2</span>
+</code></pre></div></div>
+
+<p>Because the dictionary has all the same keys, 
+just with different values, 
+it can use the same internal layout as the original dictionary 
+and doesn’t need to recompute any hash values. 
+This makes calling <code class="language-plaintext highlighter-rouge">mapValues(_:)</code> faster 
+than rebuilding the dictionary from scratch.</p>
+
+<h2 id="building-dictionaries-from-key-value-pairs">Building Dictionaries from Key-Value Pairs</h2>
+
+<p><img alt="Building a dictionary from names and values" src="https://swift.org/assets/images/dictionary-blog/uniqueKeys.png" srcset="https://swift.org/assets/images/dictionary-blog/uniqueKeys_2x.png 2x" class="dictionary-blog" /></p>
+
+<p>You can now create dictionaries
+from sequences of key-value pairs
+using two different initializers:
+one for when you have unique keys,
+and one for when you might have keys that repeat.</p>
+
+<p>If you start with a sequence of keys and a sequence of values,
+you can combine them 
+into a single sequence of pairs 
+using the <code class="language-plaintext highlighter-rouge">zip(_:_:)</code> function.
+For example,
+this code creates a sequence of tuples
+with the name of a grocery item and the item itself:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">zippedNames</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="n">groceries</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">name</span> <span class="p">},</span> <span class="n">groceries</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Each element of <code class="language-plaintext highlighter-rouge">zippedNames</code> is a <code class="language-plaintext highlighter-rouge">(String, GroceryItem)</code> tuple,
+the first of which is <code class="language-plaintext highlighter-rouge">("Apples", 🍎)</code>.
+Because every grocery item has a unique name,
+the following code successfully creates a dictionary
+that uses names as keys for grocery items:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">groceriesByName</span> <span class="o">=</span> <span class="kt">Dictionary</span><span class="p">(</span><span class="nv">uniqueKeysWithValues</span><span class="p">:</span> <span class="n">zippedNames</span><span class="p">)</span>
+<span class="c1">// groceriesByName["Apples"] == 🍎</span>
+<span class="c1">// groceriesByName["Kumquats"] == nil</span>
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">Dictionary(uniqueKeysWithValues:)</code> initializer only when you’re sure
+that your data has unique keys.
+Any duplicated keys in the sequence will trigger a runtime error.</p>
+
+<p>If your data has (or might have) repeated keys,
+use the new merging initializer, <code class="language-plaintext highlighter-rouge">Dictionary(_:uniquingKeysWith:)</code>.
+This initializer takes a sequence of key-value pairs
+along with a closure that is called whenever a key is repeated.
+The <em>uniquing</em> closure takes the first and second value
+that share the same key as arguments,
+and can return the existing value,
+the new value,
+or combine them however you decide.</p>
+
+<p>For example,
+the following code converts an array of <code class="language-plaintext highlighter-rouge">(String, String)</code> tuples
+into a dictionary by using <code class="language-plaintext highlighter-rouge">Dictionary(_:uniquingKeysWith:)</code>.
+Note that <code class="language-plaintext highlighter-rouge">"dog"</code> is the key in two of the key-value pairs.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="s">"dog"</span><span class="p">,</span> <span class="s">"🐕"</span><span class="p">),</span> <span class="p">(</span><span class="s">"cat"</span><span class="p">,</span> <span class="s">"🐱"</span><span class="p">),</span> <span class="p">(</span><span class="s">"dog"</span><span class="p">,</span> <span class="s">"🐶"</span><span class="p">),</span> <span class="p">(</span><span class="s">"bunny"</span><span class="p">,</span> <span class="s">"🐰"</span><span class="p">)]</span>
+<span class="k">let</span> <span class="nv">petmoji</span> <span class="o">=</span> <span class="kt">Dictionary</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span>
+                         <span class="nv">uniquingKeysWith</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="k">new</span><span class="p">)</span> <span class="k">in</span> <span class="k">new</span> <span class="p">})</span>
+<span class="c1">// petmoji["cat"] == "🐱"</span>
+<span class="c1">// petmoji["dog"] == "🐶"</span>
+</code></pre></div></div>
+
+<p>When the second key-value pair with the key <code class="language-plaintext highlighter-rouge">"dog"</code> is reached,
+the uniquing closure is called with the old and new values (<code class="language-plaintext highlighter-rouge">"🐕"</code> and <code class="language-plaintext highlighter-rouge">"🐶"</code>).
+Because the closure always returns its second parameter,
+the result has <code class="language-plaintext highlighter-rouge">"🐶"</code> as the value for the <code class="language-plaintext highlighter-rouge">"dog"</code> key.</p>
+
+<h2 id="selecting-certain-entries">Selecting Certain Entries</h2>
+
+<p>Dictionaries now have a <code class="language-plaintext highlighter-rouge">filter(_:)</code> method that returns a dictionary,
+not just an array of key-value pairs,
+like in earlier versions of Swift.
+Pass a closure that takes a key-value pair as its argument
+and returns <code class="language-plaintext highlighter-rouge">true</code> if that pair should be in the result.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">isOutOfStock</span><span class="p">(</span><span class="n">_</span> <span class="nv">item</span><span class="p">:</span> <span class="kt">GroceryItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="c1">// Looks up `item` in inventory</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">outOfStock</span> <span class="o">=</span> <span class="n">groceriesByName</span><span class="o">.</span><span class="n">filter</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="k">in</span> <span class="nf">isOutOfStock</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">}</span>
+<span class="c1">// outOfStock["Croissants"] == 🥐</span>
+<span class="c1">// outOfStock["Apples"] == nil</span>
+</code></pre></div></div>
+
+<p>This code calls an <code class="language-plaintext highlighter-rouge">isOutOfStock(_:)</code> function on each item,
+keeping only the grocery items that are out of stock.</p>
+
+<h2 id="using-default-values">Using Default Values</h2>
+
+<p>Dictionaries now have a second key-based subscript
+that makes it easier to get and update values.
+The following code defines a simple shopping cart,
+implemented as a dictionary of items and their counts:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Begin with a single banana</span>
+<span class="k">var</span> <span class="nv">cart</span> <span class="o">=</span> <span class="p">[</span><span class="nv">🍌</span><span class="p">:</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Because some keys may not have corresponding values in the dictionary,
+when you use a key to look up a value, the result is optional.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// One banana:</span>
+<span class="n">cart</span><span class="p">[</span><span class="n">🍌</span><span class="p">]</span>    <span class="c1">// Optional(1)</span>
+<span class="c1">// But no shrimp:</span>
+<span class="n">cart</span><span class="p">[</span><span class="n">🍤</span><span class="p">]</span>    <span class="c1">// nil</span>
+</code></pre></div></div>
+
+<p>Instead of using the nil coalescing operator (<code class="language-plaintext highlighter-rouge">??</code>)
+to turn optional values into the actual count you need,
+you can now subscript a dictionary with a key and a <code class="language-plaintext highlighter-rouge">default</code> parameter.
+If the key is found,
+its value is returned and the default is ignored.
+If the key isn’t found,
+the subscript returns the default value you provided.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Still one banana:</span>
+<span class="n">cart</span><span class="p">[</span><span class="n">🍌</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span>    <span class="c1">// 1</span>
+<span class="c1">// And zero shrimp:</span>
+<span class="n">cart</span><span class="p">[</span><span class="n">🍤</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span>    <span class="c1">// 0</span>
+</code></pre></div></div>
+
+<p>You can even modify a value through the new subscript,
+simplifying the code needed to add new items to the cart.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">item</span> <span class="k">in</span> <span class="p">[</span><span class="n">🍌</span><span class="p">,</span> <span class="n">🍌</span><span class="p">,</span> <span class="n">🍞</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">cart</span><span class="p">[</span><span class="n">item</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When this loop processes each banana (<code class="language-plaintext highlighter-rouge">🍌</code>),
+the current value is retrieved, incremented,
+and stored back into the dictionary.
+When it’s time to add the loaf of bread (<code class="language-plaintext highlighter-rouge">🍞</code>),
+the dictionary doesn’t find the key,
+and instead returns the <em>default value</em> (<code class="language-plaintext highlighter-rouge">0</code>).
+After that value is incremented,
+the dictionary adds the new key-value pair.</p>
+
+<p>At the end of the loop, <code class="language-plaintext highlighter-rouge">cart</code> is <code class="language-plaintext highlighter-rouge">[🍌: 3, 🍞: 1]</code>.</p>
+
+<h2 id="merging-two-dictionaries-into-one">Merging Two Dictionaries into One</h2>
+
+<p>In addition to easier incremental changes,
+dictionaries now make it simpler to make changes in bulk,
+with methods that merge one dictionary into another.</p>
+
+<p><img alt="Merging two carts together" src="https://swift.org/assets/images/dictionary-blog/merging.png" srcset="https://swift.org/assets/images/dictionary-blog/merging_2x.png 2x" class="dictionary-blog" /></p>
+
+<p>To merge the contents of <code class="language-plaintext highlighter-rouge">cart</code> and another dictionary,
+you can use the mutating <code class="language-plaintext highlighter-rouge">merge(_:uniquingKeysWith:)</code> method.
+The uniquing closure that you pass works the same way
+as in the <code class="language-plaintext highlighter-rouge">Dictionary(_:uniquingKeysWith:)</code> initializer:
+It’s called whenever there are two values with the same key,
+and returns one, the other, or a combination of the values.</p>
+
+<p>In this example,
+passing the addition operator as the <code class="language-plaintext highlighter-rouge">uniquingKeysWith</code> parameter
+adds together any counts for matching keys,
+so the updated cart has the correct total for each item:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">otherCart</span> <span class="o">=</span> <span class="p">[</span><span class="nv">🍌</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">🍇</span><span class="p">:</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">cart</span><span class="o">.</span><span class="nf">merge</span><span class="p">(</span><span class="n">otherCart</span><span class="p">,</span> <span class="nv">uniquingKeysWith</span><span class="p">:</span> <span class="o">+</span><span class="p">)</span>
+<span class="c1">// cart == [🍌: 5, 🍇: 3, 🍞: 1]</span>
+</code></pre></div></div>
+
+<p>To create a new dictionary
+with the merged contents instead of merging in place,
+use the nonmutating <code class="language-plaintext highlighter-rouge">merging(_:uniquingKeysWith:)</code> method.</p>
+
+<h2 id="and-thats-not-all">And That’s Not All…</h2>
+
+<p>There are a few more additions we haven’t covered.
+Dictionaries now have custom <code class="language-plaintext highlighter-rouge">keys</code> and <code class="language-plaintext highlighter-rouge">values</code> collections with new capabilities.
+The <code class="language-plaintext highlighter-rouge">keys</code> collection maintains fast key lookup,
+while the mutable <code class="language-plaintext highlighter-rouge">values</code> collection lets you modify values in place.</p>
+
+<p>Like dictionaries,
+sets gain a new <code class="language-plaintext highlighter-rouge">filter(_:)</code> method that returns a set of the same type,
+instead of an array like in earlier versions of Swift.
+And finally,
+both sets and dictionaries now expose their current capacity
+and add a <code class="language-plaintext highlighter-rouge">reserveCapacity(_:)</code> method.
+With these additions you can see and control the size of their internal storage.</p>
+
+<p>Other than the custom <code class="language-plaintext highlighter-rouge">keys</code> and <code class="language-plaintext highlighter-rouge">values</code> collections,
+all these changes are available in Swift 3.2.
+Even if you haven’t yet switched to using Swift 4.0,
+you can start taking advantage of these improvements today!</p>
+
+<p>You can find more information about all these new capabilities
+in the <a href="https://developer.apple.com/documentation/swift/dictionary">Dictionary</a> and <a href="https://developer.apple.com/documentation/swift/set">Set</a> documentation,
+or read more about the rationale behind the additions
+in the Swift Evolution proposals for the
+<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0154-dictionary-key-and-value-collections.md">custom <code class="language-plaintext highlighter-rouge">keys</code> and <code class="language-plaintext highlighter-rouge">values</code> collections</a> and
+<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0165-dict.md">other dictionary and set enhancements</a>.</p>
+
+<style type="text/css">
+img.dictionary-blog {
+    float: right;
+    padding: 10px;
+}
+pre {
+    clear: right;
+}
+@media only screen and (max-width: 480px) {
+    img.dictionary-blog {
+        float: none;
+        padding: 0;
+        width: 100%;
+        margin: 1em 0 0;
+    }
+}
+</style>
+
+:ET

@@ -1,0 +1,78 @@
+I"�*<h2 id="security-process">Security Process</h2>
+
+<p>For the protection of our community, Swift.org doesn’t disclose, discuss, or confirm security issues until our investigation is complete and any necessary updates are generally available.</p>
+
+<p>Recent security updates are listed in the <a href="#security-updates">Security Updates</a> section below.</p>
+
+<p>Swift.org security documents reference vulnerabilities by <a href="https://www.cve.org/About/Overview">CVE-ID</a> when possible.</p>
+
+<h3 id="reporting-a-security-or-privacy-vulnerability">Reporting a security or privacy vulnerability</h3>
+
+<p>If you believe you have discovered a security or privacy vulnerability in a Swift.org project, please report it to us.
+We welcome reports from everyone, including security researchers, developers, and users.</p>
+
+<p>To report a security or privacy vulnerability, please send an email to <a href="mailto:cve@forums.swift.org">cve@forums.swift.org</a> that includes:</p>
+
+<ul>
+  <li>The specific project and software version(s) which you believe are affected</li>
+  <li>A description of the behavior you observed as well as the behavior that you expected</li>
+  <li>A numbered list of steps required to reproduce the issue and/or a video demonstration, if the steps may be hard to follow</li>
+</ul>
+
+<p>Please use <a href="https://swift.org/keys/cve-signing-key-1.asc">Swift.org’s CVE PGP key</a> to encrypt sensitive information that you send by email.</p>
+
+<p>You’ll receive an email reply from Swift.org to acknowledge that we received your report, and we’ll contact you if we need more information.</p>
+
+<h3 id="how-swiftorg-handles-these-reports">How Swift.org handles these reports</h3>
+
+<p>For the protection of our community, Swift.org doesn’t disclose, discuss, or confirm security issues until our investigation is complete and any necessary updates are generally available.</p>
+
+<p>Swift.org uses security advisories and our security-announce mailing list to publish information about security fixes in our projects and to publicly credit people or organizations that have reported security issues to us.</p>
+
+<h2 id="security-updates">Security Updates</h2>
+
+<ul>
+  
+  <li>
+    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9861">CVE-2020-9861</a>
+    <p>
+    A stack overflow issue existed in Swift for Linux. The issue was addressed with improved input validation for dealing with deeply nested malicious JSON input.
+    </p>
+  </li>
+  
+  <li>
+    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24666">CVE-2022-24666</a>
+    <p>
+    A program using swift-nio-http2 is vulnerable to a denial of service attack, caused by a network peer sending a specially crafted HTTP/2 frame. This attack affects all swift-nio-http2 versions from 1.0.0 to 1.19.1. This vulnerability is caused by a logical error when parsing a HTTP/2 HEADERS frame where the frame contains priority information without any other data. This logical error caused confusion about the size of the frame, leading to a parsing error. This parsing error immediately crashes the entire process. Sending a HEADERS frame with HTTP/2 priority information does not require any special permission, so any HTTP/2 connection peer may send such a frame. For clients, this means any server to which they connect may launch this attack. For servers, anyone they allow to connect to them may launch such an attack. The attack is low-effort: it takes very little resources to send an appropriately crafted frame. The impact on availability is high: receiving the frame immediately crashes the server, dropping all in-flight connections and causing the service to need to restart. It is straightforward for an attacker to repeatedly send appropriately crafted frames, so attackers require very few resources to achieve a substantial denial of service. The attack does not have any confidentiality or integrity risks in and of itself: swift-nio-http2 is parsing the frame in memory-safe code, so the crash is safe. However, sudden process crashes can lead to violations of invariants in services, so it is possible that this attack can be used to trigger an error condition that has confidentiality or integrity risks. The risk can be mitigated if untrusted peers can be prevented from communicating with the service. This mitigation is not available to many services. The issue is fixed by rewriting the parsing code to correctly handle the condition. The issue was found by automated fuzzing by oss-fuzz.
+    </p>
+  </li>
+  
+  <li>
+    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24667">CVE-2022-24667</a>
+    <p>
+    A program using swift-nio-http2 is vulnerable to a denial of service attack, caused by a network peer sending a specially crafted HPACK-encoded header block. This attack affects all swift-nio-http2 versions from 1.0.0 to 1.19.1. There are a number of implementation errors in the parsing of HPACK-encoded header blocks that allow maliciously crafted HPACK header blocks to cause crashes in processes using swift-nio-http2. Each of these crashes is triggered instead of an integer overflow. A malicious HPACK header block could be sent on any of the HPACK-carrying frames in a HTTP/2 connection (HEADERS and PUSH_PROMISE), at any position. Sending a HPACK header block does not require any special permission, so any HTTP/2 connection peer may send one. For clients, this means any server to which they connect may launch this attack. For servers, anyone they allow to connect to them may launch such an attack. The attack is low-effort: it takes very little resources to send an appropriately crafted field block. The impact on availability is high: receiving a frame carrying this field block immediately crashes the server, dropping all in-flight connections and causing the service to need to restart. It is straightforward for an attacker to repeatedly send appropriately crafted field blocks, so attackers require very few resources to achieve a substantial denial of service. The attack does not have any confidentiality or integrity risks in and of itself: swift-nio-http2 is parsing the field block in memory-safe code and the crash is triggered instead of an integer overflow. However, sudden process crashes can lead to violations of invariants in services, so it is possible that this attack can be used to trigger an error condition that has confidentiality or integrity risks. The risk can be mitigated if untrusted peers can be prevented from communicating with the service. This mitigation is not available to many services. The issue is fixed by rewriting the parsing code to correctly handle all conditions in the function. The principal issue was found by automated fuzzing by oss-fuzz, but several associated bugs in the same code were found by code audit and fixed at the same time.
+    </p>
+  </li>
+  
+  <li>
+    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24668">CVE-2022-24668</a>
+    <p>
+    A program using swift-nio-http2 is vulnerable to a denial of service attack caused by a network peer sending ALTSVC or ORIGIN frames. This attack affects all swift-nio-http2 versions from 1.0.0 to 1.19.1. This vulnerability is caused by a logical error after frame parsing but before frame handling. ORIGIN and ALTSVC frames are not currently supported by swift-nio-http2, and should be ignored. However, one code path that encounters them has a deliberate trap instead. This was left behind from the original development process and was never removed. Sending an ALTSVC or ORIGIN frame does not require any special permission, so any HTTP/2 connection peer may send such a frame. For clients, this means any server to which they connect may launch this attack. For servers, anyone they allow to connect to them may launch such an attack. The attack is low-effort: it takes very little resources to send one of these frames. The impact on availability is high: receiving the frame immediately crashes the server, dropping all in-flight connections and causing the service to need to restart. It is straightforward for an attacker to repeatedly send these frames, so attackers require very few resources to achieve a substantial denial of service. The attack does not have any confidentiality or integrity risks in and of itself. This is a controlled, intentional crash. However, sudden process crashes can lead to violations of invariants in services, so it is possible that this attack can be used to trigger an error condition that has confidentiality or integrity risks. The risk can be mitigated if untrusted peers can be prevented from communicating with the service. This mitigation is not available to many services. The issue is fixed by rewriting the parsing code to correctly handle the condition. The issue was found by automated fuzzing by oss-fuzz.
+    </p>
+  </li>
+  
+  <li>
+    <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0618">CVE-2022-0618</a>
+    <p>
+    A program using swift-nio-http2 is vulnerable to a denial of service attack, caused by a network peer sending a specially crafted HTTP/2 frame.
+This vulnerability is caused by a logical error when parsing a HTTP/2 HEADERS or HTTP/2 PUSH_PROMISE frame where the frame contains padding information without any other data. This logical error caused confusion about the size of the frame, leading to a parsing error. This parsing error immediately crashes the entire process.
+Sending a HEADERS frame or PUSH_PROMISE frame with HTTP/2 padding information does not require any special permission, so any HTTP/2 connection peer may send such a frame. For clients, this means any server to which they connect may launch this attack. For servers, anyone they allow to connect to them may launch such an attack.
+The attack is low-effort: it takes very little resources to send an appropriately crafted frame. The impact on availability is high: receiving the frame immediately crashes the server, dropping all in-flight connections and causing the service to need to restart. It is straightforward for an attacker to repeatedly send appropriately crafted frames, so attackers require very few resources to achieve a substantial denial of service.
+The attack does not have any confidentiality or integrity risks in and of itself: swift-nio-http2 is parsing the frame in memory-safe code, so the crash is safe. However, sudden process crashes can lead to violations of invariants in services, so it is possible that this attack can be used to trigger an error condition that has confidentiality or integrity risks.
+The risk can be mitigated if untrusted peers can be prevented from communicating with the service. This mitigation is not available to many services.
+The issue is fixed by rewriting the parsing code to correctly handle the condition. The issue was found by automated fuzzing by oss-fuzz.
+    </p>
+  </li>
+  
+</ul>
+:ET

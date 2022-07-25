@@ -1,0 +1,8 @@
+I"˜<p>With the launch of the open source Swift project, we are also releasing
+a port that works with the Linux operating system! You can build it from
+the Swift sources or <a href="/download/">download pre-built binaries for Ubuntu</a>. The port
+is still a work in progress but weâ€™re happy to say that it is usable
+today for experimentation. Currently x86_64 is the only supported
+architecture on Linux.</p>
+
+:ET

@@ -1,0 +1,149 @@
+I"�"<p>At WWDC21, Apple announced Swift-DocC, a new documentation compiler for Swift frameworks and
+packages. Swift-DocC provides an effortless way to author great documentation alongside your code,
+and generate comprehensive documentation websites for Swift codebases. It supports API docs authored
+as code comments, long-form conceptual articles written in Markdown, and even step-by-step tutorials
+with integrated images.</p>
+
+<p>Swift-DocC is included in the Xcode 13 tools, and people are already adding more documentation
+to their code. When it was announced at WWDC21, some of the engineers mentioned that Swift-DocC will
+be released as open source. And that day is now here, with support for multiple platforms.</p>
+
+<p>Swift-DocC was developed with the following goals:</p>
+
+<ul>
+  <li><strong>Integrate with existing development tools.</strong> The Swift-DocC tooling was
+built to seamlessly integrate into existing developer workflows, and to work
+directly within popular coding tools and IDEs. Using Swift-DocC to author
+documentation will easily fit into the same version control process that
+developers already use.</li>
+  <li><strong>Simplify authoring rich reference documentation.</strong> Reference documentation
+is an important resource for describing the behavior of your API, and best
+practices for third-party developers. Often the links among APIs are critical
+to explaining their use, so making these links easy to author and validate was
+a key goal.</li>
+  <li><strong>Encourage high-level technical articles.</strong> Historically, developers
+authored and maintained high-level educational documents separately from API
+documentation, making this content less likely to be written in the first
+place, and likely to fall out of date. By providing facilities for authoring
+this high-level content right alongside the code, and for easy inter-linking of
+API and conceptual docs, the goal is to see even more conceptual documentation
+included with packages and frameworks.</li>
+  <li><strong>Add rich tutorials for new users.</strong> Tutorials can help elevate the Swift
+ecosystem of third-party packages by making it easy to create friendly
+learning experiences, which are especially great for developers new to the
+API. Like articles, tutorials can be easily included in the main documentation
+workflow.</li>
+  <li><strong>Make it easy to connect documentation together.</strong> It’s easier to find
+documentation when it’s well organized. Another key goal is to provide an
+intuitive way for developers to organize documentation into logical groups and
+to write links to other pages.</li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Swift-DocC encompasses tools and libraries to help developers write and
+generate documentation on many platforms, including macOS and Linux, with the
+goal to support all platforms with a Swift toolchain. The <code class="language-plaintext highlighter-rouge">docc</code> command line
+tool is already integrated in Xcode 13 and is architected in a way that
+can be integrated with other build systems such as SwiftPM. The open source
+project is composed of several components, some of which may be interesting in
+their own right for building other developer tools. The components include:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-docc"><strong>Swift-DocC</strong></a> — the documentation compiler tool that processes source file
+comments, standalone Markdown files, and related assets to produce a
+machine-readable JSON archive.</li>
+  <li><a href="https://github.com/apple/swift-docc-render"><strong>Swift-DocC-Render</strong></a> — a JavaScript-based web application that renders
+compiled DocC archives.</li>
+  <li><a href="https://github.com/apple/swift-markdown"><strong>Swift-Markdown</strong></a> — a library that makes it easy to parse Markdown syntax in
+Swift.</li>
+  <li><a href="https://github.com/apple/swift-docc-symbolkit"><strong>SymbolKit</strong></a> — a Swift library that parses the symbol graph files emitted by
+the Swift compiler. These files encapsulate information about a module’s APIs,
+including their documentation comments.</li>
+</ul>
+
+<p>The tooling understands the Swift documentation comment syntax already popular
+within the Swift community in stand-out tools like
+<a href="https://github.com/realm/jazzy">Jazzy</a> and
+<a href="https://github.com/SwiftDocOrg/swift-doc">SwiftDoc</a>, and in IDEs like Xcode.
+It adds some novel syntax features, too. For example, the double-backtick
+<code>``SymbolName``</code> syntax creates links between symbols. An example:</p>
+
+<p>Source file documentation comment</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// A model representing a sloth.</span>
+<span class="c1">/// </span>
+<span class="c1">/// You can create a sloth using the ``init(name:color:power:)`` initializer, or</span>
+<span class="c1">/// create a randomly generated sloth using a ``SlothGenerator``:</span>
+<span class="c1">///</span>
+<span class="c1">/// ```swift</span>
+<span class="c1">/// let slothGenerator = MySlothGenerator(seed: randomSeed())</span>
+<span class="c1">/// let habitat = Habitat(isHumid: false, isWarm: true)</span>
+<span class="c1">/// do {</span>
+<span class="c1">///     let sloth = try slothGenerator.generateSloth(in: habitat)</span>
+<span class="c1">/// } catch {</span>
+<span class="c1">///     fatalError(String(describing: error))</span>
+<span class="c1">/// }</span>
+<span class="c1">/// ```</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Sloth</span> <span class="p">{</span> <span class="err">…</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Rendered website</p>
+
+<p><img src="/assets/images/swift-docc/sloth.png" alt="The rendered version of the Sloth page" width="100%" srcset="/assets/images/swift-docc/sloth@2x.png 2x" /></p>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<h3 id="integration-with-swift-tools">Integration with Swift Tools</h3>
+
+<p>Building documentation should be as easy as building code. To that end, among
+the next steps will be to include Swift-DocC with the core Swift tools, so all
+Swift developers can easily document their code from the very beginning of a
+project.</p>
+
+<p>Like other components of the core Swift tooling, this project will follow the
+Swift Evolution process, with one of the first tasks being to design the
+integration with Swift Package Manager using extensible plug-ins. And soon,
+Swift development trunk snapshots (for a release after Swift 5.5) will include
+the Swift-DocC tools.</p>
+
+<p>To read more about the future of Swift-DocC, check out the <a href="https://forums.swift.org/t/announcing-swift-docc">Swift-DocC project
+announcement post</a> in the
+forums.</p>
+
+<h3 id="adoption">Adoption</h3>
+
+<p>To get started, generated documentation for the Swift-DocC project itself is hosted at
+<a href="/documentation">swift.org/documentation</a>. Longer-term goals
+include adding documentation to more packages, as well as migrating
+documentation for the standard library and other documentation across
+Swift.org. This will make it even easier for the community to participate in
+documenting and teaching Swift.</p>
+
+<h2 id="get-involved">Get Involved</h2>
+
+<p>Your experience, feedback, and contributions are greatly encouraged!</p>
+
+<ul>
+  <li>Get started by trying out <a href="https://github.com/apple/swift-docc">Swift-DocC on GitHub</a></li>
+  <li>Read the Swift-DocC documentation on <a href="/documentation/docc">swift.org/documentation</a> (written using Swift-DocC!)</li>
+  <li>Get help with using Swift-DocC in the <a href="https://forums.swift.org/c/swift-users/15">Using Swift forum</a></li>
+  <li>Discuss the implementation and development of Swift-DocC in the <a href="https://forums.swift.org/c/development/swift-docc">Swift-DocC forum</a></li>
+  <li>Watch the Apple WWDC21 sessions:
+    <ul>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10166/">Meet DocC documentation in Xcode</a></li>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10236/">Host and automate your DocC documentation</a></li>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10167/">Elevate your DocC documentation in Xcode</a></li>
+      <li><a href="https://developer.apple.com/videos/play/wwdc2021/10235/">Build interactive tutorials using DocC</a></li>
+    </ul>
+  </li>
+  <li><a href="https://bugs.swift.org/">File a bug report</a> for problems you find, or ideas for improvements</li>
+  <li>And as always, <a href="https://github.com/apple/swift-docc/pulls">pull requests</a> are welcome!</li>
+</ul>
+
+<h3 id="questions">Questions?</h3>
+
+<p>Please feel free to post questions about this post on the <a href="https://forums.swift.org/t/announcing-swift-docc">associated
+thread</a> on the <a href="https://forums.swift.org/">Swift
+forums</a>.</p>
+:ET

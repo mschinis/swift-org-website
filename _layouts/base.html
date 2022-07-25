@@ -7,8 +7,8 @@
   <meta name="author" content="Apple Inc." />
   <meta name="viewport" content="width=device-width initial-scale=1" />
   <link rel="license" href="/LICENSE.txt" />
-  <link rel="stylesheet" media="all" href="{{ site.url }}/assets/stylesheets/application.css" />
-  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="{{ site.url }}/favicon.ico" />
+  <link rel="stylesheet" media="all" href="{{ site.env.SITE }}/assets/stylesheets/application.css" />
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="{{ site.env.SITE }}/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
@@ -24,7 +24,7 @@
   {% endif %}
 
   {% if page.url %}
-  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+  <link rel="canonical" href="{{ site.env.SITE }}{{ page.url }}" />
   {% endif %}
 
   <meta name="twitter:card" content="summary" />
@@ -38,29 +38,29 @@
   {% endif %}
 
   <meta property="og:site_name" content="{{ site.title }}" />
-  <meta property="og:image" content="{{ site.url }}/apple-touch-icon-180x180.png" />
+  <meta property="og:image" content="{{ site.env.SITE }}/apple-touch-icon-180x180.png" />
   {% if page.robots %}
     <meta name="robots" content="{{page.robots}}" />
   {% endif %}
   {% if page.id %}
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{{ page.title }}" />
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:url" content="{{ site.env.SITE }}{{ page.url }}" />
   <meta property="og:description" content="{{ page.excerpt | strip_html | escape }}" />
   <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
   <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}" />
   {% else %}
   <meta property="og:title" content="{{ site.title }}" />
-  <meta property="og:url" content="{{ site.url }}" />
+  <meta property="og:url" content="{{ site.env.SITE }}" />
   <meta property="og:description" content="{{ site.description | strip_html | escape}}" />
   {% endif %}
 </head>
 
 <body>
-<script src="{{ site.url }}/assets/javascripts/color-scheme-toggle.js"></script>
+<script src="{{ site.env.SITE }}/assets/javascripts/color-scheme-toggle.js"></script>
 {% include navigation.html %}
 {{content}}
-<script src="{{ site.url }}/assets/javascripts/application.js"></script>
+<script src="{{ site.env.SITE }}/assets/javascripts/application.js"></script>
 <!-- metrics -->
 <script>
     /* RSID: */

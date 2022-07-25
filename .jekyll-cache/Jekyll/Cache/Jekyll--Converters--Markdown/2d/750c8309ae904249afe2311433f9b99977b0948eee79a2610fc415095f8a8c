@@ -1,0 +1,8 @@
+I"K<p>Xcode 9 includes a brand new refactoring engine. It can transform code locally
+within a single Swift source file, or globally, such as renaming a method or property
+that occurs in multiple files and even different languages. The logic behind local refactorings is
+implemented entirely in the compiler and SourceKit, and is now open source in
+the <a href="https://github.com/apple/swift">swift repository</a>. Therefore, any Swift enthusiast can
+contribute refactoring actions to the language. This post discusses how
+a simple refactoring can be implemented and surfaced in Xcode.</p>
+:ET

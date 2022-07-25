@@ -1,0 +1,141 @@
+I",/<p>In Swift 5.5, the Swift Package Manager adds support for package collections — bite size curated lists of packages that make it easy to discover, share and adopt packages.</p>
+
+<blockquote>
+  <p>At the time of this article’s publication, Swift 5.5 is available as a preview both from <a href="http://swift.org/">Swift.org</a> and in the Xcode 13 seeds.  Swift 5.5 will be released officially later this year.</p>
+</blockquote>
+
+<p>The goal of package collections is to improve two key aspects of the package ecosystem:</p>
+
+<ol>
+  <li>Discovering great packages</li>
+  <li>Deciding which package is the best fit for a particular engineering task</li>
+</ol>
+
+<p>Package collections embrace and promote the concept of curation. Instead of browsing through long lists of web search results, package collections narrow the selection to a small list of packages from curators you trust. Package collections serve many use cases: For example, we envision communities of Swift developers publishing collections that reflect great packages produced and used by those communities to tackle everyday tasks. Educators can also use package collections to aggregate a set of packages to go along with course materials. Enterprises can use package collections to narrow the decision space for their internal engineering teams, focusing on a trusted set of vetted packages.</p>
+
+<h3 id="using-a-collection">Using a collection</h3>
+
+<p>Package collections are trivial to use.  You can add it using the new <code class="language-plaintext highlighter-rouge">package-collection add</code> option from the SwiftPM command line:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>swift package-collection add https://swiftserver.group/collection/sswg.json
+<span class="go">Added "Swift Server Workgroup Collection" to your package collections.
+</span></code></pre></div></div>
+
+<p>Xcode 13 (available as a preview) also includes support for package collections using a new package collection configuration screen.</p>
+
+<h3 id="collections-are-available-today">Collections are available today!</h3>
+
+<p>There are new package collections already available today, and we expect others to emerge from the Swift community.</p>
+
+<p><strong>Swift Server Workgroup</strong></p>
+
+<p><a href="https://swift.org/sswg/">The Swift Server Workgroup</a> (part of the Swift project) has published a package collection that contains the packages incubated by the workgroup. The SSWG collection is available at:</p>
+
+<blockquote>
+  <p>https://swiftserver.group/collection/sswg.json</p>
+</blockquote>
+
+<p><strong>SwiftPackageIndex.com</strong></p>
+
+<p>The team behind <a href="https://swiftpackageindex.com">Swift Package Index</a> website created the first implementation of dynamically generated package collections. The website allows you to download collections containing all packages created by a package owner.
+More information can be found on the website’s <a href="https://swiftpackageindex.com/package-collections">collection page</a>.</p>
+
+<p><strong>Apple’s OSS Swift packages</strong></p>
+
+<p>Apple has already published a package collection which includes some of the exciting Swift packages published by Apple including <a href="https://github.com/apple/swift-argument-parser">Swift Argument Parser</a>, <a href="https://github.com/apple/swift-algorithms">Swift Algorithms</a> and <a href="https://github.com/apple/swift-nio">SwiftNIO</a>.
+Apple’s collection is available at:</p>
+
+<blockquote>
+  <p>https://developer.apple.com/swift/packages/collections/apple.json</p>
+</blockquote>
+
+<p>Xcode 13 comes pre-configured to use the Apple package collection.  Users of Xcode can immediately try it out!</p>
+
+<h3 id="rolling-your-own-collection">Rolling your own collection</h3>
+
+<p>Package collections are simple JSON documents. As JSON files, they are easy to publish and share. You can post them to the web (or a file server), share the link, or share the JSON file directly with others.</p>
+
+<p><strong>Creating the collection</strong></p>
+
+<p>The recommended way is to use the new <a href="https://github.com/apple/swift-package-collection-generator/tree/main/Sources/PackageCollectionGenerator">package collection generator</a> tool.  The tool takes a list of package URLs and generates a more complete metadata set for them by parsing the packages manifest file and obtaining metadata from the SCM system where possible.</p>
+
+<p>Given the following <code class="language-plaintext highlighter-rouge">packages.json</code></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"My Collection"</span><span class="p">,</span>
+  <span class="s">"packages"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"url"</span><span class="p">:</span> <span class="s">"https://github.com/user/package.git"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Running the following command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>package-collection-generate packages.json collection.json
+</code></pre></div></div>
+
+<p>Will generate a collection JSON file looks like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"formatVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Collection"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"generatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-01T21:28:28Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"packages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/user/package.git"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"defaultToolsVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.1.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"manifests"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"5.1.0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"packageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyPackage"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyProduct"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"targets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"MyTarget"</span><span class="p">],</span><span class="w">  
+                  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"library"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"automatic"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"targets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyTarget"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"toolsVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.1.0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">       
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It’s that easy!</p>
+
+<p><strong>Signing the collection</strong></p>
+
+<p>When generating package collections, they can be signed to establish authenticity and protect their integrity. Signing the collection is optional and users can use non-signed collections, but will be prompted for confirmation before doing so.</p>
+
+<p>The recommended way to sign a collection is to use the <a href="https://github.com/apple/swift-package-collection-generator/tree/main/Sources/PackageCollectionSigner">package collection signer</a> tool which uses a code-signing certificate to sign the collection with.</p>
+
+<p>For example, using the <code class="language-plaintext highlighter-rouge">collection.json</code> we created in the previous step as input with a code-signing certificate and its private key, running the following command will create a signed version of the collection as the  <code class="language-plaintext highlighter-rouge">collection-signed.json</code> file, having the signature embedded in the output file itself.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>package-collection-sign <span class="se">\</span>
+<span class="go">    collection.json \
+    collection-signed.json \
+    /certs/private.pem \
+    /certs/signing.cer
+</span></code></pre></div></div>
+
+<p>You can find more detailed information about generating and signing collections on <a href="https://github.com/apple/swift-package-manager/blob/main/Documentation/PackageCollections.md">SwiftPM’s documentation on the subject</a>.</p>
+
+<p>Once your collection is ready, you can choose how to distribute it. For sharing with students or a small group of collaborators, emailing the collection as an attachment could suffice. Blog authors may choose to host it on their web server and share a link. A large development team may decide to push it to their SCM system and access it from there.</p>
+
+<h3 id="telling-others-about-your-collections">Telling others about your collections!</h3>
+
+<p>If you’ve created a generally useful collection and want to share it with the wider Swift community, the <a href="https://forums.swift.org/c/community-showcase/66">community showcase</a> area of the Swift forums is an excellent way to let people know about it.</p>
+:ET

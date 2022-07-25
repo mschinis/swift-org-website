@@ -1,0 +1,255 @@
+I"Dq<p>I’m thrilled to announce <a href="https://github.com/apple/swift-collections">Swift Collections</a>, a new open-source package focused on extending the set of available Swift data structures. Like the <a href="https://github.com/apple/swift-algorithms">Swift Algorithms</a> and <a href="https://github.com/apple/swift-numerics">Swift Numerics</a> packages before it, we’re releasing Swift Collections to help incubate new functionality for the Swift Standard Library.</p>
+
+<p>The Swift Standard Library currently implements the three most essential general-purpose data structures: <code class="language-plaintext highlighter-rouge">Array</code>, <code class="language-plaintext highlighter-rouge">Set</code> and <code class="language-plaintext highlighter-rouge">Dictionary</code>. These are the right tool for a wide variety of use cases, and they are particularly well-suited for use as currency types. But sometimes, in order to efficiently solve a problem or to maintain an invariant, Swift programmers would benefit from a larger library of data structures.</p>
+
+<p>We expect the <code class="language-plaintext highlighter-rouge">Collections</code> package to empower you to write faster and more reliable programs, with less effort.</p>
+
+<h2 id="a-brief-tour">A Brief Tour</h2>
+
+<p>The initial version of the <code class="language-plaintext highlighter-rouge">Collections</code> package contains implementations for three of the most frequently requested data structures: a double-ended queue (or “deque”, for short), an ordered set and an ordered dictionary.</p>
+
+<h3 id="deque">Deque</h3>
+
+<p><a href="https://github.com/apple/swift-collections/blob/main/Documentation/Deque.md"><code class="language-plaintext highlighter-rouge">Deque</code></a> (pronounced “deck”) works much like <code class="language-plaintext highlighter-rouge">Array</code>: it is an ordered, random-access, mutable, range-replaceable collection with integer indices.</p>
+
+<p>The main benefit of <code class="language-plaintext highlighter-rouge">Deque</code> over <code class="language-plaintext highlighter-rouge">Array</code> is that it supports efficient insertions and removals at both ends.</p>
+
+<p>This makes deques a great choice whenever we need a first-in-first-out queue. To emphasize this, <code class="language-plaintext highlighter-rouge">Deque</code> provides convenient operations to insert and pop elements at both ends:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">colors</span><span class="p">:</span> <span class="kt">Deque</span> <span class="o">=</span> <span class="p">[</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"yellow"</span><span class="p">,</span> <span class="s">"blue"</span><span class="p">]</span>
+
+<span class="n">colors</span><span class="o">.</span><span class="nf">prepend</span><span class="p">(</span><span class="s">"green"</span><span class="p">)</span>
+<span class="n">colors</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"orange"</span><span class="p">)</span>
+<span class="c1">// `colors` is now ["green", "red", "yellow", "blue", "orange"]</span>
+
+<span class="n">colors</span><span class="o">.</span><span class="nf">popFirst</span><span class="p">()</span> <span class="c1">// "green"</span>
+<span class="n">colors</span><span class="o">.</span><span class="nf">popLast</span><span class="p">()</span> <span class="c1">// "orange"</span>
+<span class="c1">// `colors` is back to ["red", "yellow", "blue"]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="https://swift.org/assets/images/collections-blog/DequePrepend.png" alt="Deque Prepend Benchmark" width="100%" /></p>
+
+<blockquote>
+  <p><em>Prepending an element is a constant time operation for <code class="language-plaintext highlighter-rouge">Deque</code>, but a linear time operation for <code class="language-plaintext highlighter-rouge">Array</code>.</em></p>
+
+  <p><em><strong>Note</strong>: All graphs plot the average per-element processing time on a <a href="https://en.wikipedia.org/wiki/Log–log_plot">log-log</a> scale. Lower is better. The <a href="https://github.com/apple/swift-collections/tree/main/Documentation/Announcement-benchmarks">benchmarks</a> were run on my 2017 iMac Pro.</em></p>
+</blockquote>
+
+<p>Of course, we can also use any of the familiar <code class="language-plaintext highlighter-rouge">MutableCollection</code> and <code class="language-plaintext highlighter-rouge">RangeReplaceableCollection</code> methods to access and mutate elements of the collection. Indices work exactly like the do in an <code class="language-plaintext highlighter-rouge">Array</code> – the first element is always at index zero:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// "yellow"</span>
+<span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">"peach"</span>
+<span class="n">colors</span><span class="o">.</span><span class="nf">insert</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="p">[</span><span class="s">"violet"</span><span class="p">,</span> <span class="s">"pink"</span><span class="p">],</span> <span class="nv">at</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1">// `colors` is now ["red", "violet", "pink", "peach", "blue"]</span>
+<span class="n">colors</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// "pink"</span>
+<span class="c1">// `colors` is now ["red", "violet", "peach", "blue"]</span>
+<span class="n">colors</span><span class="o">.</span><span class="nf">sort</span><span class="p">()</span>
+<span class="c1">// `colors` is now ["blue", "peach", "red", "violet"]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="https://swift.org/assets/images/collections-blog/DequeLookup.png" alt="Deque Lookup Benchmark" width="100%" /></p>
+
+<blockquote>
+  <p><em>Like <code class="language-plaintext highlighter-rouge">Array</code>, accessing an element at an arbirary offset is a constant time operation for <code class="language-plaintext highlighter-rouge">Deque</code>.</em></p>
+</blockquote>
+
+<p>To support efficient insertions at the front, deques need to give up on maintaining their elements in a contiguous buffer. This tends to make them work slightly slower than arrays for use cases that don’t call for inserting/removing elements at the front – so it’s probably not a good idea to blindly replace all your arrays with deques.</p>
+
+<h3 id="orderedset">OrderedSet</h3>
+
+<p><a href="https://github.com/apple/swift-collections/blob/main/Documentation/OrderedSet.md"><code class="language-plaintext highlighter-rouge">OrderedSet</code></a> is a powerful hybrid of an <code class="language-plaintext highlighter-rouge">Array</code> and a <code class="language-plaintext highlighter-rouge">Set</code>.</p>
+
+<p>We can create an ordered set with any element type that conforms to the
+<code class="language-plaintext highlighter-rouge">Hashable</code> protocol:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">buildingMaterials</span><span class="p">:</span> <span class="kt">OrderedSet</span> <span class="o">=</span> <span class="p">[</span><span class="s">"straw"</span><span class="p">,</span> <span class="s">"sticks"</span><span class="p">,</span> <span class="s">"bricks"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="https://swift.org/assets/images/collections-blog/OrderedSetAppend.png" alt="OrderedSet Append Benchmark" width="100%" /></p>
+
+<blockquote>
+  <p><em>Appending an element, which includes ensuring it’s unique, is a constant time operation for <code class="language-plaintext highlighter-rouge">OrderedSet</code>.</em></p>
+
+  <p><em><strong>Note</strong>: All benchmarks configured <code class="language-plaintext highlighter-rouge">std::unordered_set</code> and <code class="language-plaintext highlighter-rouge">std::unordered_map</code> to use the same hash function as Swift, in order to compare like to like.</em></p>
+</blockquote>
+
+<p>Like <code class="language-plaintext highlighter-rouge">Array</code>, ordered sets maintain their elements in a user-specified order and support efficient random-access traversal of their members:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span> <span class="o">..&lt;</span> <span class="n">buildingMaterials</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"Little piggie #</span><span class="se">\(</span><span class="n">i</span><span class="se">)</span><span class="s"> built a house of </span><span class="se">\(</span><span class="n">buildingMaterials</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// Little piggie #0 built a house of straw</span>
+<span class="c1">// Little piggie #1 built a house of sticks</span>
+<span class="c1">// Little piggie #2 built a house of bricks</span>
+</code></pre></div></div>
+
+<p>Like a <code class="language-plaintext highlighter-rouge">Set</code>, ordered sets ensure each element appears only once and provides efficient tests for membership:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildingMaterials</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"straw"</span><span class="p">)</span> <span class="c1">// (inserted: false, index: 0)</span>
+<span class="n">buildingMaterials</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="s">"glass"</span><span class="p">)</span> <span class="c1">// false</span>
+<span class="n">buildingMaterials</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"glass"</span><span class="p">)</span> <span class="c1">// (inserted: true, index: 3)</span>
+<span class="c1">// `buildingMaterials` is now ["straw", "sticks", "bricks", "glass"]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="https://swift.org/assets/images/collections-blog/OrderedSetLookup.png" alt="OrderedSet Lookup Benchmark" width="100%" /></p>
+
+<blockquote>
+  <p><em>Membership testing is a constant time operation for <code class="language-plaintext highlighter-rouge">OrderedSet</code>, but a linear time operation for <code class="language-plaintext highlighter-rouge">Array</code>.</em></p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">OrderedSet</code> uses a standard array value for element storage, which can be extracted with minimal overhead. This is a great option if we want to pass the contents of an ordered set to a function that only takes an <code class="language-plaintext highlighter-rouge">Array</code> (or is generic over <code class="language-plaintext highlighter-rouge">RangeReplaceableCollection</code> or <code class="language-plaintext highlighter-rouge">MutableCollection</code>):</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">buildHouses</span><span class="p">(</span><span class="n">_</span> <span class="nv">houses</span><span class="p">:</span> <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="nf">buildHouses</span><span class="p">(</span><span class="n">buildingMaterials</span><span class="p">)</span> <span class="c1">// error</span>
+<span class="nf">buildHouses</span><span class="p">(</span><span class="n">buildingMaterials</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span> <span class="c1">// OK</span>
+</code></pre></div></div>
+
+<p>And for cases where <code class="language-plaintext highlighter-rouge">SetAlgebra</code> conformance is desired, <code class="language-plaintext highlighter-rouge">OrderedSet</code>
+provides an efficient <em>unordered view</em> of its elements that conforms to
+<code class="language-plaintext highlighter-rouge">SetAlgebra</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="n">blowHousesDown</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">:</span> <span class="kt">SetAlgebra</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">houses</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="nf">blowHousesDown</span><span class="p">(</span><span class="n">buildingMaterials</span><span class="p">)</span> <span class="c1">// error: `OrderedSet&lt;String&gt;` does not conform to `SetAlgebra`</span>
+<span class="nf">blowHousesDown</span><span class="p">(</span><span class="n">buildingMaterials</span><span class="o">.</span><span class="n">unordered</span><span class="p">)</span> <span class="c1">// OK</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">OrderedSet</code> also implements some of the functionality of <code class="language-plaintext highlighter-rouge">RangeReplaceableCollection</code> and <code class="language-plaintext highlighter-rouge">MutableCollection</code>, and most of <code class="language-plaintext highlighter-rouge">SetAlgebra</code>. (Member uniqueness and order-sensitive equality prevent complete conformance.)</p>
+
+<p>This is accomplished by maintaining an array of members (for efficient random-access traversal) and a hash table of indices into that array (for efficient membership testing). Because the indices stored inside the hash table can often be encoded into fewer bits than a standard <code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">OrderedSet</code> will often use less memory than a plain old <code class="language-plaintext highlighter-rouge">Set</code>!</p>
+
+<h3 id="ordereddictionary">OrderedDictionary</h3>
+
+<p><a href="https://github.com/apple/swift-collections/blob/main/Documentation/OrderedDictionary.md"><code class="language-plaintext highlighter-rouge">OrderedDictionary</code></a> is a useful alternative to <code class="language-plaintext highlighter-rouge">Dictionary</code> when the order of elements is important or we need to be able to efficiently access elements at various positions within the collection.</p>
+
+<p>We can create an ordered dictionary with any key type that conforms to the
+<code class="language-plaintext highlighter-rouge">Hashable</code> protocol:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">responses</span><span class="p">:</span> <span class="kt">OrderedDictionary</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="mi">200</span><span class="p">:</span> <span class="s">"OK"</span><span class="p">,</span>
+  <span class="mi">403</span><span class="p">:</span> <span class="s">"Forbidden"</span><span class="p">,</span>
+  <span class="mi">404</span><span class="p">:</span> <span class="s">"Not Found"</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="https://swift.org/assets/images/collections-blog/OrderedDictionaryAppend.png" alt="OrderedDictionary Append Benchmark" width="100%" /></p>
+
+<blockquote>
+  <p><em>Inserting a new key-value pair into an <code class="language-plaintext highlighter-rouge">OrderedDictionary</code> appends it in constant time.</em></p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">OrderedDictionary</code> provides many of the same operations as <code class="language-plaintext highlighter-rouge">Dictionary</code>. For example, we can efficiently look up and add values using the familiar key-based subscript:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">responses</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span> <span class="c1">// "OK"</span>
+<span class="n">responses</span><span class="p">[</span><span class="mi">500</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Internal Server Error"</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="https://swift.org/assets/images/collections-blog/OrderedDictionaryLookup.png" alt="OrderedDictionary Lookup Benchmark" width="100%" /></p>
+
+<blockquote>
+  <p><em>Looking up a value for a key is a constant time operation for <code class="language-plaintext highlighter-rouge">OrderedDictionary</code>.</em></p>
+</blockquote>
+
+<p>If a new entry is added using the subscript setter, it gets appended to the end of the dictionary. So that by default, the dictionary contains its elements in the order they were originally inserted:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">phrase</span><span class="p">)</span> <span class="k">in</span> <span class="n">responses</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s"> (</span><span class="se">\(</span><span class="n">phrase</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// 200 (OK)</span>
+<span class="c1">// 403 (Forbidden)</span>
+<span class="c1">// 404 (Not Found)</span>
+<span class="c1">// 500 (Internal Server Error)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">OrderedDictionary</code> uses integer indices with the first element always beginning at <code class="language-plaintext highlighter-rouge">0</code>. To avoid ambiguity between key-based and index-based subscripts, <code class="language-plaintext highlighter-rouge">OrderedDictionary</code> doesn’t conform to <code class="language-plaintext highlighter-rouge">Collection</code> directly. Instead it provides a random-access view over its key-value pairs:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// nil (key-based subscript)</span>
+<span class="n">responses</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// (200, "OK") (index-based subscript)</span>
+</code></pre></div></div>
+
+<p>Like the standard <code class="language-plaintext highlighter-rouge">Dictionary</code>, <code class="language-plaintext highlighter-rouge">OrderedDictionary</code> also provides lightweight <code class="language-plaintext highlighter-rouge">keys</code> and <code class="language-plaintext highlighter-rouge">values</code> views. The same index is portable across all of the views a dictionary vends into its contents:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">i</span> <span class="o">=</span> <span class="n">responses</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="mi">404</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">responses</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1">// 404</span>
+  <span class="n">responses</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1">// "Not Found"</span>
+  <span class="n">responses</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// (500, "Internal Server Error")</span>
+<span class="p">}</span>
+<span class="c1">// `responses` is now [200: "OK", 403: "Forbidden", 404: "Not Found"]</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">OrderedDictionary</code> implements some of the functionality of <code class="language-plaintext highlighter-rouge">MutableCollection</code> and <code class="language-plaintext highlighter-rouge">RangeReplaceableCollection</code>, though its requirement for member uniqueness prevents it from implementing complete conformance for either protocol.</p>
+
+<p>An ordered dictionary consists of an <code class="language-plaintext highlighter-rouge">OrderedSet</code> of keys, alongside a
+regular <code class="language-plaintext highlighter-rouge">Array</code> that contains their associated values. Each of these can be extracted with minimal overhead, which is an efficient option for interoperating with a function that expects a certain type.</p>
+
+<h2 id="relation-to-the-swift-standard-library">Relation to the Swift Standard Library</h2>
+
+<p>It’s our ambition for the standard library to include a rich, pragmatic set of general-purpose data structures.</p>
+
+<p>Similar to packages like <a href="https://github.com/apple/swift-numerics">Swift Numerics</a> and <a href="https://github.com/apple/swift-algorithms">Swift Algorithms</a>, an important goal of the <code class="language-plaintext highlighter-rouge">Collections</code> package is to serve as a (relatively) low-friction proving ground for new data structure implementations, before they become ready to be proposed as official library additions through the regular Swift Evolution process.</p>
+
+<p>The experience we gain using these constructs in package form will inform the eventual review discussion. It will also provide us an opportunity to correct any design issues before they get etched into stone.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Collections</code> package is, in part, a recognition of the <a href="https://forums.swift.org/t/circular-buffer/34534/25">challenges</a> involved in contributing new data structures to Swift. Because the standard library is ABI-stable, a lot of time must be spent thinking about which parts of a data structure are going to be <code class="language-plaintext highlighter-rouge">@frozen</code> and which aren’t, and which methods should be <code class="language-plaintext highlighter-rouge">@inlinable</code> and touch those frozen internals.</p>
+
+<p>Accordingly, the <code class="language-plaintext highlighter-rouge">Collections</code> package is not <em>just</em> a set of data structures. It is also a watering hole for contributors who want to learn more about the dark art of ABI design and a sophisticated toolkit to help meet the high standards of correctness and efficiency demanded of data structures.</p>
+
+<p>However, just because an addition might be a good candidate for inclusion in the <code class="language-plaintext highlighter-rouge">Collections</code> package, it doesn’t need to begin its life there. This is not a change to the <a href="https://github.com/apple/swift-evolution/blob/main/process.md">Swift Evolution process</a>. Though the bar is high for new data structures, well-supported pitches will continue to be considered, as always.</p>
+
+<h2 id="contribution-criteria">Contribution Criteria</h2>
+
+<p>The immediate focus of this package is to incubate a pragmatic set of production grade data structures – similar to those you might find in the C++ <a href="https://en.cppreference.com/w/cpp/container">containers</a> library or the Java <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/doc-files/coll-overview.html">collections</a> framework.</p>
+
+<p>To be a good candidate for inclusion in the <code class="language-plaintext highlighter-rouge">Collections</code> package, a data structure should appreciably improve the performance or correctness of real-world Swift code, and its implementation strategy should take into account modern computer architecture and Swift’s performance characteristics.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Collections</code> package is not intended to be a comprehensive taxonomy of data structures. There are many classic data structures that don’t warrant inclusion, because they provide insufficient value over the existing types in the standard library or because alternatives with superior implementation strategies exist. (For example, it is unlikely we’d want to implement linked lists or red-black trees – the same niche can likely be better filled with high-fanout search trees such as in-memory B-trees.)</p>
+
+<p>As the focus of this package is on providing production grade data structure implementations, the bar for inclusion is high. Some baseline criteria for evaluating contributions:</p>
+
+<ul>
+  <li>
+    <p><strong>Reliability.</strong> The implementation must work correctly without any unhandled edge cases, and it must continue working in the face of future language, compiler and standard library changes.</p>
+
+    <p>To help with this work, the package includes support for writing combinatorial regression tests, as well as a library of semi-automated conformance checks for semantic protocol requirements.</p>
+  </li>
+  <li>
+    <p><strong>Runtime performance.</strong> The implementation must exhibit best-of-class performance on all practical working sets, from a single element to tens of millions. This doesn’t just mean asymptotic performance –  constant factors matter, too!</p>
+
+    <p>The package comes with an <a href="https://github.com/apple/swift-collections-benchmark">elaborate benchmarking module</a> that can be used to exercise operations over all possible working set sizes. It’s what we used to create the benchmarks included in this blog post! We can use it to identify areas that need optimization work, and to evaluate potential optimizations based on hard data.</p>
+  </li>
+  <li>
+    <p><strong>Memory overhead.</strong> Memory is a scarce resource; the data structures we implement ought not spend <em>too much</em> of it on storing internal pointers, padding bytes, unused capacity or similar fluff. Once we decide on an implementation strategy, we should employ every trick in the book to minimize memory usage!</p>
+  </li>
+</ul>
+
+<p>The best way to start work on a new data structure is to discuss it on the <a href="https://forums.swift.org/c/related-projects/collections">on the forum</a>. This way we can figure out if the data structure would be right for the package, discuss implementation strategies, and plan to allocate capacity to help.</p>
+
+<h2 id="get-involved">Get Involved!</h2>
+
+<p>Your experience, feedback, and contributions are very welcome!</p>
+
+<ul>
+  <li>Get started by trying out the <a href="https://github.com/apple/swift-collections">Swift Collections library on GitHub</a>,</li>
+  <li>Discuss the library, suggest improvements and get help in the <a href="https://forums.swift.org/c/related-projects/collections">Swift Collections forum</a>,</li>
+  <li><a href="https://github.com/apple/swift-collections/issues">Open an issue</a> with problems you find,</li>
+  <li>or contribute a <a href="https://github.com/apple/swift-collections/pulls">pull request</a> to fix them!</li>
+</ul>
+
+<h2 id="questions">Questions?</h2>
+
+<p>Please feel free to ask questions about this post in the <a href="https://forums.swift.org/t/introducing-swift-collections/47169">associated thread</a> on the Swift forums.</p>
+
+:ET

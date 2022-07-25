@@ -1,0 +1,64 @@
+I"�<p>Swift.org website goals include:</p>
+
+<ul>
+  <li>Welcome newcomers with friendly information about Swift</li>
+  <li>Help visitors of all skill levels get started developing with Swift</li>
+  <li>Document the language, libraries, and best practices</li>
+  <li>Announce new features, APIs, and tooling improvements</li>
+  <li>Provide a safe, friendly place to interact with fellow Swift developers</li>
+  <li>Promote activities occurring anywhere within the community</li>
+  <li>Support collaboration and evolution in building the Swift ecosystem</li>
+</ul>
+
+<h2 id="community-participation">Community Participation</h2>
+
+<p>Everyone is welcome to contribute to the Swift.org website in the following ways:</p>
+
+<ul>
+  <li>Submitting pull requests to improve and correct existing content or technical infrastructure.</li>
+  <li>Proposing broad enhancements or large scale changes to the website. Such proposals require consultation with the <a href="/website-workgroup">website workgroup</a> and can be proposed as a public forum post on <a href="https://forums.swift.org/c/swift-website/">Swift.org website forum</a> or privately by contacting <a href="https://forums.swift.org/new-message?groupname=swift-website-workgroup">@swift-website-workgroup</a> on the Swift Forums. Example for such broad changes include:
+    <ul>
+      <li>Proposing new topics and content domains, or broad changes to existing ones.</li>
+      <li>Proposing broad changes to how content is organized in the website (information design).</li>
+      <li>Proposing broad changes to how the website looks (UX/UI design).</li>
+      <li>Proposing broad changes to the technical infrastructure that powers the website.</li>
+    </ul>
+  </li>
+  <li>Participating in design discussions</li>
+  <li>Asking or answering questions on the forums</li>
+  <li>Reporting or triaging bugs</li>
+</ul>
+
+<p>See <a href="https://github.com/apple/swift-org-website/blob/main/CONTRIBUTING.md"><code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code></a> for additional information about the website’s contribution guidelines.</p>
+
+<h2 id="governance">Governance</h2>
+
+<p>The website has a small list of <em>maintainers</em> which have <em>write</em> access and are in charge of reviewing and merging pull requests from <em>contributors</em>.
+The <em>maintainers</em> group consists of a small subset of the Swift core team and the <a href="/website-workgroup">Swift website workgroup members</a>.</p>
+
+<p>The Swift.org website source code consists of several distinct parts:</p>
+
+<ol>
+  <li>General content: Markdown, HTML, data files, images and other content.</li>
+  <li>Blog posts: Source files for blog posts, mostly in markdown form.</li>
+  <li>Technical infrastructure: Code and scripts for generating the website’s final static content (HTML mostly) from other forms of textual content such as Markdown and HTML files.</li>
+  <li>Information design, user experience and user interface design: The layout and navigation of the website, including CSS and images used to define the user experience and user interface.</li>
+</ol>
+
+<p>Each one of these areas is governed by a slightly different contribution process that matches their nature.</p>
+
+<p>See <a href="/website-governance">Swift.org governance</a> for additional information about the website’s governance.</p>
+
+<h2 id="website-workgroup">Website workgroup</h2>
+
+<p>The Swift website workgroup is a steering team that helps guide the evolution on the Swift.org website. The Swift website workgroup will:</p>
+
+<ul>
+  <li>Define a set of processes that govern the contributions to the Swift.org website.</li>
+  <li>Actively guide Swift.org website development and contributions.</li>
+  <li>Define and prioritize Swift.org website related efforts that address the needs of the Swift community.</li>
+  <li>Channel feedback to Swift core team about the needs of the Swift community.</li>
+</ul>
+
+<p>See <a href="/website-workgroup">Swift.org workgroup</a> for additional information about the workgroup.</p>
+:ET

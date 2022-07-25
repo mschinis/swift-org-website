@@ -1,0 +1,34 @@
+I"J<p>Swift 5.5 is now officially released!  Swift 5.5 is a massive release, which includes newly introduced language capabilities for concurrency, including <code class="language-plaintext highlighter-rouge">async/await</code>, structured concurrency, and Actors.  My heartfelt thanks to the entire Swift community for all the active discussion, review, and iteration on the concurrency (and other additions) that make up the release.  Thank you!</p>
+
+<h2 id="how-to-learn-more">How to learn more</h2>
+
+<p>An updated version of <a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a> for Swift 5.5 is now available on Swift.org. It is also available for free on the <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">Apple Books store</a>.</p>
+
+<p>You can try out some of the new features in this <a href="https://github.com/twostraws/whats-new-in-swift-5-5">playground</a> put together by Paul Hudson!</p>
+
+<h2 id="swift-evolution-proposals">Swift Evolution proposals</h2>
+
+<p>A number of changes went through the Swift Evolution process for inclusion in Swift 5.5:</p>
+
+<ul>
+  <li>SE-0291 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0291-package-collections.md">Package Collections</a></li>
+  <li>SE-0293 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0293-extend-property-wrappers-to-function-and-closure-parameters.md">Extend Property Wrappers to Function and Closure Parameters</a></li>
+  <li>SE-0295 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0295-codable-synthesis-for-enums-with-associated-values.md">Codable synthesis for enums with associated values</a></li>
+  <li>SE-0296 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md">Async/await</a></li>
+  <li>SE-0297 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0297-concurrency-objc.md">Concurrency Interoperability with Objective-C</a></li>
+  <li>SE-0298 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0298-asyncsequence.md">Async/Await: Sequences</a></li>
+  <li>SE-0299 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0299-extend-generic-static-member-lookup.md">Extending Static Member Lookup in Generic Contexts</a></li>
+  <li>SE-0300 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0300-continuation.md">Continuations for interfacing async tasks with synchronous code</a></li>
+  <li>SE-0304 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0304-structured-concurrency.md">Structured concurrency</a></li>
+  <li>SE-0306 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0306-actors.md">Actors</a></li>
+  <li>SE-0307 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0307-allow-interchangeable-use-of-double-cgfloat-types.md">Allow interchangeable use of CGFloat and Double types</a></li>
+  <li>SE-0308 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0308-postfix-if-config-expressions.md">if for postfix member expressions</a></li>
+  <li>SE-0310 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0310-effectful-readonly-properties.md">Effectful Read-only Properties</a></li>
+  <li>SE-0311 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0311-task-locals.md">Task Local Values</a></li>
+  <li>SE-0313 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0313-actor-isolation-control.md">Improved control over actor isolation</a></li>
+  <li>SE-0314 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0314-async-stream.md">AsyncStream and AsyncThrowingStream</a></li>
+  <li>SE-0316 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0316-global-actors.md">Global actors</a></li>
+  <li>SE-0317 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0317-async-let.md">async let bindings</a></li>
+  <li>SE-0319 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0319-never-identifiable.md">Conform Never to Identifiable</a></li>
+</ul>
+:ET

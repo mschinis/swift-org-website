@@ -1,0 +1,9 @@
+I"<p>The design of commonly-used libraries has a large impact on the
+overall feel of a programming language. Great libraries feel like an
+extension of the language itself, and consistency across libraries
+elevates the overall development experience. To aid in the
+construction of great Swift libraries, one of the major <a href="https://github.com/apple/swift-evolution/blob/master/README.md" title="Swift 3 goals">goals for
+Swift 3</a> is to define a set of API design guidelines
+and to apply those design guidelines consistently.</p>
+
+:ET

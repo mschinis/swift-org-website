@@ -1,0 +1,83 @@
+I"A<p>The <a href="https://github.com/apple/swift" title="Swift repository">main Swift repository</a> contains the source code for
+the Swift compiler and standard library, as well as related components
+such as SourceKit (for IDE integration), the Swift regression test
+suite, and implementation-level documentation.</p>
+
+<p>The <a href="https://github.com/apple/swift-driver" title="Swift driver repository">Swift driver repository</a> contains a new
+implementation of the Swift compiler’s “driver”, which aims to be a
+more extensible, maintainable, and robust drop-in replacement for the
+existing compiler driver.</p>
+
+<h2 id="compiler-architecture">Compiler Architecture</h2>
+
+<p>As a whole, the Swift compiler is principally responsible for
+translating Swift source code into efficient, executable machine
+code. However, the Swift compiler front-end also supports a number of
+other tools, including IDE integration with syntax coloring, code
+completion, and other conveniences. This document provides a
+high-level description of the major components of the Swift compiler:</p>
+
+<ul>
+  <li>
+    <p><strong>Parsing</strong>: The parser is a simple, recursive-descent parser
+(implemented in
+<a href="https://github.com/apple/swift/tree/main/lib/Parse">lib/Parse</a>)
+with an integrated, hand-coded lexer. The parser is responsible for
+generating an Abstract Syntax Tree (AST) without any semantic or
+type information, and emit warnings or errors for grammatical problems
+with the input source.</p>
+  </li>
+  <li>
+    <p><strong>Semantic analysis</strong>: Semantic analysis (implemented in
+<a href="https://github.com/apple/swift/tree/main/lib/Sema">lib/Sema</a>) is
+responsible for taking the parsed AST and transforming it into a
+well-formed, fully-type-checked form of the AST, emitting warnings
+or errors for semantic problems in the source code. Semantic
+analysis includes type inference and, on success, indicates that it
+is safe to generate code from the resulting, type-checked AST.</p>
+  </li>
+  <li>
+    <p><strong>Clang importer</strong>: The Clang importer (implemented in
+<a href="https://github.com/apple/swift/tree/main/lib/ClangImporter">lib/ClangImporter</a>)
+imports <a href="http://clang.llvm.org/docs/Modules.html">Clang modules</a> and
+maps the C or Objective-C APIs they export into their corresponding
+Swift APIs. The resulting imported ASTs can be referred to by semantic analysis.</p>
+  </li>
+  <li>
+    <p><strong>SIL generation</strong>: The Swift Intermediate Language (SIL) is a
+high-level, Swift-specific intermediate language suitable for
+further analysis and optimization of Swift code. The SIL generation
+phase (implemented in
+<a href="https://github.com/apple/swift/tree/main/lib/SILGen">lib/SILGen</a>)
+lowers the type-checked AST into so-called “raw” SIL.  The design of
+SIL is described in
+<a href="https://github.com/apple/swift/blob/main/docs/SIL.rst">docs/SIL.rst</a>.</p>
+  </li>
+  <li>
+    <p><strong>SIL guaranteed transformations</strong>: The SIL guaranteed
+  transformations (implemented in
+  <a href="https://github.com/apple/swift/tree/main/lib/SILOptimizer/Mandatory">lib/SILOptimizer/Mandatory</a>)
+  perform additional dataflow diagnostics that
+  affect the correctness of a program (such as a use of
+  uninitialized variables). The end result of these transformations
+  is “canonical” SIL.</p>
+  </li>
+  <li>
+    <p><strong>SIL Optimizations</strong>: The SIL optimizations (implemented in
+  <a href="https://github.com/apple/swift/tree/main/lib/SILOptimizer/Analysis">lib/Analysis</a>, <a href="https://github.com/apple/swift/tree/main/lib/SILOptimizer/ARC">lib/ARC</a>, <a href="https://github.com/apple/swift/tree/main/lib/SILOptimizer/LoopTransforms">lib/LoopTransforms</a>,
+  and
+  <a href="https://github.com/apple/swift/tree/main/lib/SILOptimizer/Transforms">lib/Transforms</a>)
+  perform additional high-level, Swift-specific optimizations to the
+  program, including (for example) Automatic Reference Counting
+  optimizations, devirtualization, and generic specialization.</p>
+  </li>
+  <li>
+    <p><strong>LLVM IR Generation</strong>: IR generation (implemented in
+  <a href="https://github.com/apple/swift/tree/main/lib/IRGen">lib/IRGen</a>)
+  lowers SIL to <a href="http://llvm.org/docs/LangRef.html">LLVM IR</a>, at
+  which point <a href="http://llvm.org">LLVM</a> can continue to optimize it
+  and generate machine code.</p>
+  </li>
+</ul>
+
+:ET

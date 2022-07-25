@@ -1,0 +1,58 @@
+I"\<p>The Swift project follows an <a href="../contributing/#contributing_code">incremental development model</a>, and utilizes continuous integration (CI) testing of changes in pull requests before merging as a core tool for maintaining project stability.  The system produces the snapshot builds posted on swift.org, and runs tests against active branches.  It is also used as part of the review process to run tests against pull requests before committing them.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Our <a href="https://ci.swift.org">continuous integration system</a> is powered by <a href="https://jenkins.io">Jenkins</a> and currently supports building and testing on macOS, Ubuntu 18.04, Ubuntu 20.04, CentOS 7, CentOS 8, and Amazon Linux 2. Testing on the iOS, tvOS, and watchOS simulator is also supported.</p>
+
+<h3 id="job-organization">Job organization</h3>
+
+<p>Continuous integration jobs are organized within the <a href="https://ci.swift.org">CI system</a> in the following categories:</p>
+
+<ul>
+  <li>Development - All jobs that are configured to build with main branch</li>
+  <li>Swift 5.6 - All jobs that are configured to build with release/5.6</li>
+  <li>Packages - Jobs which create toolchains for the main and release/5.6 branches</li>
+  <li>Pull Request - Jobs which verify pull requests from GitHub before merging into main.</li>
+</ul>
+
+<h2 id="usage">Usage</h2>
+
+<p>There are several ways in which you can interact with the swift.org CI system:</p>
+
+<ul>
+  <li>Integration job status - you can view the build and test status of all integration jobs at  <a href="https://ci.swift.org">https://ci.swift.org</a>.</li>
+  <li>Tests on pull requests - when making a change via pull request, your changes will be tested before being integrated, and results will be posted back inline to the pull request.</li>
+</ul>
+
+<p>More usage documentation can be found <a href="https://github.com/apple/swift/blob/main/docs/ContinuousIntegration.md">here</a>.</p>
+
+<h3 id="pull-request-testing">Pull Request Testing</h3>
+
+<p>When a change is reviewed on a pull request, a member of the Swift team will trigger testing by the CI system.  Tests can be triggered to run on macOS, Linux, or both platforms.</p>
+
+<p><img src="../continuous-integration/images/ci_pull_command.png" alt="pull request CI trigger" /></p>
+
+<p>Testing status is then posted inline with the pull request, showing that a test is in progress.  You can click the “details” link to go directly to the status page for the test in progress.</p>
+
+<p><img src="../continuous-integration/images/ci_pending.png" alt="CI Progress" /></p>
+
+<p>When tests complete, that result is also updated in the pull request</p>
+
+<p><img src="../continuous-integration/images/ci_pass.png" alt="CI Pass" /></p>
+
+<p>If there are issues found during testing, you will get a link to the details of the failure.</p>
+
+<p><img src="../continuous-integration/images/ci_failure.png" alt="CI Pass" /></p>
+
+<p>It is expected that changes meet the <a href="../contributing/#quality">quality standards</a> for the Swift project before they are committed to the development branch, and you are responsible for fixing problems found by your changes.  If your changes break builds or tests on the development or release branches, you will receive email notification.</p>
+
+<h2 id="community-involvement">Community Involvement</h2>
+
+<p>The Swift project welcomes proposals from the community for adding support for other configurations.</p>
+
+<h3 id="swift-community-hosted-continuous-integration">Swift Community-Hosted Continuous Integration</h3>
+
+<p>Community members can volunteer to host nodes for additional platforms on <a href="https://ci-external.swift.org">Swift Community-Hosted Continuous Integration</a>, and are responsible for maintaining the host system.  New nodes can be initiated by creating a pull request at: <a href="https://github.com/apple/swift-community-hosted-continuous-integration">Swift Community-Hosted CI Repository</a>.  Further information about the process is documented in the <a href="https://github.com/apple/swift-community-hosted-continuous-integration/blob/main/README.md">README.md</a>.</p>
+
+<p>The Swift community-hosted CI allows un-supported platforms to be moved over to a supported platform on a case by case basis. Depending on the number of nodes provided, @swift-ci pull request testing can be integrated with the community-hosted CI as well.</p>
+:ET

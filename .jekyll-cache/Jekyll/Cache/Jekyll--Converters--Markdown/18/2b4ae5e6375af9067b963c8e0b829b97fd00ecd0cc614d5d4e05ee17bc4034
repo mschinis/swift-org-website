@@ -1,0 +1,2 @@
+I"¦<p>It is my pleasure to announce a new open source project for the Swift Server ecosystem, <a href="https://github.com/apple/swift-service-discovery">Swift Service Discovery</a>. Service Discovery is a Swift package designed to establish a standard API that can be implemented by various <a href="https://en.wikipedia.org/wiki/Service_discovery">service discovery</a> backends such as DNS-based, key-value store, etc.</p>
+:ET

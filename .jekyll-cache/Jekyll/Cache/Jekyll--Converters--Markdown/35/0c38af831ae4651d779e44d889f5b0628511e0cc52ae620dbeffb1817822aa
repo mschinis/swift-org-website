@@ -1,0 +1,109 @@
+I"�'<p>Xcode 10.2 comes with a Swift Migrator tool that helps you migrate your project to Swift 5.</p>
+
+<blockquote>
+  <p>For the previous release’s Migration Guide, see <a href="https://swift.org/migration-guide-swift4.2">Migrating to Swift 4.2</a>.</p>
+</blockquote>
+
+<h2 id="pre-migration-preparation">Pre-Migration Preparation</h2>
+
+<p>Make sure that the project that you intend to migrate builds successfully in Swift 4 or Swift 4.2 mode, and all its tests pass. You may need to resolve errors initially due to compiler changes.</p>
+
+<p>It’s highly recommended to have your project managed under source control. This will allow you to easily review the changes that were applied via the migration assistant and to discard them and re-try the migration if needed.</p>
+
+<p>You decide when and if you’d like to migrate on a per-target basis when it makes sense for your project. While migrating to Swift 5 is definitely encouraged, it’s not an all-or-nothing process, as Swift 4, 4.2, and 5 targets can coexist and link together.</p>
+
+<p>The migration assistant does a <em>migrator build</em> to gather the changes, using the scheme you have selected, so the targets that will get processed are the ones that are included in the scheme. To review and modify what is included in the scheme, invoke the <em>Edit Scheme…</em> sheet and select the <em>Build</em> tab from the column on the left, and make sure all your targets and their unit tests are included.</p>
+
+<blockquote>
+  <p>If your project depends on other open-source projects that are provided by Carthage or CocoaPods, consult the <a href="#using-carthagecocoapods-projects">Using Carthage/CocoaPods Projects</a> section.</p>
+</blockquote>
+
+<h2 id="swift-migration-assistant">Swift Migration Assistant</h2>
+
+<p>When you open your project with Xcode 10.2 for the first time, you will see a migration opportunity item in the Issue Navigator: click it to activate a sheet asking you if you’d like to migrate. You can be reminded later or invoke the Migrator manually from the menu <em>Edit -&gt; Convert -&gt; To Current Swift Syntax…</em></p>
+
+<p>You will be presented with a list of targets to migrate. Targets that do not contain any Swift code will not be selected.</p>
+
+<p>Clicking <em>Next</em> will bring up the <em>Generate Preview</em> sheet and the assistant will initiate a <em>migration build</em> to get source changes. When this is done, you will be presented with all the changes that will be applied once you click on ‘Save’. This will also change the <em>Swift Language Version</em> build setting for the migrated targets to <em>Swift 5</em>.</p>
+
+<p>There may have been issues with processing the targets that will negatively impact the migration process. Switch to the <em>Report Navigator</em> and select the <em>Convert</em> entry that was added; this is the conversion build log. Check the log for errors that may have showed up.</p>
+
+<p>If you see errors about not being able to code-sign the target, try disabling code-signing from the build settings of the target. If you see other errors, please <a href="https://bugreport.apple.com">file a bug report</a> and include the details. You are strongly encouraged to attach a project that illustrates the faulty migration if possible.</p>
+
+<h2 id="swift-5-migration-changes-overview">Swift 5 Migration Changes Overview</h2>
+
+<p>Swift 5 has minimal impact to code compiled with 4.2 version. Here’s what you may encounter on your own code:</p>
+
+<h3 id="compiler">Compiler</h3>
+
+<ul>
+  <li>A compiler error <code class="language-plaintext highlighter-rouge">add () to forward @autoclosure parameter</code> with a fix-it to add <code class="language-plaintext highlighter-rouge">()</code> (form a call) to correctly forward argument function originated from <code class="language-plaintext highlighter-rouge">@autoclosure</code> parameter to function parameter itself marked as <code class="language-plaintext highlighter-rouge">@autoclosure</code>. This change was the result of addressing <a href="https://bugs.swift.org/browse/SR-5719">SR-5719</a>.
+    <ul>
+      <li>The migrator applies this fix-it automatically.</li>
+    </ul>
+  </li>
+  <li>Type nullability mismatch errors due to: <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0230-flatten-optional-try.md">SE-0230 Flatten nested optional</a>
+    <ul>
+      <li>The migrator will make a local change to wrap the <code class="language-plaintext highlighter-rouge">try?</code> expression and add a cast to preserve the type as it was in the Swift 4.2 version, so the code can still compile. However this change is not ideal and defeats the purpose of the proposal which is to eliminate the need to handle the nested optionals produced from <code class="language-plaintext highlighter-rouge">try?</code> in Swift 4.2. It is recommended to remove the cast and make the necessary manual changes later in the code in the body of the function, or even in the signature of the function itself, if necessary. Such changes are too intrusive for the migrator to perform automatically.</li>
+    </ul>
+  </li>
+  <li>Compiler warnings <code class="language-plaintext highlighter-rouge">switch must be exhaustive</code>, due to <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0192-non-exhaustive-enums.md">SE-0192</a>.
+    <ul>
+      <li>n Swift 5 mode, switches over enums, declared in Objective-C or coming from system frameworks, are required to handle “unknown cases”, i.e. cases that might be added in the future, or that may be defined “privately” in an Objective-C implementation file. (Formally, Objective-C allows storing any value in an enum as long as it fits in the underlying type.) These “unknown cases” can be handled by using the new <code class="language-plaintext highlighter-rouge">@unknown</code> defaultcase, which still provides warnings if any known cases are omitted from the switch. They can also be handled using a normal default.</li>
+      <li>If you’ve defined your own enum in Objective-C and you don’t need clients to handle unknown cases, you can use the <code class="language-plaintext highlighter-rouge">NS_CLOSED_ENUM</code> macro instead of <code class="language-plaintext highlighter-rouge">NS_ENUM</code>. The Swift compiler will recognize this and not require switches to have a default case.</li>
+      <li>In Swift 4 and 4.2 modes, <code class="language-plaintext highlighter-rouge">@unknown</code> default may still be used. If it is omitted and an unknown value is passed into the switch, the program will trap at run time (the same behavior as with Xcode 10.1).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="swift-standard-library">Swift Standard Library</h3>
+
+<ul>
+  <li>Compiler warnings <code class="language-plaintext highlighter-rouge">'index(of:)' is deprecated: renamed to 'firstIndex(of:)'</code> and <code class="language-plaintext highlighter-rouge">'index(where:)' is deprecated: renamed to 'firstIndex(where:)</code>
+    <ul>
+      <li>The migrator performs the necessary changes.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="sdk">SDK</h3>
+
+<p>The source compatibility changes for the SDK between 4.2 and 5 modes are minimal and they were necessary to improve the correctness of the APIs.</p>
+
+<ul>
+  <li>A few APIs from AppKit changed their types to return <code class="language-plaintext highlighter-rouge">Any</code> or <code class="language-plaintext highlighter-rouge">AnyObject</code> instead of <code class="language-plaintext highlighter-rouge">NSBindingSelectionMarker</code>.</li>
+  <li>AVFoundation, CloudKit, and GameKit have a few properties whose return type became nullable
+    <ul>
+      <li>The migrator will add <code class="language-plaintext highlighter-rouge">!</code> to references of such properties to preserve existing behavior as it was in the Swift 4.2 version and keep the code compiling.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="migrating-from-swift-4">Migrating from Swift 4</h3>
+
+<p>If you are migrating from Swift 4 code, also see the migration changes overview from last year’s migrator from <a href="/migration-guide-swift4.2/#swift-42-migration-changes-overview">Migrating to Swift 4.2</a>.</p>
+
+<h2 id="after-migration">After Migration</h2>
+
+<p>While the migrator will take care of many mechanical changes for you, it is possible that you may need to make more manual changes to be able to build the project after applying the migrator changes.</p>
+
+<p>Even if it compiles fine, the code that the migrator provided may not be ideal. Use your best judgement and check that the changes are appropriate for your project.</p>
+
+<h2 id="using-carthagecocoapods-projects">Using Carthage/CocoaPods Projects</h2>
+
+<p>Here are some important points to consider when migrating a project with external dependencies using package managers like the Swift Package Manager, Carthage or CocoaPods.</p>
+
+<ul>
+  <li>It is recommended to use source dependencies rather than binary Swift modules, because modules generated by different Xcode versions are not compatible with each other. Or make sure to get distributions that were built using Xcode 10.2.</li>
+  <li>Make sure your source dependencies build successfully in Swift 4/4.2 mode as well as your own targets.</li>
+  <li>If you have setup framework search paths for finding the binary Swift modules inside Carthage’s build folder, either remove the search paths or clean the build folder, so that you are sure that you are only using the Swift modules that are built from your Xcode workspace.</li>
+  <li>It is not necessary to migrate your source dependencies as long as they can build in Swift 4/4.2 mode.</li>
+</ul>
+
+<h2 id="miscellaneous">Miscellaneous</h2>
+
+<ul>
+  <li>If you have multiple schemes in your project that cover different targets, you will only get notified that you need to migrate one of them.  You will need to manually select the new scheme, then run <em>Edit -&gt; Convert -&gt; To Current Swift Syntax</em> to migrate the remaining schemes. Or you can create a scheme that includes all the targets from your project, and have it selected before running the migration assistant.</li>
+</ul>
+
+:ET

@@ -1,0 +1,171 @@
+I"V=<p>The Swift.org community has the singular goal of making the world’s best general purpose programming language.  Collectively we will develop the language in the open, with contributions from anyone who wishes to participate.  This guideline document describes how the Swift community is organized so that we can work together to add amazing new capabilities to Swift, and make it available to even more developers across more platforms.</p>
+
+<h2 id="communication">Communication</h2>
+
+<p>The Swift language is developed in the open, and all technical or administrative topics about the language or community processes should be directed to the Swift public forums. Public conversations are encouraged, and active developers of the Swift language should monitor the relevant forum categories.</p>
+
+<ul>
+  <li>Directory of forum categories and email instructions are in the <a href="#forums">forum section</a></li>
+  <li>Source code for all Swift projects can be found on GitHub at <a href="https://github.com/apple" title="Apple's home page on GitHub">github.com/apple</a></li>
+  <li>The Swift.org bug tracking system is maintained at <a href="http://github.com/apple/swift/issues">github.com/apple/swift/issues</a></li>
+</ul>
+
+<p>All communication within project spaces should adhere to Swift project’s <a href="/code-of-conduct">Code of Conduct</a>.</p>
+
+<h2 id="community-structure">Community Structure</h2>
+
+<p>Advancing the Swift programming language with a coherent, clear view of its evolution requires strong leadership.  The leadership is taken from the community, and works closely with the much broader group of contributors and users. Roles within the community include:</p>
+
+<ul>
+  <li><strong><a href="#project-lead">Project lead</a></strong> appoints technical leaders from the community.  Apple Inc. is the project lead, and interacts with the community through its representative.</li>
+  <li><strong><a href="#core-team">Core team</a></strong> is the small group of engineers responsible for strategic direction</li>
+  <li><strong><a href="#code-owners">Code owner</a></strong> is the individual responsible for a specific area of the Swift codebase</li>
+  <li><strong><a href="/contributing/#commit-access">Committer</a></strong> is anyone that has commit access to the Swift code base</li>
+  <li><strong><a href="/contributing/#contributing-code">Contributor</a></strong> is anyone that contributes a patch or helps with code review</li>
+</ul>
+
+<p>Most importantly, everyone that uses Swift is a valued member of our extended community.</p>
+
+<h4 id="project-lead">Project Lead</h4>
+
+<p>Apple Inc. is the project lead and serves as the arbiter for the project.  The project lead makes senior appointments to leadership roles, with those leaders coming from the worldwide Swift community of contributors.  The community leaders and code contributors work together to continually improve Swift, and the language will advance by the good works of everyone involved.</p>
+
+<p><a href="mailto:kremenek@apple.com">Ted Kremenek</a> is the appointed representative from Apple, and acts as the voice of the project lead.</p>
+
+<h4 id="core-team">Core Team</h4>
+
+<p>The Core Team reviews and helps iterate on <a href="/contributing/#evolution-process">language evolution proposals</a> from the community at large, acting as the approver of these proposals. Team members help drive Swift forward in a coherent direction consistent with the goal of creating the best possible general purpose programming language.</p>
+
+<p>Members of the core team are appointed by the project lead based on their technical expertise and proven contribution to the community. The current Core Team members are:</p>
+
+<ul>
+  <li><a href="mailto:ben_cohen@apple.com">Ben Cohen</a></li>
+  <li><a href="mailto:dgregor@apple.com">Doug Gregor</a></li>
+  <li><a href="mailto:jgroff@apple.com">Joe Groff</a></li>
+  <li><a href="mailto:rjmccall@apple.com">John McCall</a></li>
+  <li><a href="mailto:compnerd@compnerd.org">Saleem Abdulrasool</a></li>
+  <li><a href="mailto:kremenek@apple.com">Ted Kremenek</a></li>
+  <li><a href="mailto:tomerd@apple.com">Tom Doron</a></li>
+</ul>
+
+<p>The Core Team membership is expected to change over time.  Exceptional community members will be appointed based on their record of community involvement and contributions.</p>
+
+<h4 id="code-owners">Code Owners</h4>
+
+<p>Code owners are individuals assigned to specific areas of the Swift project, with code quality their primary responsibility. The umbrella Swift project is composed of numerous sub-projects including the Swift standard library, extensions to the LLDB debugger, and the Swift package manager, to name a few. Each sub-project will be assigned a code owner.  The code owner then works to get all contributions reviewed, gather feedback from the community, and shepherd approved patches into the product.</p>
+
+<p>Anyone can review a piece of code, and we welcome code review from everyone that is interested. Code review procedures are not dictated by a central, global policy. Instead, the process is defined by each code owner.</p>
+
+<p>Any community member that is active and shows themselves to be valuable can offer to become a code owner via posting to the forums, or be nominated by another member.  If fellow contributors agree, the project lead will make the appointment and add the new owner’s name to the code owners file. The position is completely voluntary, and can be resigned at any time.</p>
+
+<p>The list of current code owners can be found in the file <code class="language-plaintext highlighter-rouge">CODE_OWNERS.txt</code> in the root of the parent Swift source tree. We also maintain a mailing group so you can <a href="mailto:code-owners@forums.swift.org" title="Send email to the code owners">send an email</a> to all the code owners.</p>
+
+<p>There may be nothing more important to the success of Swift than strong, engaged code owners. We all owe them respect, gratitude, and whatever help we can offer.</p>
+
+<h2 id="license">License</h2>
+
+<p>The <a href="/LICENSE.txt">Swift license</a> is based on the <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 license</a> with a <a href="#runtime-library-exception">Runtime Library Exception</a> that removes the attribution requirement when using Swift to build and distribute your own binaries. The Apache 2.0 license was chosen because it allows broad use of Swift, and is already well-understood by many potential contributors.</p>
+
+<p>Copyright is held by the authors of the contributions, or the company or organization to which the individual belongs.  A list of copyright holders is maintained in the <a href="/CONTRIBUTORS.txt">CONTRIBUTORS.txt</a> file on Swift.org and at the root of the repository.</p>
+
+<h3 id="runtime-library-exception">Runtime Library Exception</h3>
+
+<p>The Runtime Library Exception makes it clear that end users of the Swift compiler don’t have to attribute their use of Swift in their finished binary application, game, or service. End-users of the Swift language should feel unrestricted to create great software. The full text of this exception follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>As an exception, if you use this Software to compile your source code and
+portions of this Software are embedded into the binary product as a result,
+you may redistribute such product without providing attribution as would
+otherwise be required by Sections 4(a), 4(b) and 4(d) of the License.
+</code></pre></div></div>
+
+<p>This exception can also be found at the bottom of the <a href="/LICENSE.txt">LICENSE.txt</a> file.</p>
+
+<h3 id="copyright-and-license-in-source-code">Copyright and License in Source Code</h3>
+
+<p>All source files hosted on Swift.org must contain a comment block at the top of the file declaring the license and copyright that applies.  This text may be part of a larger header, for instance as defined in the <a href="/contributing/#contributing-code" title="Contributing Code">Contributing Code</a> section. Regardless of the header format, the wording for the license and copyright portion must be copied as follows, with the appropriate years applied:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This source file is part of the Swift.org open source project
+//
+// Copyright (c) 2022 Apple Inc. and the Swift project authors
+// Licensed under Apache License v2.0 with Runtime Library Exception
+//
+// See https://swift.org/LICENSE.txt for license information
+// See https://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
+</code></pre></div></div>
+
+<p>Each contributor is responsible for adding his or her name to the <code class="language-plaintext highlighter-rouge">CONTRIBUTORS.txt</code> file at the project’s root and maintaining the contact information. If you are contributing under the umbrella of your company, please add your company’s information, and do not also list yourself as an additional copyright holder.</p>
+
+<h2 id="forums">Forums</h2>
+
+<p>The primary method of communicating among community members is through the <a href="https://forums.swift.org">Swift forums</a>.  Within the forums, we have a number of categories and sub-categories, to help organize discussions.  Forum topics can be further organized via use of tags.</p>
+
+<p>In addition to the forum web interface, the forums can be interacted with via email.  Subscriptions and email preferences are configured via forum user settings.</p>
+
+<p>A core principle for the Swift project is that the community is an open and inclusive one.  Engagement on the forums should follow these guidelines:</p>
+
+<ul>
+  <li>
+    <p>All discussion on the forums should adhere to Swift project’s <a href="/code-of-conduct">Code of Conduct</a>.</p>
+  </li>
+  <li>
+    <p>Different users may have different preferences in choice of language for discussion and are encouraged to use their language of choice.</p>
+  </li>
+  <li>
+    <p>As a matter of courtesy, responses to a post should be in the same language as the original post in order to maintain the original inclusiveness of the discussion and not inadvertantly exclude other participants already engaged on the thread (including the author of the original post).</p>
+  </li>
+  <li>
+    <p>A response to a post has the option of providing <em>additional text</em> in a different language if that is helpful.</p>
+  </li>
+</ul>
+
+<h3 id="announcements">Announcements</h3>
+<p><strong><a href="https://forums.swift.org/c/general-announce">Announcements</a></strong> - For anyone interested in hearing about important announcements about the Swift project.  This is a low volume category.</p>
+
+<h3 id="swift-users">Swift Users</h3>
+<p><strong><a href="https://forums.swift.org/c/swift-users">Using Swift</a></strong> - For newcomers or those primarily interested in using the Swift language, it is best to start by engaging within the Using Swift category.  This area is intended for users to get help with or ask questions about Swift or its related tools and is not for discussion about work being done to the language itself. This category will accept email sent to: swift+swift-users@forums.swift.org</p>
+
+<h3 id="development">Development</h3>
+
+<p><strong><a href="https://forums.swift.org/c/development/compiler">Compiler</a></strong> - For developers to discuss the development and implementation of the Swift compiler, low-level runtime, and SourceKit.  This category will accept email sent to: swift+compiler@forums.swift.org</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/stdlib">Standard Library</a></strong> - For developers to discuss the implementation of the Swift standard library.  This category will accept email sent to: swift+stdlib@forums.swift.org</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/corelibs">Core Libraries</a></strong> - For developers to discuss the implementation of the Swift core libraries.  This category will accept email sent to: swift+corelibs@forums.swift.org</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/lldb">LLDB</a></strong> - For developers to discuss the implementation of the Swift REPL and Swift-specific aspects of LLDB. This category will accept email sent to: swift+lldb@forums.swift.org</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/SwiftPM">Package Manager</a></strong> - For developers to discuss the implementation of the Swift package manager. This category will accept email sent to: swift+swiftpm@forums.swift.org</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/llbuild">LLBuild</a></strong> - For developers to discuss the implementation of the low level build system (llbuild). This category will accept email sent to: swift+llbuild@forums.swift.org</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/dev-announce">Announcements</a></strong> - For announcements relevant to developers such as release announcements, branching, and infrastructure updates.</p>
+
+<p><strong><a href="http://forums.swift.org/c/development/ci-notifications">CI Notifications</a></strong> - Automated notifications from ci.swift.org for build and test failures.</p>
+
+<h3 id="swift-evolution">Swift Evolution</h3>
+
+<p>Please see the <a href="https://github.com/apple/swift-evolution">Swift evolution repository</a> to learn about Swift’s evolution process and which proposals are actively being discussed.</p>
+
+<p><strong><a href="https://forums.swift.org/c/evolution/announce">Announcements</a></strong> - For announcements of Swift evolution proposal reviews and results. All discussion and review of evolution proposals occurs on the swift-evolution mailing list.</p>
+
+<p><strong><a href="https://forums.swift.org/c/evolution/pitches">Pitches</a></strong> - For proposals for the evolution of Swift including new language features, new standard library APIs, and so on before they enter the review phase. This category will accept email sent to: swift+pitches@forums.swift.org</p>
+
+<p><strong><a href="https://forums.swift.org/c/evolution/proposal-reviews">Proposal Reviews</a></strong> - Posting and commentary on proposals in the review phase. This category will accept email sent to: swift+proposal-reviews@forums.swift.org</p>
+
+<p><strong><a href="https://forums.swift.org/c/evolution/discuss">Discussion</a></strong> - For general discussion of the evolution of Swift. This category will accept email sent to: swift+evolution-discuss@forums.swift.org</p>
+
+<h3 id="server">Server</h3>
+
+<p>For developers to discuss erver focused capabilities supported by Swift.org and the Server work group.</p>
+
+<p><strong><a href="https://forums.swift.org/c/server/serverdev">Development</a></strong> - For developers to discuss the implementation of server focused capabilities developed by the Server work group.</p>
+
+<p><strong><a href="https://forums.swift.org/c/server/docker">Docker</a></strong> - For developers to discuss the official Docker image support for Swift.</p>
+
+<h3 id="related-projects">Related Projects</h3>
+
+<p><strong><a href="https://forums.swift.org/c/related-projects">Related Projects</a></strong> - The Related Projects category includes sub-categories that are dedicated to open source projects within the Swift community that are separate from the Swift language itself.</p>
+
+<p><strong><a href="https://forums.swift.org/c/community-showcase">Community Showcase</a></strong> - The Community Showcase category is a venue for members of the Swift community to announce things they’ve created that may be of interest to other Swift developers.</p>
+
+:ET

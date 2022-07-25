@@ -1,0 +1,809 @@
+I"��<p>Here, you’ll find information about the how to use the Swift programming language.</p>
+
+<p>If you’re new to Swift, check out <a href="https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour</a> in
+<em>The Swift Programming Language</em>, for a quick introduction to the
+most important concepts and features of the language.</p>
+
+<h2 id="installing-swift">Installing Swift</h2>
+
+<p>The first step to using Swift is to download and install
+the compiler and other required components.
+Go to the <a href="/download">Download</a> page
+and follow the instructions for your target platform.</p>
+
+<p>In order to follow along with the examples below,
+make sure to add Swift to your <code class="language-plaintext highlighter-rouge">$PATH</code>.</p>
+
+<h3 id="on-macos">On macOS</h3>
+
+<p>The default location for the downloadable toolchain on macOS is
+<code class="language-plaintext highlighter-rouge">/Library/Developer/Toolchains</code>.
+You can make the latest installed toolchain available for use from the terminal with the following command:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">TOOLCHAINS</span><span class="o">=</span>swift
+</code></pre></div></div>
+
+<p>To select any other installed toolchain, use its identifier in the <code class="language-plaintext highlighter-rouge">TOOLCHAINS</code>
+variable. The identifier can be found in toolchain’s <code class="language-plaintext highlighter-rouge">Info.plist</code> file.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/libexec/PlistBuddy <span class="nt">-c</span> <span class="s2">"Print CFBundleIdentifier:"</span> /Library/Developer/Toolchains/swift-4.0-RELEASE.xctoolchain/Info.plist
+org.swift.4020170919
+
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">TOOLCHAINS</span><span class="o">=</span>org.swift.4020170919
+</code></pre></div></div>
+
+<h3 id="on-linux">On Linux</h3>
+
+<ol>
+  <li>Install required dependencies:</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ubuntu 16.04</th>
+      <th>Ubuntu 18.04</th>
+      <th>Ubuntu 20.04</th>
+      <th>CentOS 7</th>
+      <th>CentOS 8</th>
+      <th>Amazon Linux 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 0; vertical-align: top">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>apt-get <span class="nb">install</span> <span class="se">\</span>
+          binutils <span class="se">\</span>
+          git <span class="se">\</span>
+          libc6-dev <span class="se">\</span>
+          libcurl3 <span class="se">\</span>
+          libedit2 <span class="se">\</span>
+          libgcc-5-dev <span class="se">\</span>
+          libpython2.7 <span class="se">\</span>
+          libsqlite3-0 <span class="se">\</span>
+          libstdc++-5-dev <span class="se">\</span>
+          libxml2 <span class="se">\</span>
+          pkg-config <span class="se">\</span>
+          tzdata <span class="se">\</span>
+          zlib1g-dev</code></pre></figure>
+
+</td>
+      <td style="padding: 0; vertical-align: top">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>apt-get <span class="nb">install</span> <span class="se">\</span>
+          binutils <span class="se">\</span>
+          git <span class="se">\</span>
+          libc6-dev <span class="se">\</span>
+          libcurl4 <span class="se">\</span>
+          libedit2 <span class="se">\</span>
+          libgcc-5-dev <span class="se">\</span>
+          libpython2.7 <span class="se">\</span>
+          libsqlite3-0 <span class="se">\</span>
+          libstdc++-5-dev <span class="se">\</span>
+          libxml2 <span class="se">\</span>
+          pkg-config <span class="se">\</span>
+          tzdata <span class="se">\</span>
+          zlib1g-dev</code></pre></figure>
+
+</td>
+      <td style="padding: 0; vertical-align: top">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>apt-get <span class="nb">install</span> <span class="se">\</span>
+          binutils <span class="se">\</span>
+          git <span class="se">\</span>
+          gnupg2 <span class="se">\</span>
+          libc6-dev <span class="se">\</span>
+          libcurl4 <span class="se">\</span>
+          libedit2 <span class="se">\</span>
+          libgcc-9-dev <span class="se">\</span>
+          libpython2.7 <span class="se">\</span>
+          libsqlite3-0 <span class="se">\</span>
+          libstdc++-9-dev <span class="se">\</span>
+          libxml2 <span class="se">\</span>
+          libz3-dev <span class="se">\</span>
+          pkg-config <span class="se">\</span>
+          tzdata <span class="se">\</span>
+          uuid-dev <span class="se">\</span>
+          zlib1g-dev</code></pre></figure>
+
+</td>
+      <td style="padding: 0; vertical-align: top">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yum <span class="nb">install</span> <span class="se">\</span>
+      binutils <span class="se">\</span>
+      gcc <span class="se">\</span>
+      git <span class="se">\</span>
+      glibc-static <span class="se">\</span>
+      libbsd-devel <span class="se">\</span>
+      libedit <span class="se">\</span>
+      libedit-devel <span class="se">\</span>
+      libicu-devel <span class="se">\</span>
+      libstdc++-static <span class="se">\</span>
+      pkg-config <span class="se">\</span>
+      python2 <span class="se">\</span>
+      sqlite
+
+      <span class="c"># __block conflicts with clang's __block qualifier</span>
+      <span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'s/\*__block/\*__libc_block/g'</span> /usr/include/unistd.h</code></pre></figure>
+
+</td>
+      <td style="padding: 0; vertical-align: top">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yum <span class="nb">install</span> <span class="se">\</span>
+      binutils <span class="se">\</span>
+      gcc <span class="se">\</span>
+      git <span class="se">\</span>
+      glibc-static <span class="se">\</span>
+      libbsd-devel <span class="se">\</span>
+      libedit <span class="se">\</span>
+      libedit-devel <span class="se">\</span>
+      libicu-devel <span class="se">\</span>
+      libstdc++-static <span class="se">\</span>
+      pkg-config <span class="se">\</span>
+      python2 <span class="se">\</span>
+      sqlite</code></pre></figure>
+
+</td>
+      <td style="padding: 0; vertical-align: top">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yum <span class="nb">install</span> <span class="se">\</span>
+      binutils <span class="se">\</span>
+      gcc <span class="se">\</span>
+      git <span class="se">\</span>
+      glibc-static <span class="se">\</span>
+      <span class="nb">gzip</span> <span class="se">\</span>
+      libbsd <span class="se">\</span>
+      libcurl <span class="se">\</span>
+      libedit <span class="se">\</span>
+      libicu <span class="se">\</span>
+      libsqlite <span class="se">\</span>
+      libstdc++-static <span class="se">\</span>
+      libuuid <span class="se">\</span>
+      libxml2 <span class="se">\</span>
+      <span class="nb">tar</span> <span class="se">\</span>
+      tzdata</code></pre></figure>
+
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you installed the Swift toolchain on Linux
+to a directory other than the system root,
+you will need to run the following command,
+using the actual path of your Swift installation:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/path/to/Swift/usr/bin:<span class="s2">"</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h3 id="on-windows">On Windows</h3>
+
+<h4 id="dependencies">Dependencies</h4>
+
+<p>Swift has the following general dependencies:</p>
+
+<ul>
+  <li>
+    <p>Git (used by Swift Package Manager)</p>
+  </li>
+  <li>
+    <p>Python<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> (used by the debugger - lldb)</p>
+  </li>
+</ul>
+
+<p>Windows has the following additional platform specific dependencies:</p>
+
+<ul>
+  <li>
+    <p>Windows SDK (provides the Windows headers and import libraries)</p>
+  </li>
+  <li>
+    <p>Visual Studio (provides the Visual C++ SDK/Build Tools for additional headers)</p>
+  </li>
+</ul>
+
+<h4 id="enabling-developer-mode">Enabling Developer Mode</h4>
+
+<p>In order to develop applications, particularly with the Swift Package Manager, you will need to enable developer mode. Please see Microsoft’s <a href="https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development">documentation</a> for instructions for enabling developer mode.</p>
+
+<h4 id="installation-instructions">Installation Instructions</h4>
+
+<h5 id="install-using-the-windows-package-manager">Install using the Windows Package Manager</h5>
+
+<p>The <a href="https://docs.microsoft.com/windows/package-manager/">Windows Package Manager</a> can be found in the <a href="https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1">App Store</a> or be <a href="ms-appinstaller:?source=https://aka.ms/getwinget">installed directly</a>.</p>
+
+<ol>
+  <li>
+    <p>Install required dependencies:</p>
+
+    <p>The platform dependencies cannot be installed through the Windows Package Manager as the install rules do not install the components necessary.  They will be installed through Visual Studio installer.</p>
+
+    <pre><code class="language-cmd">winget install Git.Git
+winget install Python.Python.3 --version 3.10.2150.0
+
+curl -sOL https://aka.ms/vs/16/release/vs_community.exe
+start /w vs_community.exe --passive --wait --norestart --nocache ^
+  --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community" ^
+  --add Microsoft.VisualStudio.Component.Windows10SDK.19041 ^
+  --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64
+del /q vs_community.exe
+</code></pre>
+
+    <p>Start up a new Command Prompt and install the Python library six.</p>
+
+    <pre><code class="language-cmd">pip install six
+</code></pre>
+  </li>
+  <li>
+    <p>Install Swift:</p>
+
+    <p>Swift can be installed through the official installer directly, or using the Windows Package Manager as well.  Notice that Windows Package Manager release may be behind the official release.</p>
+
+    <ul>
+      <li>Using the official installer:
+        <ol>
+          <li>Download the <a href="/download">latest package release</a>.</li>
+          <li>Run the package installer.</li>
+        </ol>
+      </li>
+      <li>Using the Windows Package Manager:
+        <pre><code class="language-cmd">winget install Swift.Toolchain
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>A Swift toolchain will be installed at <code class="language-plaintext highlighter-rouge">%SystemDrive%\Library\Developer\Toolchains\unknown-Asserts-development.xctoolchain</code>.  A compatible Swift SDK will be installed at <code class="language-plaintext highlighter-rouge">%SystemDrive%\Library\Developer\Platforms\Windows.platform\Developer\SDKs\Windows.sdk</code>.</p>
+
+<h5 id="traditional-installation">Traditional Installation</h5>
+
+<blockquote>
+  <p><strong>NOTE:</strong> The traditional installation process is required for Swift older than 5.4.2.</p>
+</blockquote>
+
+<p>Swift has been tested with <a href="https://visualstudio.microsoft.com">Visual Studio 2019</a>.  You will need to install Visual Studio with the following components.  The installer for Swift is available in the <a href="/download">Download</a> section.  The toolchain on Windows is installed to <code class="language-plaintext highlighter-rouge">%SystemDrive%\Library\Developer\Toolchains</code>.</p>
+
+<p>The following Visual Studio components are <strong>required</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Visual Studio ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MSVC v142 - VS 2019 C++ x64/x86 build tools (Latest)</td>
+      <td>Microsoft.VisualStudio.Component.VC.Tools.x86.x64</td>
+    </tr>
+    <tr>
+      <td>Windows 10 SDK (10.0.17763.0)<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></td>
+      <td>Microsoft.VisualStudio.Component.Windows10SDK.17763</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following additional Visual Studio components are <strong>recommended</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Visual Studio ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Git for Windows</td>
+      <td>Microsoft.VisualStudio.Component.Git</td>
+    </tr>
+    <tr>
+      <td>Python 3 64-bit (3.7.8)</td>
+      <td>Component.CPython.x64</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following additional Visual Studio component is <strong>suggested</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Visual Studio ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>C++ CMake tools for Windows</td>
+      <td>Microsoft.VisualStudio.Component.VC.CMake.Project</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="support-files">Support Files</h5>
+
+<blockquote>
+  <p><strong>NOTE:</strong> This is only required for versions older than 5.4.2</p>
+</blockquote>
+
+<p>You must use the <code class="language-plaintext highlighter-rouge">x64 Native Tools for VS2019 Command Prompt</code> to run the following steps. The <code class="language-plaintext highlighter-rouge">x64 Native Tools for VS2019 Command Prompt</code> runs the <code class="language-plaintext highlighter-rouge">DevEnv</code> script from Visual Studio that sets up the necessary environment variables to find the system headers.</p>
+
+<p>In order to make the Windows SDK accessible to Swift, it is necessary to deploy a few files into the Windows SDK. The following will modify your Visual Studio Installation, and as such will require to be run from an (elevated) “Administrator” <code class="language-plaintext highlighter-rouge">x86 Native Tools for VS2019 Command Prompt</code>.</p>
+
+<pre><code class="language-cmd">copy /Y %SDKROOT%\usr\share\ucrt.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\ucrt\module.modulemap"
+copy /Y %SDKROOT%\usr\share\visualc.modulemap "%VCToolsInstallDir%\include\module.modulemap"
+copy /Y %SDKROOT%\usr\share\visualc.apinotes "%VCToolsInstallDir%\include\visualc.apinotes"
+copy /Y %SDKROOT%\usr\share\winsdk.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\um\module.modulemap"
+</code></pre>
+
+<p>Because it is installing the files into the Visual Studio image, the files will need to be copied each time Visual Studio is updated.</p>
+
+<h5 id="repairing-after-visual-studio-updates">Repairing after Visual Studio Updates</h5>
+
+<p>If Visual Studio is updated, you may have to repair the installation.  See Microsoft’s <a href="https://support.microsoft.com/en-us/windows/repair-apps-and-programs-in-windows-10-e90eefe4-d0a2-7c1b-dd59-949a9030f317">instructions</a> for repairing installed programs.</p>
+
+<hr />
+
+<h3 id="swift-version">Swift Version</h3>
+
+<p>You can verify that you are running the expected version of Swift
+by entering the <code class="language-plaintext highlighter-rouge">swift</code> command and passing the <code class="language-plaintext highlighter-rouge">--version</code> flag:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift <span class="nt">--version</span>
+Apple Swift version 2.2-dev <span class="o">(</span>LLVM ..., Clang ..., Swift ...<span class="o">)</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">-dev</code> suffix on the version number
+is used to indicate that it’s a <em>development</em> build,
+not a released version.</p>
+
+<h2 id="using-the-repl">Using the REPL</h2>
+
+<p>If you run the <code class="language-plaintext highlighter-rouge">swift</code> command without any other arguments,
+you’ll launch the REPL, an interactive shell
+that will read, evaluate, and print the results
+of any Swift code you enter.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift
+Welcome to Apple Swift version 2.2. Type :help <span class="k">for </span>assistance.
+  1&gt;
+</code></pre></div></div>
+
+<p>Interacting with the REPL is a great way to experiment with Swift.
+For example, if you enter the expression <code class="language-plaintext highlighter-rouge">1 + 2</code>,
+the result of the expression, <code class="language-plaintext highlighter-rouge">3</code>, is printed on the next line:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1&gt; 1 + 2
+<span class="nv">$R0</span>: Int <span class="o">=</span> 3
+</code></pre></div></div>
+
+<p>You can assign values to constants and variables,
+and use them in subsequent lines.
+For instance, the <code class="language-plaintext highlighter-rouge">String</code> value <code class="language-plaintext highlighter-rouge">Hello, world!</code>
+can be assigned to the constant <code class="language-plaintext highlighter-rouge">greeting</code>,
+and then passed as an argument to the <code class="language-plaintext highlighter-rouge">print(_:)</code> function:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  2&gt; <span class="nb">let </span>greeting <span class="o">=</span> <span class="s2">"Hello!"</span>
+greeting: String <span class="o">=</span> <span class="s2">"Hello!"</span>
+  3&gt; print<span class="o">(</span>greeting<span class="o">)</span>
+Hello!
+</code></pre></div></div>
+
+<p>If you enter an invalid expression,
+the REPL will print an error showing where the problem occurred:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">let </span>answer <span class="o">=</span> <span class="s2">"forty"</span>-<span class="s2">"two"</span>
+error: binary operator <span class="s1">'-'</span> cannot be applied to two <span class="s1">'String'</span> operands
+<span class="nb">let </span>answer <span class="o">=</span> <span class="s2">"forty"</span>-<span class="s2">"two"</span>
+             ~~~~~~~^~~~~~
+</code></pre></div></div>
+
+<p>You can use the up-arrow and down-arrow keys (<code class="language-plaintext highlighter-rouge">↑</code> and <code class="language-plaintext highlighter-rouge">↓</code>)
+to cycle through previous lines entered into the REPL.
+This allows you to make a slight change to a previous expression
+without retyping the entire line,
+and is especially convenient for fixing errors like the one in the previous example:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">let </span>answer <span class="o">=</span> <span class="s2">"forty-two"</span>
+answer: String <span class="o">=</span> <span class="s2">"forty-two"</span>
+</code></pre></div></div>
+
+<p>Another useful feature of the REPL
+is that it can automatically suggest functions and methods
+that can be used in a particular context.
+For example, if you enter <code class="language-plaintext highlighter-rouge">re</code>
+after a dot operator on a <code class="language-plaintext highlighter-rouge">String</code> value
+and then hit the tab key (<code class="language-plaintext highlighter-rouge">⇥</code>),
+the REPL will give a list of available completions
+like <code class="language-plaintext highlighter-rouge">remove(at:)</code> and <code class="language-plaintext highlighter-rouge">replaceSubrange(bounds:with:)</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5&gt; <span class="s2">"Hi!"</span>.re⇥
+Available completions:
+	remove<span class="o">(</span>at: Index<span class="o">)</span> -&gt; Character
+	removeAll<span class="o">()</span> -&gt; Void
+	removeAll<span class="o">(</span>keepingCapacity: Bool<span class="o">)</span> -&gt; Void
+	removeSubrange<span class="o">(</span>bounds: ClosedRange&lt;Index&gt;<span class="o">)</span> -&gt; Void
+	removeSubrange<span class="o">(</span>bounds: Range&lt;Index&gt;<span class="o">)</span> -&gt; Void
+	replaceSubrange<span class="o">(</span>bounds: ClosedRange&lt;Index&gt;, with: C<span class="o">)</span> -&gt; Void
+	replaceSubrange<span class="o">(</span>bounds: ClosedRange&lt;Index&gt;, with: String<span class="o">)</span> -&gt; Void
+	replaceSubrange<span class="o">(</span>bounds: Range&lt;Index&gt;, with: C<span class="o">)</span> -&gt; Void
+	replaceSubrange<span class="o">(</span>bounds: Range&lt;Index&gt;, with: String<span class="o">)</span> -&gt; Void
+	reserveCapacity<span class="o">(</span>n: Int<span class="o">)</span> -&gt; Void
+</code></pre></div></div>
+
+<p>If you start a block of code,
+such as when iterating over an array with a <code class="language-plaintext highlighter-rouge">for-in</code> loop,
+the REPL will automatically indent the next line,
+and change the prompt character from <code class="language-plaintext highlighter-rouge">&gt;</code> to <code class="language-plaintext highlighter-rouge">.</code>
+to indicate that code entered on that line
+will only be evaluated when the entire code block is evaluated.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  6&gt; <span class="nb">let </span>numbers <span class="o">=</span> <span class="o">[</span>1,2,3]
+numbers: <span class="o">[</span>Int] <span class="o">=</span> 3 values <span class="o">{</span>
+  <span class="o">[</span>0] <span class="o">=</span> 1
+  <span class="o">[</span>1] <span class="o">=</span> 2
+  <span class="o">[</span>2] <span class="o">=</span> 3
+<span class="o">}</span>
+  7&gt; <span class="k">for </span>n <span class="k">in </span>numbers.reversed<span class="o">()</span> <span class="o">{</span>
+  8.     print<span class="o">(</span>n<span class="o">)</span>
+  9. <span class="o">}</span>
+3
+2
+1
+</code></pre></div></div>
+
+<p>All of the functionality of Swift is available to you from the REPL,
+from writing control flow statements
+to declaring and instantiating structures and classes.</p>
+
+<p>You can also import any available system modules,
+such as <code class="language-plaintext highlighter-rouge">Darwin</code> on macOS and <code class="language-plaintext highlighter-rouge">Glibc</code> on Linux:</p>
+
+<h3 id="on-macos-1">On macOS</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="o">&gt;</span> <span class="kd">import</span> <span class="kt">Darwin</span>
+<span class="mi">2</span><span class="o">&gt;</span> <span class="nf">arc4random_uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="err">$</span><span class="kt">R0</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<h3 id="on-linux-1">On Linux</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="o">&gt;</span> <span class="kd">import</span> <span class="kt">Glibc</span>
+<span class="mi">2</span><span class="o">&gt;</span> <span class="nf">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span>
+<span class="err">$</span><span class="kt">R0</span><span class="p">:</span> <span class="kt">Int32</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<h3 id="on-windows-1">On Windows</h3>
+
+<p>The REPL depends on Python bindings.  You must ensure that Python 3.7 is available
+in the path.  The following command adds Python 3.7 from Visual Studio to <code class="language-plaintext highlighter-rouge">%PATH%</code>
+so that it can be used:</p>
+
+<pre><code class="language-cmd">path %ProgramFiles(x86)%\Microsoft Visual Studio\Shared\Python37_64;%PATH%
+</code></pre>
+
+<p>Because the Windows installation separates out the SDK from the toolchain, a few
+extra parameters must be passed to the REPL.  This allows you to use multiple
+different SDKs with the same toolchain.</p>
+
+<pre><code class="language-cmd">set SWIFTFLAGS=-sdk %SDKROOT% -I %SDKROOT%/usr/lib/swift -L %SDKROOT%/usr/lib/swift/windows
+swift repl -target x86_64-unknown-windows-msvc %SWIFTFLAGS%
+</code></pre>
+
+<h2 id="using-the-package-manager">Using the Package Manager</h2>
+
+<p>Swift package manager provides a convention-based system for
+building libraries and executables, and sharing code across different packages.</p>
+
+<p>These examples assume you have made <code class="language-plaintext highlighter-rouge">swift</code> available in your path;
+see <a href="#installing-swift">Installing</a> for more information.
+Once available, you can invoke the package manager tools: <code class="language-plaintext highlighter-rouge">swift package</code>, <code class="language-plaintext highlighter-rouge">swift run</code>, <code class="language-plaintext highlighter-rouge">swift build</code> and <code class="language-plaintext highlighter-rouge">swift test</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift package <span class="nt">--help</span>
+OVERVIEW: Perform operations on Swift packages
+...
+</code></pre></div></div>
+
+<h3 id="creating-a-package">Creating a Package</h3>
+
+<p>To create a new Swift package, first create and enter a directory named <code class="language-plaintext highlighter-rouge">Hello</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>Hello
+<span class="nv">$ </span><span class="nb">cd </span>Hello
+</code></pre></div></div>
+
+<p>Every package must have a manifest file called <code class="language-plaintext highlighter-rouge">Package.swift</code> in its root directory.
+You can create a minimal package named <code class="language-plaintext highlighter-rouge">Hello</code> using:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift package init
+</code></pre></div></div>
+
+<p>By default the init command will create a library package directory structure:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── Package.swift
+├── README.md
+├── Sources
+│   └── Hello
+│       └── Hello.swift
+└── Tests
+    ├── HelloTests
+    │   └── HelloTests.swift
+    └── LinuxMain.swift
+</code></pre></div></div>
+
+<p>You can use <code class="language-plaintext highlighter-rouge">swift build</code> to build a package. This will download, resolve and compile dependencies mentioned
+in the manifest file <code class="language-plaintext highlighter-rouge">Package.swift</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift build
+Compile Swift Module <span class="s1">'Hello'</span> <span class="o">(</span>1 sources<span class="o">)</span>
+</code></pre></div></div>
+
+<p>To run the tests for a package, use: <code class="language-plaintext highlighter-rouge">swift test</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift <span class="nb">test
+</span>Compile Swift Module <span class="s1">'HelloTests'</span> <span class="o">(</span>1 sources<span class="o">)</span>
+Linking ./.build/x86_64-apple-macosx10.10/debug/HelloPackageTests.xctest/Contents/MacOS/HelloPackageTests
+Test Suite <span class="s1">'All tests'</span> started at 2016-08-29 08:00:31.453
+Test Suite <span class="s1">'HelloPackageTests.xctest'</span> started at 2016-08-29 08:00:31.454
+Test Suite <span class="s1">'HelloTests'</span> started at 2016-08-29 08:00:31.454
+Test Case <span class="s1">'-[HelloTests.HelloTests testExample]'</span> started.
+Test Case <span class="s1">'-[HelloTests.HelloTests testExample]'</span> passed <span class="o">(</span>0.001 seconds<span class="o">)</span><span class="nb">.</span>
+Test Suite <span class="s1">'HelloTests'</span> passed at 2016-08-29 08:00:31.455.
+	 Executed 1 <span class="nb">test</span>, with 0 failures <span class="o">(</span>0 unexpected<span class="o">)</span> <span class="k">in </span>0.001 <span class="o">(</span>0.001<span class="o">)</span> seconds
+Test Suite <span class="s1">'HelloPackageTests.xctest'</span> passed at 2016-08-29 08:00:31.455.
+	 Executed 1 <span class="nb">test</span>, with 0 failures <span class="o">(</span>0 unexpected<span class="o">)</span> <span class="k">in </span>0.001 <span class="o">(</span>0.001<span class="o">)</span> seconds
+Test Suite <span class="s1">'All tests'</span> passed at 2016-08-29 08:00:31.455.
+	 Executed 1 <span class="nb">test</span>, with 0 failures <span class="o">(</span>0 unexpected<span class="o">)</span> <span class="k">in </span>0.001 <span class="o">(</span>0.002<span class="o">)</span> seconds
+</code></pre></div></div>
+
+<h3 id="building-an-executable">Building an Executable</h3>
+
+<p>A target is considered as an executable if it contains a file named <code class="language-plaintext highlighter-rouge">main.swift</code>.
+The package manager will compile that file into a binary executable.</p>
+
+<p>In this example,
+the package will produce an executable named <code class="language-plaintext highlighter-rouge">Hello</code>
+that outputs “Hello, world!”.</p>
+
+<p>First create and enter a directory called <code class="language-plaintext highlighter-rouge">Hello</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>Hello
+<span class="nv">$ </span><span class="nb">cd </span>Hello
+</code></pre></div></div>
+
+<p>Now run the swift package’s init command with executable type:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift package init <span class="nt">--type</span> executable
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">swift run</code> command to build and run the executable:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift run Hello
+Compile Swift Module <span class="s1">'Hello'</span> <span class="o">(</span>1 sources<span class="o">)</span>
+Linking ./.build/x86_64-apple-macosx10.10/debug/Hello
+Hello, world!
+</code></pre></div></div>
+
+<p>Note: Since there is only one executable in this package, we can omit the
+executable name from the <code class="language-plaintext highlighter-rouge">swift run</code> command.</p>
+
+<p>You can also compile the package by running the <code class="language-plaintext highlighter-rouge">swift build</code> command and then run
+the binary from .build directory:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift build
+Compile Swift Module <span class="s1">'Hello'</span> <span class="o">(</span>1 sources<span class="o">)</span>
+Linking ./.build/x86_64-apple-macosx10.10/debug/Hello
+
+<span class="nv">$ </span>.build/x86_64-apple-macosx10.10/debug/Hello
+Hello, world!
+</code></pre></div></div>
+
+<p>As a next step, let’s define a new <code class="language-plaintext highlighter-rouge">sayHello(name:)</code> function
+in a new source file, and have the executable call that
+instead of calling <code class="language-plaintext highlighter-rouge">print(_:)</code> directly.</p>
+
+<h3 id="working-with-multiple-source-files">Working with Multiple Source Files</h3>
+
+<p>Create a new file in the <code class="language-plaintext highlighter-rouge">Sources/Hello</code> directory called <code class="language-plaintext highlighter-rouge">Greeter.swift</code>,
+and enter the following code:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">sayHello</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Hello, </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">sayHello(name:)</code> function takes a single <code class="language-plaintext highlighter-rouge">String</code> argument
+and prints our “Hello” greeting before, substituting the word “World”
+with the function argument.</p>
+
+<p>Now, open <code class="language-plaintext highlighter-rouge">main.swift</code> again, and replace the existing contents with the following code:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="kt">CommandLine</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Usage: hello NAME"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="kt">CommandLine</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nf">sayHello</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Rather than using a hardcoded name as before,
+<code class="language-plaintext highlighter-rouge">main.swift</code> now reads from the command line arguments.
+And instead of invoking <code class="language-plaintext highlighter-rouge">print(_:)</code> directly,
+<code class="language-plaintext highlighter-rouge">main.swift</code> now calls the <code class="language-plaintext highlighter-rouge">sayHello(name:)</code> method.
+Because the method is part of the <code class="language-plaintext highlighter-rouge">Hello</code> module,
+no <code class="language-plaintext highlighter-rouge">import</code> statement is necessary.</p>
+
+<p>Run <code class="language-plaintext highlighter-rouge">swift run</code> and try out the new version of <code class="language-plaintext highlighter-rouge">Hello</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swift run Hello <span class="sb">`</span><span class="nb">whoami</span><span class="sb">`</span>
+</code></pre></div></div>
+
+<hr />
+
+<blockquote>
+  <p>To learn about the Swift Package Manager,
+including how to build modules, import dependencies, and map system libraries,
+see the <a href="/package-manager">Swift Package Manager</a> section of the website.</p>
+</blockquote>
+
+<h2 id="using-the-lldb-debugger">Using the LLDB Debugger</h2>
+
+<p>You can use the LLDB debugger to
+run Swift programs step-by-step,
+set breakpoints,
+and inspect and modify program state.</p>
+
+<p>As an example,
+consider the following Swift code,
+which defines a <code class="language-plaintext highlighter-rouge">factorial(n:)</code> function,
+and prints the result of calling that function:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">factorial</span><span class="p">(</span><span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="nf">factorial</span><span class="p">(</span><span class="nv">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">number</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">number</span><span class="se">)</span><span class="s">! is equal to </span><span class="se">\(</span><span class="nf">factorial</span><span class="p">(</span><span class="nv">n</span><span class="p">:</span> <span class="n">number</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Create a file named <code class="language-plaintext highlighter-rouge">Factorial.swift</code> with the code above,
+and run the <code class="language-plaintext highlighter-rouge">swiftc</code> command,
+passing the filename as a command line argument,
+along with the <code class="language-plaintext highlighter-rouge">-g</code> option to generate debug information.
+This will create an executable named <code class="language-plaintext highlighter-rouge">Factorial</code>
+in the current directory.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swiftc <span class="nt">-g</span> Factorial.swift
+<span class="nv">$ </span><span class="nb">ls
+</span>Factorial.dSYM
+Factorial.swift
+Factorial<span class="k">*</span>
+</code></pre></div></div>
+
+<p>Instead of running the <code class="language-plaintext highlighter-rouge">Factorial</code> program directly,
+run it through the LLDB debugger
+by passing it as a command line argument to the <code class="language-plaintext highlighter-rouge">lldb</code> command.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ lldb Factorial
+(lldb) target create "Factorial"
+Current executable set to 'Factorial' (x86_64).
+</code></pre></div></div>
+
+<p>This will start an interactive console
+that allows you to run LLDB commands.</p>
+
+<blockquote>
+  <p>For more information about LLDB commands,
+see the <a href="http://lldb.llvm.org/tutorial.html">LLDB Tutorial</a>.</p>
+</blockquote>
+
+<p>Set a breakpoint on line 2 of the <code class="language-plaintext highlighter-rouge">factorial(n:)</code> function
+with the <code class="language-plaintext highlighter-rouge">breakpoint set</code> (<code class="language-plaintext highlighter-rouge">b</code>) command,
+to have the process break each time the function is executed.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) b 2
+Breakpoint 1: where = Factorial`Factorial.factorial (Swift.Int) -&gt; Swift.Int + 12 at Factorial.swift:2, address = 0x0000000100000e7c
+</code></pre></div></div>
+
+<p>Run the process with the <code class="language-plaintext highlighter-rouge">run</code> (<code class="language-plaintext highlighter-rouge">r</code>) command.
+The process will stop at the call site of the <code class="language-plaintext highlighter-rouge">factorial(n:)</code> function.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) r
+Process 40246 resuming
+Process 40246 stopped
+* thread #1: tid = 0x14dfdf, 0x0000000100000e7c Factorial`Factorial.factorial (n=4) -&gt; Swift.Int + 12 at Factorial.swift:2, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+    frame #0: 0x0000000100000e7c Factorial`Factorial.factorial (n=4) -&gt; Swift.Int + 12 at Factorial.swift:2
+   1    func factorial(n: Int) -&gt; Int {
+-&gt; 2        if n &lt;= 1 { return n }
+   3        return n * factorial(n: n - 1)
+   4    }
+   5
+   6    let number = 4
+   7    print("\(number)! is equal to \(factorial(n: number))")
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">print</code> (<code class="language-plaintext highlighter-rouge">p</code>) command
+to inspect the value of the <code class="language-plaintext highlighter-rouge">n</code> parameter.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) p n
+(Int) $R0 = 4
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">print</code> command can evaluate Swift expressions as well.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) p n * n
+(Int) $R1 = 16
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">backtrace</code> (<code class="language-plaintext highlighter-rouge">bt</code>) command
+to show the frames leading to <code class="language-plaintext highlighter-rouge">factorial(n:)</code> being called.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) bt
+* thread #1: tid = 0x14e393, 0x0000000100000e7c Factorial`Factorial.factorial (n=4) -&gt; Swift.Int + 12 at Factorial.swift:2, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+  * frame #0: 0x0000000100000e7c Factorial`Factorial.factorial (n=4) -&gt; Swift.Int + 12 at Factorial.swift:2
+    frame #1: 0x0000000100000daf Factorial`main + 287 at Factorial.swift:7
+    frame #2: 0x00007fff890be5ad libdyld.dylib`start + 1
+    frame #3: 0x00007fff890be5ad libdyld.dylib`start + 1
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">continue</code> (<code class="language-plaintext highlighter-rouge">c</code>) command
+to resume the process until the breakpoint is hit again.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) c
+Process 40246 resuming
+Process 40246 stopped
+* thread #1: tid = 0x14e393, 0x0000000100000e7c Factorial`Factorial.factorial (n=3) -&gt; Swift.Int + 12 at Factorial.swift:2, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+    frame #0: 0x0000000100000e7c Factorial`Factorial.factorial (n=3) -&gt; Swift.Int + 12 at Factorial.swift:2
+   1    func factorial(n: Int) -&gt; Int {
+-&gt; 2        if n &lt;= 1 { return n }
+   3        return n * factorial(n: n - 1)
+   4    }
+   5
+   6    let number = 4
+   7    print("\(number)! is equal to \(factorial(n: number))")
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">print</code> (<code class="language-plaintext highlighter-rouge">p</code>) command again
+to inspect the value of the <code class="language-plaintext highlighter-rouge">n</code> parameter
+for the second call to <code class="language-plaintext highlighter-rouge">factorial(n:)</code>.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) p n
+(Int) $R2 = 3
+</code></pre></div></div>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">breakpoint disable</code> (<code class="language-plaintext highlighter-rouge">br di</code>) command
+to disable all breakpoints
+and the <code class="language-plaintext highlighter-rouge">continue</code> (<code class="language-plaintext highlighter-rouge">c</code>) command
+to have the process run until it exits.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(lldb) br di
+All breakpoints disabled. (1 breakpoints)
+(lldb) c
+Process 40246 resuming
+4! is equal to 24
+Process 40246 exited with status = 0 (0x00000000)
+</code></pre></div></div>
+
+<hr />
+
+<p>Now that you’ve been introduced to the Swift REPL, build system, and debugger,
+here are a few suggestions for what to do next:</p>
+
+<ul>
+  <li>Check out the <a href="/package-manager">Package Manager project page</a>
+for a deep dive into the Swift build system and package manager.</li>
+  <li>Read <a href="/contributing">Contributing to Swift</a>
+to learn about the different ways you can participate in the Swift community.</li>
+  <li>Go to <a href="https://developer.apple.com/swift/resources/">developer.apple.com/swift</a>
+for additional Swift resources, including videos, sample code, and playgrounds.</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>The windows binaries are built against Python 3.10.2 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>You may install a newer SDK instead. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

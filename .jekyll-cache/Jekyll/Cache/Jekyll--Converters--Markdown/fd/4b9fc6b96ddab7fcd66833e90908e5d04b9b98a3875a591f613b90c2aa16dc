@@ -1,0 +1,256 @@
+I"�+
+<p>Swift can be used on different platforms. The information below documents the current level of support for each platform.</p>
+
+<p>Each Swift platform is categorized based two categories:</p>
+
+<ul>
+  <li>
+    <p><strong><a href="#deployment-and-development">Deployment and Development</a></strong>: Swift programs can be built to run on this platform and the development tools for Swift — such as the Swift compiler — also run on this platform.</p>
+  </li>
+  <li>
+    <p><strong><a href="#deployment-only">Deployment-only</a></strong>: Swift programs can be built to run on this platform, but the development tools themselves that build those programs may not themselves run on this platform.</p>
+  </li>
+</ul>
+
+<p>The current set of supported platforms for development and deployment are described below.</p>
+
+<h3 id="deployment-and-development">Deployment and Development</h3>
+
+<p>These are the platforms one can use for Swift’s development tools. This table shows which platforms you can target when the tools are used on a given platform.  For example, the tools on macOS can build Swift applications that run on iOS.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running development tools</th>
+      <th style="text-align: center">Deployable targets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">Apple platforms</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">Ubuntu</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">CentOS</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">Amazon Linux</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">Windows</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="minimum-deployment-version">Minimum deployment version</h4>
+
+<p>This table shows the minimum OS version for which a Swift application can be deployed.  For example, a Swift application can run on iOS 7.0 or later, but not iOS 6.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running Swift application</th>
+      <th style="text-align: center">Minimum deployment version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">10.9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>iOS</strong></td>
+      <td style="text-align: center">7.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>watchOS</strong></td>
+      <td style="text-align: center">2.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>tvOS</strong></td>
+      <td style="text-align: center">9.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">18.04</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">10.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="development-tools">Development Tools</h4>
+
+<p>The Swift compiler and debugger run on platforms supporting development.  Support for the Swift Package Manager and <a href="https://github.com/apple/sourcekit-lsp">SourceKit-LSP</a> are currently supported on most, but not all platforms that support the tools.  This table provides the current breakdown of what tools are available on what platforms.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running development tools</th>
+      <th style="text-align: center"><a href="https://github.com/apple/swift-package-manager">Swift Package Manager</a></th>
+      <th style="text-align: center"><a href="https://github.com/apple/sourcekit-lsp">SourceKit-LSP</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="deployment-only">Deployment-only</h3>
+
+<p>Each platform that supports running Swift applications is required to provide documentation for getting started. The documentation should contain information for installing Swift, using the REPL, using the Swift Package Manager and using the Debugger. Every platform is expected to have core runtime, Standard Library support, and core libraries, except where explicitly documented otherwise.</p>
+
+<p>The table below list the available capabilities on each platform for running Swift applications:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Platform running Swift application</th>
+      <th style="text-align: center">Debugger</th>
+      <th style="text-align: center">REPL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>macOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>iOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>watchOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>tvOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Ubuntu</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>CentOS</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Amazon Linux</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center">✓</td>
+      <td style="text-align: center">✓</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="platform-owners">Platform Owners</h2>
+
+<p>Support for developing and running Swift applications on various platforms is supported by different members of the Swift open source community.  Each platform has a champion, called a <em>platform owner</em>, that acts as the primary steward of maintaining support for a given platform.</p>
+
+<p>Platform owners help facilitate contributors to the Swift project to collaborate and continue to work towards progressing a given platform. These individuals would also be able to guide porting specific changes on the platform. Platform owners have sections on <a href="https://forums.swift.org">forums.swift.org</a> and meet bi-weekly to discuss active development and open issues on the platform.</p>
+
+<h3 id="current-platform-owners">Current Platform Owners</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">Getting Started</th>
+      <th style="text-align: center">Toolchain Provider</th>
+      <th style="text-align: center">Pull Request Testing Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>Apple platforms</strong></td>
+      <td style="text-align: center"><a href="https://swift.org/getting-started/#on-macos">Docs</a></td>
+      <td style="text-align: center"><a href="https://www.apple.com">Apple Inc.</a></td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Linux</strong></td>
+      <td style="text-align: center"><a href="https://swift.org/getting-started/#on-linux">Docs</a></td>
+      <td style="text-align: center"><a href="https://www.apple.com">Apple Inc.</a></td>
+      <td style="text-align: center">✓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>Windows</strong></td>
+      <td style="text-align: center"><a href="https://swift.org/getting-started/#on-windows">Docs</a></td>
+      <td style="text-align: center"><a href="https://github.com/compnerd">Saleem Abdulrasool</a></td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Apple platforms includes macOS, iOS, tvOS, and watchOS.</li>
+  <li>Linux includes Ubuntu, CentOS and Amazon Linux platforms.</li>
+</ul>
+
+<h3 id="continuous-integration-for-platforms">Continuous Integration for Platforms</h3>
+
+<p>Continuous integration is a critical aspect of maintaining the health of the Swift project.  Pull requests support (and for officially supported platforms) require builds and test to pass prior to the pull request being merged.</p>
+
+<p>Pull request testing hardware for a given platform are provided by various members of the community.  Platform owners are responsible for monitoring continuous testing for main and release branch on Swift Community-Hosted CI or separate continuous integration systems. Platform owners are responsible for providing or securing the hardware to support continuous testing on Swift Community-Hosted CI.</p>
+
+<h3 id="code-signature-for-downloadable-builds">Code Signature for Downloadable Builds</h3>
+
+<p>Platform owners will build and sign the toolchain before providing it to Apple. Apple will then re-sign the toolchain under <a href="https://swift.org">swift.org</a> certificate and distribute it on the website. The builds will only be re-signed if they are not built by Apple. There will be random audits to validate the signatures between both the platform owners and Apple.</p>
+
+<h3 id="platform-review">Platform Review</h3>
+
+<p>Swift community members can propose adding new platforms to the tables by requesting a review on forums.swift.org. The Swift Core team will review such proposals.</p>
+
+:ET

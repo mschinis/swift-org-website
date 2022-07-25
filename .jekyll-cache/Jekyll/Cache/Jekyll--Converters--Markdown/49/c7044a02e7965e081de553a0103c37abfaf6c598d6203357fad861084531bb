@@ -1,0 +1,2 @@
+I"Í<p>It is my pleasure to announce a new open source project for the Swift Server ecosystem, <a href="https://www.github.com/apple/swift-cluster-membership">Swift Cluster Membership</a>. This library aims to help Swift grow in a new space of server applications: clustered multi-node distributed systems. With this library we provide reusable runtime-agnostic <em>membership protocol</em> implementations which can be adopted in various clustering use-cases.</p>
+:ET

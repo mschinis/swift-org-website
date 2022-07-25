@@ -1,0 +1,299 @@
+I"�3<ul>
+  <li><a href="#configure-the-system">Configure the system</a></li>
+  <li><a href="#build-swift-compiler">Build Swift Compiler</a>
+    <ul>
+      <li><a href="#build-swift-compiler-without-additional-tools">Build Swift compiler without additional tools</a></li>
+      <li><a href="#build-swift-compiler-with-sccache">Build Swift Compiler with Sccache</a></li>
+      <li><a href="#build-swift-stdlib-against-a-downloadable-toolchain">Build Swift stdlib against a downloadable toolchain</a></li>
+    </ul>
+  </li>
+  <li><a href="#build-swift-corelibs-foundation">Build swift-corelibs-foundation</a></li>
+  <li><a href="#starter-bugs">Starter Bugs</a></li>
+</ul>
+
+<h2 id="configure-the-system">Configure the system</h2>
+
+<h3 id="requirements">Requirements</h3>
+
+<ul>
+  <li>macOS 10.14.4 or later</li>
+  <li>Xcode 11 beta 1</li>
+  <li>60 GB of free disk space</li>
+</ul>
+
+<h3 id="install-xcode">Install Xcode</h3>
+
+<ul>
+  <li>Download <a href="https://developer.apple.com/download/">Xcode 11 beta 1</a> and select Applications</li>
+  <li>Double click on the XIP image</li>
+  <li>Move the Xcode-beta.app to /Applications/</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/Downloads/Xcode-beta.app /Applications/
+</code></pre></div></div>
+<ul>
+  <li>xcode-select the Xcode 11 beta 1</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select <span class="nt">-s</span> /Applications/Xcode-beta.app
+</code></pre></div></div>
+
+<h3 id="install-cmake-and-ninja">Install CMake and Ninja</h3>
+
+<ul>
+  <li>Install CMake using package manager [1]</li>
+  <li>Homebrew</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>cmake ninja
+</code></pre></div></div>
+<ul>
+  <li>MacPorts</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>port <span class="nb">install </span>cmake ninja
+</code></pre></div></div>
+
+<h3 id="setup-swift-repositories">Setup Swift Repositories</h3>
+
+<ul>
+  <li>Clone Swift repository</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:apple/swift.git
+</code></pre></div></div>
+<ul>
+  <li>Clone other required repositories</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./swift/utils/update-checkout <span class="nt">--clone</span> <span class="nt">--scheme</span> main
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="build-swift-compiler">Build Swift Compiler</h2>
+
+<hr />
+
+<h3 id="build-swift-compiler-without-additional-tools">Build Swift compiler without additional tools</h3>
+
+<ul>
+  <li>Build Swift Compiler:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./swift/utils/build-script <span class="nt">--build-ninja</span> <span class="nt">--release-debuginfo</span>
+</code></pre></div></div>
+
+<h3 id="build-swift-compiler-with-sccache">Build Swift Compiler with Sccache</h3>
+
+<ul>
+  <li>Install sccache using Homebrew [2]</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>sccache
+</code></pre></div></div>
+<ul>
+  <li>Set sccache server URL</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SCCACHE_REDIS</span><span class="o">=</span><span class="k">${</span><span class="nv">SCCACHE_REDIS</span><span class="k">}</span>
+</code></pre></div></div>
+<ul>
+  <li>Start sccache server</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sccache  <span class="nt">--start-server</span>
+</code></pre></div></div>
+<ul>
+  <li>Build Swift Compiler:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./swift/utils/build-script <span class="se">\</span>
+    <span class="nt">--cmake-c-launcher</span> <span class="sb">`</span>which sccache<span class="sb">`</span> <span class="se">\</span>
+    <span class="nt">--cmake-cxx-launcher</span> <span class="sb">`</span>which sccache<span class="sb">`</span> <span class="se">\</span>
+    <span class="nt">--preset</span><span class="o">=</span>buildbot_incremental,tools<span class="o">=</span>RA,stdlib<span class="o">=</span>RD,build
+</code></pre></div></div>
+
+<ul>
+  <li>Stop sccache server</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sccache  <span class="nt">--stop-server</span>
+</code></pre></div></div>
+
+<h3 id="build-swift-stdlib-against-a-downloadable-toolchain">Build Swift stdlib against a downloadable toolchain</h3>
+
+<ul>
+  <li>Create a workspace directory</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>workspace
+<span class="nb">cd </span>workspace
+</code></pre></div></div>
+<ul>
+  <li>Download the following snapshot from <a href="http://swift.org/">swift.org</a>: <a href="https://download.swift.org/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a-osx.pkg">https://download.swift.org/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a-osx.pkg</a></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://download.swift.org/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a-osx.pkg
+</code></pre></div></div>
+<ul>
+  <li>Untar the file using the commands into workspace/toolchain</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>toolchain
+xar <span class="nt">-C</span> toolchain <span class="nt">-x</span> <span class="nt">-f</span> swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a-osx.pkg
+<span class="nb">tar</span> <span class="nt">-C</span> toolchain <span class="nt">-xzf</span> toolchain/swift-DEVELOPMENT-SNAPSHOT-2019-06-06-a-osx-package.pkg/Payload
+<span class="nv">TOOLCHAIN_BIN_DIR</span><span class="o">=</span><span class="nv">$PWD</span>/toolchain/usr/bin
+</code></pre></div></div>
+<ul>
+  <li>Clone Swift repository:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:apple/swift.git
+</code></pre></div></div>
+<ul>
+  <li>Clone other required repositories:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./swift/utils/update-checkout <span class="nt">--clone</span> <span class="nt">--scheme</span><span class="o">=</span>stdlib_standalone
+</code></pre></div></div>
+<ul>
+  <li>
+    <p>Build the swift stdlib using one of the presets from the chart below. We suggest for development to try <code class="language-plaintext highlighter-rouge">stdlib_DA_standalone,build</code>. The form of the build-script invocation is:</p>
+
+    <ul>
+      <li>
+        <p>To build/test</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./swift/utils/build-script --preset=$PRESET_NAME toolchain_path=$TOOLCHAIN_BIN_DIR
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>To reconfigure (rerun cmake), pass in the reconfigure flag.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./swift/utils/build-script --preset=$PRESET_NAME toolchain_path=$TOOLCHAIN_BIN_DIR --reconfigure
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Example:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./swift/utils/build-script --preset=stdlib_DA_standalone,build toolchain_path=$TOOLCHAIN_BIN_DIR
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>To clean remove ./workspace/build/$PRESET_STEM. Example:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  rm -rfv build/stdlib_DA_standalone
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Preset <code class="language-plaintext highlighter-rouge">$PRESET_NAME</code></th>
+      <th>Build Type</th>
+      <th>Test</th>
+      <th>Debug Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stdlib_DA_standalone,build</code></td>
+      <td>Debug</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stdlib_DA_standalone,build,test</code></td>
+      <td>Debug</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stdlib_RA_standalone,build</code></td>
+      <td>Release</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stdlib_RA_standalone,build,test</code></td>
+      <td>Release</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stdlib_RDA_standalone,build</code></td>
+      <td>Release</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stdlib_RDA_standalone,build,test</code></td>
+      <td>Release</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="build-swift-corelibs-foundation">Build swift-corelibs-foundation</h2>
+
+<hr />
+
+<h3 id="build-swift-corelibs-foundation-against-a-downloadable-toolchain">build swift-corelibs-foundation against a downloadable toolchain</h3>
+
+<ul>
+  <li>Download and install the latest trunk snapshot using the Installer app from <a href="https://swift.org/download/#snapshots">swift.org</a></li>
+  <li>Clone Swift repository</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:apple/swift.git
+</code></pre></div></div>
+<ul>
+  <li>Clone other required repositories</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./swift/utils/update-checkout <span class="nt">--clone</span> <span class="nt">--scheme</span> main
+</code></pre></div></div>
+<ul>
+  <li>Open the Xcode version you just installed; select from the menu Xcode &gt; Preferences &gt; Components &gt; Toolchains and enable the trunk snapshot you installed.</li>
+  <li>Open <code class="language-plaintext highlighter-rouge">Foundation.xcworkspace</code> from the <code class="language-plaintext highlighter-rouge">swift-corelibs-foundation</code> repository from that version of Xcode.</li>
+  <li>Build and run the <code class="language-plaintext highlighter-rouge">TestFoundation</code> scheme.</li>
+</ul>
+
+<hr />
+
+<p>[1] Manually install CMake</p>
+
+<ul>
+  <li>Download <a href="https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4-Darwin-x86_64.tar.gz">CMake</a></li>
+  <li>Install CMake</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/bin
+<span class="nb">tar </span>xfz cmake-3.14.4-Darwin-x86_64.tar.gz <span class="nt">-C</span> <span class="nv">$HOME</span>/bin
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin/cmake-3.14.4-Darwin-x86_64/CMake.app/Contents/bin:<span class="nv">$PATH</span>
+</code></pre></div></div>
+
+<p>[2] Manually Install Sccache:</p>
+
+<ul>
+  <li>Download <a href="https://github.com/mozilla/sccache/releases/download/0.2.8/sccache-0.2.8-x86_64-apple-darwin.tar.gz">sccache</a></li>
+  <li>Install sccache</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/bin
+<span class="nb">tar </span>xfz sccache-0.2.8-x86_64-apple-darwin.tar.gz <span class="nt">-C</span> <span class="nv">$HOME</span>/bin
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin/sccache-0.2.8-x86_64-apple-darwin:<span class="nv">$PATH</span>
+</code></pre></div></div>
+
+<h2 id="starter-bugs">Starter bugs</h2>
+
+<p>The Swift project uses GitHub Issues for bug tracking and the bugs and enhancement requests could be found at <a href="http://github.com/apple/swift/issues">GitHub Issues</a>. If you are new to the codebase, you can identify beginner tasks by searching for the bugs that have the “<a href="https://github.com/apple/swift/issues/issues?q=is%3Aopen+is%3Aissue+label%3AStarterBug">StarterBug</a>” label.</p>
+
+:ET

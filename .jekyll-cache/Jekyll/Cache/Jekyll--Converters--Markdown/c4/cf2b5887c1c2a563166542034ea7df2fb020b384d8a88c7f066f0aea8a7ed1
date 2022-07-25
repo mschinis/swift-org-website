@@ -1,0 +1,7 @@
+I"�<p>The Swift 5 release enables runtime checking of “Exclusive Access to
+Memory” by default in Release builds, further enhancing Swift’s
+capabilities as a safe language. In Swift 4, these runtime checks were
+only enabled in Debug builds. In this post, I’ll first explain what
+this change means for Swift developers before delving into why it is
+essential to Swift’s strategy for safety and performance.</p>
+:ET

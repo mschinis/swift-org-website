@@ -22,11 +22,11 @@
       {% else %}
       <li>
       {% endif %}
-        <a href="{{ navpage.url }}">{{ navpage.title }}</a>
+        <a href="{{ site.env.SITE }}/{{ navpage.url }}">{{ navpage.title }}</a>
         {% if page.url == navpage.url and navpage.sections %}
         <ul>
           {% for section in navpage.sections %}
-          <li><a href="{{ navpage.url }}#{{ section.name }}">{{ section.title }}</a></li>
+          <li><a href="{{ site.env.SITE }}/{{ navpage.url }}#{{ section.name }}">{{ section.title }}</a></li>
           {% endfor %}
         </ul>
         {% endif %}

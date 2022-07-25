@@ -1,0 +1,92 @@
+I"�$<p>Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.</p>
+
+<p>The goal of the Swift project is to create the best available language for uses ranging from systems programming, to mobile and desktop apps, scaling up to cloud services.  Most importantly, Swift is designed to make writing and maintaining <em>correct</em> programs easier for the developer. To achieve this goal, we believe that the most obvious way to write Swift code must also be:</p>
+
+<p><strong>Safe.</strong>  The most obvious way to write code should also behave in a safe manner.  Undefined behavior is the enemy of safety, and developer mistakes should be caught before software is in production. Opting for safety sometimes means Swift will feel strict, but we believe that clarity saves time in the long run.</p>
+
+<p><strong>Fast.</strong>  Swift is intended as a replacement for C-based languages (C, C++, and Objective-C). As such, Swift must be comparable to those languages in performance for most tasks.  Performance must also be predictable and consistent, not just fast in short bursts that require clean-up later.  There are lots of languages with novel features — being fast is rare.</p>
+
+<p><strong>Expressive.</strong>  Swift benefits from decades of advancement in computer science to offer syntax that is a joy to use, with modern features developers expect.  But Swift is never done.  We will monitor language advancements and embrace what works, continually evolving to make Swift even better.</p>
+
+<p>Tools are a critical part of the Swift ecosystem. We strive to integrate well within a developer’s toolset, to build quickly, to present excellent diagnostics, and to enable interactive development experiences. Tools can make programming so much more powerful, like Swift-based playgrounds do in Xcode, or a web-based REPL can when working with Linux server-side code.</p>
+
+<h2 id="features">Features</h2>
+
+<p>Swift includes features that make code easier to read and write, while giving the developer the control needed in a true systems programming language.  Swift supports inferred types to make code cleaner and less prone to mistakes, and modules eliminate headers and provide namespaces. Memory is managed automatically, and you don’t even need to type semi-colons. Swift also borrows from other languages, for instance named parameters brought forward from Objective-C are expressed in a clean syntax that makes APIs in Swift easy to read and maintain.</p>
+
+<p>The features of Swift are designed to work together to create a language that is powerful, yet fun to use. Some additional features of Swift include:</p>
+
+<ul>
+  <li>Closures unified with function pointers</li>
+  <li>Tuples and multiple return values</li>
+  <li>Generics</li>
+  <li>Fast and concise iteration over a range or collection</li>
+  <li>Structs that support methods, extensions, and protocols</li>
+  <li>Functional programming patterns, e.g., map and filter</li>
+  <li>Powerful error handling built-in</li>
+  <li>Advanced control flow with <code class="language-plaintext highlighter-rouge">do</code>, <code class="language-plaintext highlighter-rouge">guard</code>, <code class="language-plaintext highlighter-rouge">defer</code>, and <code class="language-plaintext highlighter-rouge">repeat</code> keywords</li>
+</ul>
+
+<h3 id="safety">Safety</h3>
+
+<p>Swift was designed from the outset to be safer than C-based languages, and eliminates entire classes of unsafe code. Variables are always initialized before use, arrays and integers are checked for overflow, and memory is managed automatically. Syntax is tuned to make it easy to define your intent — for example, simple three-character keywords define a variable (<code class="language-plaintext highlighter-rouge">var</code>) or constant (<code class="language-plaintext highlighter-rouge">let</code>).</p>
+
+<p>Another safety feature is that by default Swift objects can never be <code class="language-plaintext highlighter-rouge">nil</code>, and trying to make or use a <code class="language-plaintext highlighter-rouge">nil</code> object results in a compile-time error. This makes writing code much cleaner and safer, and prevents a common cause of runtime crashes. However, there are cases where <code class="language-plaintext highlighter-rouge">nil</code> is appropriate, and for these situations Swift has an innovative feature known as <strong>optionals</strong>. An optional may contain <code class="language-plaintext highlighter-rouge">nil</code>, but Swift syntax forces you to safely deal with it using <code class="language-plaintext highlighter-rouge">?</code> to indicate to the compiler you understand the behavior and will handle it safely.</p>
+
+<h2 id="swiftorg-and-open-source">Swift.org and Open Source</h2>
+
+<p>On December 3, 2015, the Swift language, supporting libraries, debugger, and package manager were published under the <a href="/LICENSE.txt">Apache 2.0 license with a Runtime Library Exception</a>, and Swift.org was created to host the project. The source code is <a href="http://github.com/apple">hosted on GitHub</a> where it is easy for anyone to get the code, build it themselves, and even create pull requests to contribute code back to the project. Everyone is welcome, even just to <a href="/contributing/#reporting-bugs">file a bug report</a>. There are excellent <a href="/getting-started/">Getting Started</a> guides available here on the site as well.</p>
+
+<p>The project is governed by a core team of engineers that drive the strategic direction by working with the community, and a collection of code owners responsible for the day-to-day project management. Technical leaders come from the community of contributors and anyone can earn the right to lead an area of Swift.  The <a href="/community/">Community Overview</a> includes detailed information on how the Swift community is managed.</p>
+
+<h3 id="projects">Projects</h3>
+
+<p>The Swift language is managed as a collection of projects, each with its own repositories.  The current list of projects includes:</p>
+
+<ul>
+  <li>The <a href="/swift-compiler/">Swift compiler</a> command line tool</li>
+  <li>The <a href="/standard-library/">standard library</a> bundled as part of the language</li>
+  <li><a href="/core-libraries/">Core libraries</a> that provide higher-level functionality</li>
+  <li>The <a href="/lldb/">LLDB debugger</a> which includes the Swift REPL</li>
+  <li>The <a href="/package-manager/">Swift package manager</a> for distributing and building Swift source code</li>
+  <li><a href="/lldb/#xcode-playground-support">Xcode playground support</a> to enable playgrounds in Xcode.</li>
+</ul>
+
+<h2 id="platform-support">Platform Support</h2>
+
+<p>One of the most exciting aspects of developing Swift in the open is knowing that it is now free to be ported across a wide range of platforms, devices, and use cases.</p>
+
+<p>Our goal is to provide source compatibility for Swift across all platforms, even though the actual implementation mechanisms may differ from one platform to the next. The primary example is that the Apple platforms include the Objective-C runtime, which is required to access Apple platform frameworks such as UIKit and AppKit. On other platforms, such as Linux, no Objective-C runtime is present, because it isn’t necessary.</p>
+
+<p>The <a href="/core-libraries/">Swift core libraries project</a> aims to
+extend the cross-platform capabilities of Swift by providing portable
+implementations of fundamental Apple frameworks (such as Foundation)
+without dependencies on the Objective-C runtime. Although the core
+libraries are in an early stage of development, they will eventually
+provide improved source compatibility for Swift code across all
+platforms.</p>
+
+<h3 id="apple-platforms">Apple Platforms</h3>
+
+<p>Open-source Swift can be used on the Mac to target all of the Apple
+platforms: iOS, macOS, watchOS, and tvOS. Moreover, binary builds of
+open-source Swift integrate with the Xcode developer tools, including
+complete support for the Xcode build system, code completion in the
+editor, and integrated debugging, allowing anyone to experiment with
+the latest Swift developments in a familiar Cocoa and Cocoa Touch
+development environment.</p>
+
+<h3 id="linux">Linux</h3>
+
+<p>Open-source Swift can be used on Linux to build Swift libraries and
+applications. The open-source binary builds provide the Swift compiler and standard library, Swift REPL and debugger (LLDB), and the <a href="/core-libraries/">core libraries</a>, so one can jump right in to Swift development.</p>
+
+<h3 id="windows">Windows</h3>
+
+<p>Open source Swift can be used on Windows to build Swift libraries and applications. The open source binary builds provide C/C++/Swift toolchains, the standard library, and debugger (LLDB), as well as the <a href="/core-libraries/">core libraries</a>, so one can jump right in to Swift development. SourceKit-LSP is bundled into the releases to enable developers to be quickly productive with the IDE of their choice.</p>
+
+<h3 id="new-platforms">New Platforms</h3>
+
+<p>We can’t wait to see the new places we can bring Swift—together.  We truly believe that this language that we love can make software safer, faster, and easier to maintain.  We’d love your help to bring Swift to even more computing platforms.</p>
+
+:ET

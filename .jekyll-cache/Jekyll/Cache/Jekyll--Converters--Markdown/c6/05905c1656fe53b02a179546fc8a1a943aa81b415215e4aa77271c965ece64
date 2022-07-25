@@ -1,0 +1,4 @@
+I"<p>A new implementation of implicitly unwrapped optionals (IUOs) landed in the Swift compiler earlier this year and is available to try in recent Swift <a href="https://swift.org/download/#snapshots">snapshots</a>.
+This completes the implementation of <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0054-abolish-iuo.md">SE-0054 - Abolish ImplicitlyUnwrappedOptional Type</a>.
+This is an important change to the language that eliminated some inconsistencies in type checking and clarified the rule of how these values are to be treated so that it is consistent and easy to reason about. For more information, see the <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0054-abolish-iuo.md#motivation">motivation section</a> of that proposal.</p>
+:ET

@@ -1,0 +1,130 @@
+I"�+<p>Swift 5 is now officially released!</p>
+
+<p>Swift 5 is a major milestone in the evolution of the language.  Thanks to ABI stability, the Swift runtime is now included in current and future versions of Apple’s platform operating systems: macOS, iOS, tvOS and watchOS.  Swift 5 also introduces new capabilities that are building blocks for future versions, including a reimplementation of String, enforcement of exclusive access to memory during runtime, new data types, and support for dynamically callable types.</p>
+
+<p>You can try out some of the new features in this <a href="https://github.com/twostraws/whats-new-in-swift-5-0">playground</a> put together by Paul Hudson.</p>
+
+<h3 id="language-updates">Language Updates</h3>
+
+<h4 id="stable-abi-and-binary-compatibility">Stable ABI and Binary Compatibility</h4>
+
+<p>The ABI is now declared stable for Swift 5 on Apple platforms.  As a result, the Swift libraries are now incorporated into every macOS, iOS, tvOS, and watchOS release going forward. Your apps will be easier to build and smaller because they won’t have to include those libraries.</p>
+
+<p>See these blog posts for more details:</p>
+
+<ul>
+  <li><a href="https://swift.org/blog/abi-stability-and-more/">ABI Stability and More</a></li>
+  <li><a href="https://swift.org/blog/abi-stability-and-apple/">Evolving Swift On Apple Platforms After ABI Stability</a></li>
+</ul>
+
+<h4 id="standard-library-updates">Standard Library Updates</h4>
+
+<p>The standard library in Swift 5 includes the following new features:</p>
+
+<ul>
+  <li>String reimplemented with UTF-8 encoding which can often result in faster code (See the <a href="https://swift.org/blog/utf8-string/">UTF-8 String</a> blog post for more background on this change)</li>
+  <li>Improved support for raw text in string literals (See the <a href="https://swift.org/blog/behind-se-0200/">String Literals</a> blog post for more background on this refinement)</li>
+  <li>Result and SIMD vector types added to the Standard Library</li>
+  <li>Enhancements to String interpolation, adding more flexibility to construct text from data</li>
+  <li>Performance improvements to Dictionary and Set</li>
+</ul>
+
+<p>Swift 5 implements the following Standard Library proposals from the Swift Evolution process:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0200-raw-string-escaping.md">SE-0200 Enhancing String Literals Delimiters to Support Raw Text</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0211-unicode-scalar-properties.md"> SE-0211 Add Unicode Properties to Unicode.Scalar</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0214-DictionaryLiteral.md"> SE-0214 Renaming the DictionaryLiteral type to KeyValuePairs</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0215-conform-never-to-hashable-and-equatable.md"> SE-0215 Conform Never to Equatable and Hashable</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0218-introduce-compact-map-values.md"> SE-0218 Introduce compactMapValues to Dictionary</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0221-character-properties.md"> SE-0221 Character Properties</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0225-binaryinteger-iseven-isodd-ismultiple.md">SE-0225 Adding isMultiple to BinaryInteger</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0228-fix-expressiblebystringinterpolation.md">SE-0228 Fix ExpressibleByStringInterpolation</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0229-simd.md">SE-0229 SIMD Vectors</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0232-remove-customization-points.md">SE-0232 Remove Some Customization Points from the Standard Library’s Collection Hierarchy</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0233-additive-arithmetic-protocol.md">SE-0233 Make Numeric Refine a new AdditiveArithmetic Protocol</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0234-remove-sequence-subsequence.md">SE-0234 Remove Sequence.SubSequence</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0235-add-result.md">SE-0235 Add Result to the Standard Library</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0237-contiguous-collection.md">SE-0237 Introduce withContiguous{Mutable}StorageIfAvailable methods</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0239-codable-range.md"> SE-0239 Add Codable conformance to Range types</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0241-string-index-explicit-encoding-offset.md">SE-0241 Deprecate String Index Encoded Offsets</a></li>
+</ul>
+
+<h4 id="additional-language-and-compiler-updates">Additional Language and Compiler Updates</h4>
+
+<p>Swift 5 defaults to enforcing exclusive access to memory for both debug and release builds (See the <a href="https://swift.org/blog/swift-5-exclusivity/">Swift 5 Exclusivity Enforcement</a> blog post for more information about this update). And Swift 5 supports dynamically callable types that help improve interoperability with dynamic languages such as Python, JavaScript and Ruby.</p>
+
+<p>Swift 5 also implements the following language proposals from the Swift Evolution process:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0192-non-exhaustive-enums.md">SE-0192 Handling Future Enum Cases</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0213-literal-init-via-coercion.md">SE-0213 Literal initialization via coercion</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0216-dynamic-callable.md"> SE-0216 Introduce user-defined dynamically “callable” types</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0224-ifswift-lessthan-operator.md">SE-0224 Support ‘less than’ operator in compilation conditions</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0227-identity-keypath.md"> SE-0227 Identity key path</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0230-flatten-optional-try.md"> SE-0230 Flatten nested optionals resulting from ‘try?’</a></li>
+</ul>
+
+<h3 id="package-manager-updates">Package Manager Updates</h3>
+
+<p>Swift Package Manager includes a number of new features in Swift 5, including dependency mirroring, target-specific build settings, customized deployment targets, and the ability to generate code coverage data.  Additionally, the <code class="language-plaintext highlighter-rouge">swift run</code> command now includes the ability to import libraries in a REPL without needing to build an executable.</p>
+
+<p>Swift 5 implements the following Package Manager proposals from the Swift Evolution process:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0219-package-manager-dependency-mirroring.md"> SE-0219 Package Manager Dependency Mirroring</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0236-package-manager-platform-deployment-settings.md">SE-0236 Package Manager Platform Deployment Settings</a></li>
+  <li><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0238-package-manager-build-settings.md"> SE-0238 Package Manager Target Specific Build Settings</a></li>
+</ul>
+
+<h3 id="migrating-to-swift-5">Migrating to Swift 5</h3>
+
+<p>Swift 5 is source compatible with Swift 4, Swift 4.1 and Swift 4.2.</p>
+
+<p>To help with moving to Swift 5 from earlier releases of Swift, Apple’s Xcode 10.2 contains a code migrator that can automatically handle many of the needed source changes. There is also a <a href="https://swift.org/migration-guide-swift5/">migration guide</a> available to guide you through many of the changes — especially through the ones that are less mechanical and require more direct scrutiny.</p>
+
+<h3 id="documentation">Documentation</h3>
+
+<p>An updated version of <a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a> for Swift 5 is now available on Swift.org. It is also available for free on the <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">Apple Books store</a>.</p>
+
+<h3 id="platforms">Platforms</h3>
+
+<h4 id="linux">Linux</h4>
+
+<p>Official binaries for Ubuntu 18.04, Ubuntu 16.04 and Ubuntu 14.04 are
+<a href="https://swift.org/download/">available for download</a>.</p>
+
+<h4 id="apple-xcode">Apple (Xcode)</h4>
+
+<p>For development on Apple’s platforms, Swift 5 ships as part of <a href="https://itunes.apple.com/app/xcode/id497799835">Xcode 10.2</a>.</p>
+
+<p>A toolchain is also <a href="https://swift.org/download/">available for download</a> from Swift.org.</p>
+
+<h3 id="sources">Sources</h3>
+
+<p>Development on Swift 5 was tracked in the swift-5.0-branch on the following repositories on GitHub:</p>
+
+<ul>
+  <li><a href="https://github.com/apple/swift">swift</a></li>
+  <li><a href="https://github.com/apple/swift-clang">swift-clang</a></li>
+  <li><a href="https://github.com/apple/swift-clang-tools-extra">swift-clang-tools-extra</a></li>
+  <li><a href="https://github.com/apple/swift-cmark">swift-cmark</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-foundation">swift-corelibs-foundation</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-libdispatch">swift-corelibs-libdispatch</a></li>
+  <li><a href="https://github.com/apple/swift-corelibs-xctest">swift-corelibs-xctest</a></li>
+  <li><a href="https://github.com/apple/swift-libcxx">swift-libcxx</a></li>
+  <li><a href="https://github.com/apple/swift-llbuild">swift-llbuild</a></li>
+  <li><a href="https://github.com/apple/swift-lldb">swift-lldb</a></li>
+  <li><a href="https://github.com/apple/swift-llvm">swift-llvm</a></li>
+  <li><a href="https://github.com/apple/swift-package-manager">swift-package-manager</a></li>
+  <li><a href="https://github.com/apple/swift-stress-tester">swift-stress-tester</a></li>
+  <li><a href="https://github.com/apple/swift-syntax">swift-syntax</a></li>
+  <li><a href="https://github.com/apple/swift-xcode-playground-support">swift-xcode-playground-support</a></li>
+  <li><a href="https://github.com/apple/swift-compiler-rt">swift-compiler-rt</a></li>
+  <li><a href="https://github.com/apple/swift-integration-tests">swift-integration-tests</a></li>
+</ul>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">swift-5.0-RELEASE</code> designates the specific revisions in those repositories that make up the final version of Swift 5.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">swift-5.0-branch</code> will remain open, but under the same release management process, to accumulate changes for a potential future bug-fix “dot” release.</p>
+:ET
